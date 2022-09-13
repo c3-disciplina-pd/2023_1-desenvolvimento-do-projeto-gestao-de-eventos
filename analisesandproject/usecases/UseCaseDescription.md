@@ -6,7 +6,7 @@ e expressos em `casos de uso`
 
 # Casos de uso - Usuário:
 
-<img width=100% src="../analiseandproject/UsecaseDiagramPart2.jpeg" alt="Casos de uso do usuário" />
+<img width=100% src="UseCaseDiagramPDPart1.png" alt="Casos de uso do usuário" />
 
 ## Caso de uso 01: Usuário deseja se cadastrar na plataforma
 
@@ -28,38 +28,42 @@ Descrição: Este caso necessita que o usuário esteja cadastrado na plataforma 
 
 Descrição: Este caso se inicializa quando o usuário acessa seu perfil para poder fazer ações de visualizar o perfil ou editar informações.
 
+## Caso de uso 06: O usuário precisa avaliar o evento finalizado
+
+Descrição: Este caso se inicializa quando o administrador do evento finaliza o evento e o usuário que pretende retirar o certificado, ele é obrigado a avaliar o evento.
+
 # Casos de uso - Gestor de Eventos:
 
-<img width=100% src="../analiseandproject/UsecaseDiagramPart1.jpeg" alt="Casos de uso do Gestor de eventos" />
+<img width=100% src="UseCaseDiagramPDPart2.png" alt="Casos de uso do Gestor de eventos" />
 
-## Caso de uso 06: Gestor pretende editar evento
+## Caso de uso 07: Gestor pretende editar evento
 
 Descrição: Este caso se inicializa quando o gestor de eventos acessa o sistema, acessa um evento para editar algo sobre o evento.
 
-## Caso de uso 07: Gestor cobiça em finalizar evento
+## Caso de uso 08: Gestor cobiça em finalizar evento
 
 Descrição: Este caso se inicializa após o gestor confirmar a relação de presenças dos participantes para que ele possa finalizar o evento.
 
-## Caso de uso 08: Gestor quer enviar os certificados
+## Caso de uso 09: Gestor quer enviar os certificados
 
 Descrição: Este caso de uso se inicializa após o C07 e o Gestor informará ao sistema os alunos que estão aptos para receber o certificado e então enviará.
 
-## Caso de uso 09: Gestor deseja cadastrar evento na plataforma
+## Caso de uso 10: Gestor deseja cadastrar evento na plataforma
 
 Descrição: Este caso de uso se inicializa quando um Gestor de eventos for realizar um evento e faz o cadastro na plataforma para que usuários possam se cadastrar.
 
-## Caso de uso 10: Gestor deseja observar a lista de eventos cadastrados na plataforma de eventos
+## Caso de uso 11: Gestor deseja observar a lista de eventos cadastrados na plataforma de eventos
 
 Descrição: Este caso de uso se inicializa quando o gestor for acessar a lista de eventos cadastrador na plataforma de eventos
 
 # Casos de uso - Administrador
 
-<img width=100% src="../analiseandproject/UsecaseDiagramPart3.jpeg" alt="Casos de uso do Administrador de eventos" />
+<img width=100% src="UseCaseDiagramPDPart3.png" alt="Casos de uso do Administrador de eventos" />
 
-## Caso de uso 11: Administrador de eventos deseja visualizar as informações do seu evento
+## Caso de uso 12: Administrador de eventos deseja visualizar as informações do seu evento
 
 Descrição: Este caso de uso ocorre quando o administrador deseja visualizar as informações do evento em que ele é o dono.
 
-## Caso de uso 12: Administrador precisa confirmar a presença dos usuários participantes do evento
+## Caso de uso 13: Administrador precisa confirmar a presença dos usuários participantes do evento
 
 Descrição: Este caso de uso consiste no administrador fazendo e confirmando a relação dos alunos presentes e ausentes no evento.
