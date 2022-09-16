@@ -1,4 +1,5 @@
 # Análise de Requisitos
+
 ### Processos de negócios
 
 Os processos e os requisitos de negócios são descobertos
@@ -31,6 +32,10 @@ Descrição: Este caso se inicializa quando o usuário acessa seu perfil para po
 ## Caso de uso 06: O usuário precisa avaliar o evento finalizado
 
 Descrição: Este caso se inicializa quando o administrador do evento finaliza o evento e o usuário que pretende retirar o certificado, ele é obrigado a avaliar o evento.
+
+## Caso de uso 07: O usuário quer cancelar o evento
+
+Descrição: Este caso se inicializa quando o usuário deseja cancelar a inscrição em um evento.
 
 # Casos de uso - Gestor de Eventos:
 
