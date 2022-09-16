@@ -41,23 +41,23 @@ Descrição: Este caso se inicializa quando o usuário deseja cancelar a inscri�
 
 <img width=100% src="UseCaseDiagramPDPart2.png" alt="Casos de uso do Gestor de eventos" />
 
-## Caso de uso 07: Gestor pretende editar evento
+## Caso de uso 08: Gestor pretende editar evento
 
 Descrição: Este caso se inicializa quando o gestor de eventos acessa o sistema, acessa um evento para editar algo sobre o evento.
 
-## Caso de uso 08: Gestor cobiça em finalizar evento
+## Caso de uso 09: Gestor cobiça em finalizar evento
 
 Descrição: Este caso se inicializa após o gestor confirmar a relação de presenças dos participantes para que ele possa finalizar o evento.
 
-## Caso de uso 09: Gestor quer enviar os certificados
+## Caso de uso 10: Gestor quer enviar os certificados
 
 Descrição: Este caso de uso se inicializa após o C07 e o Gestor informará ao sistema os alunos que estão aptos para receber o certificado e então enviará.
 
-## Caso de uso 10: Gestor deseja cadastrar evento na plataforma
+## Caso de uso 11: Gestor deseja cadastrar evento na plataforma
 
 Descrição: Este caso de uso se inicializa quando um Gestor de eventos for realizar um evento e faz o cadastro na plataforma para que usuários possam se cadastrar.
 
-## Caso de uso 11: Gestor deseja observar a lista de eventos cadastrados na plataforma de eventos
+## Caso de uso 12: Gestor deseja observar a lista de eventos cadastrados na plataforma de eventos
 
 Descrição: Este caso de uso se inicializa quando o gestor for acessar a lista de eventos cadastrador na plataforma de eventos
 
@@ -65,10 +65,10 @@ Descrição: Este caso de uso se inicializa quando o gestor for acessar a lista 
 
 <img width=100% src="UseCaseDiagramPDPart3.png" alt="Casos de uso do Administrador de eventos" />
 
-## Caso de uso 12: Administrador de eventos deseja visualizar as informações do seu evento
+## Caso de uso 13: Administrador de eventos deseja visualizar as informações do seu evento
 
 Descrição: Este caso de uso ocorre quando o administrador deseja visualizar as informações do evento em que ele é o dono.
 
-## Caso de uso 13: Administrador precisa confirmar a presença dos usuários participantes do evento
+## Caso de uso 14: Administrador precisa confirmar a presença dos usuários participantes do evento
 
 Descrição: Este caso de uso consiste no administrador fazendo e confirmando a relação dos alunos presentes e ausentes no evento.
