@@ -1,10 +1,8 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { PublicRoutes } from "./routes";
 
 const App = () => {
   return (
-    <Flex w="100vw" h="100vh" bg="blue">
-      <Text>Projeto criado com Vite + Chakra UI</Text>
-    </Flex>
+    <PublicRoutes />
   );
 };
 

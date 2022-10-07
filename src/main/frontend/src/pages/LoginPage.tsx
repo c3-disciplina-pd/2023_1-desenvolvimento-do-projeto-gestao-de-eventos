@@ -1,9 +1,3 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { LoginComponent } from "../components";
 
-export const LoginPage = () => {
-  return (
-    <Flex>
-      <Text>Login Page</Text>
-    </Flex>
-  );
-};
+export const LoginPage = () => <LoginComponent />;
