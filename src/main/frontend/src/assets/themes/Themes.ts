@@ -4,6 +4,8 @@ const colors = {
   brand: {
     900: "#42A7C3",
     800: "#505050",
+    700: "#8A8A8A",
+
   },
   fontSizes: {
     xs: "1rem",
