@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Divider, Flex, Text } from "@chakra-ui/react";
 
 import { InputForm } from "../../Input";
 import { ButtonForm } from "../../Button";
@@ -54,7 +54,48 @@ export const LeftScreen = () => {
         placeholder="Digite sua senha"
         isPassword
       />
-      <ButtonForm title="Login" type="submit" />
+      <ButtonForm
+        title="Login"
+        type="submit"
+        w="50%"
+        mt="2rem"
+        color="white"
+        bg="brand.900"
+        h="3.5rem"
+        _active={{}}
+        _hover={{}}
+        _focus={{}}
+      />
+      <Flex color="brand.600" mt="0.5rem" w="50%" align="left">
+        <Text>Esqueceu sua senha?</Text>
+        <Text fontWeight="bold" cursor="pointer" ml="0.2rem">
+          Clique aqui
+        </Text>
+      </Flex>
+      <Divider w="50%" mt="3rem" borderColor="brand.700" />
+      <Text
+        color="brand.700"
+        position="relative"
+        bg="white"
+        bottom="0.8rem"
+        w="20%"
+        textAlign="center"
+      >
+        Não tem login?
+      </Text>
+      <ButtonForm
+        title="Cadastre-se"
+        w="50%"
+        mt="3rem"
+        color="brand.800"
+        bg="white"
+        h="3.5rem"
+        border="1px solid"
+        borderColor="brand.700"
+        _active={{}}
+        _hover={{}}
+        _focus={{}}
+      />
     </Flex>
   );
 };

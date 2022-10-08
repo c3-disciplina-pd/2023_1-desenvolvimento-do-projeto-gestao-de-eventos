@@ -7,18 +7,7 @@ export const ButtonForm: React.FC<ButtonFormProps> = ({
   ...rest
 }) => {
   return (
-    <Button
-      type={type}
-      {...rest}
-      w="50%"
-      mt="2rem"
-      color="white"
-      bg="brand.900"
-      h="3.5rem"
-      _active={{}}
-      _hover={{}}
-      _focus={{}}
-    >
+    <Button type={type} {...rest}>
       {title}
     </Button>
   );
