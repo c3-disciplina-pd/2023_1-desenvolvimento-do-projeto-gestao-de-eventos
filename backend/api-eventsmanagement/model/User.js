@@ -3,7 +3,7 @@ const conn = require('../database/database')
 
 const User = conn.define("users", {
     cpf: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull:false,
         primaryKey: true
     },

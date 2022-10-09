@@ -2,16 +2,88 @@ const express = require('express')
 const app = express()
 const conn = require('./database/database')
 const User = require('./model/User')
-
+const bodyParser = require('body-parser')
 conn.authenticate().then(() => {
     console.log("conexao feita")
 }).catch((msgErro) => {
     console.log(msgErro)
 })
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+
 app.get("/", (req, res) => {
     res.send("hello")
 })
+
+app.post("/users/save", (req, res) => {
+    var cpf = req.body.cpf
+    var name = req.body.name
+    var password = req.body.password
+    var email = req.body.email
+    
+    User.create({
+        cpf: cpf,
+        name: name,
+        password: password,
+        email: email,
+        
+    }).then(() => {
+        res.send("user " + cpf + " saved")
+    })
+})
+
+app.get("/users/all", (req, res) => {
+    User.findAll({
+        raw: true
+    }).then(user => {
+        res.send(user)
+    })
+})
+
+app.get("/users/:cpf", (req, res) => {
+    var cpf = req.params.cpf
+    User.findOne({
+        where: {
+            cpf: cpf
+        }
+    }).then(user => {
+        res.send(user)
+    });
+})
+
+app.put("/users/update/:cpf", (req, res) => {
+    var cpf = req.params.cpf
+    var name = req.body.name
+    var password = req.body.password
+    var email = req.body.email
+    User.update({
+        name: name,
+        password: password,
+        email: email,
+    }, {
+        where: {
+            cpf: cpf
+        }
+    }).then(() => {
+        res.send("user" + cpf + " updated")
+    })
+})
+
+app.delete("/users/delete/:cpf", (req, res) => {
+    var cpf = req.params.cpf
+    User.destroy({
+        where: {
+            cpf: cpf
+        }
+    }).then(() => {
+        res.send("user " + cpf + " deleted")
+    })
+})
+
+
+
+
 
 
 app.listen(process.env.PORT || 8080, function(){
