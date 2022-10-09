@@ -5,8 +5,6 @@ export const Container = styled.View`
     background-color: #fff;
     align-items: center;
     background-color: ${({ theme }) => theme.COLORS.GREEN_500};
-    /* justify-content: center; */
-    /* padding: 24px; */
 `;
 
 export const ContainerTop = styled.View`
@@ -22,7 +20,7 @@ export const ContainerTop = styled.View`
 export const TitleTop = styled.Text`
     font-size: 20px;
     color: ${({ theme }) => theme.COLORS.WHITE};
-    font-weight: bold;
+    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
 `;
 
 export const ContainerBottom = styled.View`
@@ -31,7 +29,6 @@ export const ContainerBottom = styled.View`
     height: 100%;
     background-color: ${({ theme }) => theme.COLORS.WHITE};
     align-items: center;
-    /* justify-content: center; */
     padding: 52px 32px;
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
@@ -40,7 +37,7 @@ export const ContainerBottom = styled.View`
 export const TitleBottom = styled.Text`
     font-size: 20px;
     color: ${({ theme }) => theme.COLORS.GRAY_700};
-    font-weight: bold;
+    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
 `;
 
 export const Input = styled.TextInput`
@@ -51,6 +48,7 @@ export const Input = styled.TextInput`
     border-radius: 5px;
     padding: 0 16px;
     margin-top: 32px;
+    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
 `;
 
 export const ContainerForgotPassword = styled.View`
@@ -63,6 +61,7 @@ export const ContainerForgotPassword = styled.View`
 export const TextForgotPassword = styled.Text`
     font-size: 14px;
     color: ${({ theme }) => theme.COLORS.GREEN_700};
+    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
 `;
 
 export const ActionClickHere = styled.TouchableOpacity`
@@ -72,7 +71,7 @@ export const ActionClickHere = styled.TouchableOpacity`
 export const TextClickHere = styled.Text`
     font-size: 14px;
     color: ${({ theme }) => theme.COLORS.GREEN_700};
-    font-weight: bold;
+    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -88,7 +87,7 @@ export const Button = styled.TouchableOpacity`
 export const TextButton = styled.Text`
     font-size: 16px;
     color: ${({ theme }) => theme.COLORS.WHITE};
-    font-weight: bold;
+    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
 `;
 
 export const ContainerDontHaveAccount = styled.View`
@@ -101,6 +100,7 @@ export const ContainerDontHaveAccount = styled.View`
 export const TextDontHaveAccount = styled.Text`
     font-size: 14px;
     color: ${({ theme }) => theme.COLORS.GRAY_700};
+    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
 `;
 
 export const ActionRegister = styled.TouchableOpacity`
@@ -110,5 +110,5 @@ export const ActionRegister = styled.TouchableOpacity`
 export const TextRegister = styled.Text`
     font-size: 14px;
     color: ${({ theme }) => theme.COLORS.GREEN_700};
-    font-weight: bold;
+    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
 `;
