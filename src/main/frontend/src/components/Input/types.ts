@@ -6,4 +6,5 @@ export type InputFormProps = {
   error?: any;
   placeholder?: string;
   isPassword?: boolean;
+  maskFormatFunction?: (value: string) => string;
 } & ChakraProps;

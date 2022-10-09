@@ -1,5 +1,6 @@
 import {
   Collapse,
+  Flex,
   Icon,
   Input,
   InputGroup,
@@ -17,6 +18,7 @@ export const InputForm: React.FC<InputFormProps> = ({
   error,
   placeholder,
   isPassword = false,
+  maskFormatFunction,
   ...rest
 }) => {
   const [show, setShow] = useState<boolean>(false);
@@ -33,12 +35,18 @@ export const InputForm: React.FC<InputFormProps> = ({
       >
         <Input
           h="3.5rem"
-          {...register}
           type={isPassword ? (show ? "text" : "password") : "text"}
           placeholder={placeholder}
           _active={{ borderColor: "brand.900" }}
           _hover={{ borderColor: "brand.900" }}
           _focus={{ borderColor: "brand.900" }}
+          {...register}
+          {...(maskFormatFunction && {
+            onChange: (event) => {
+              event.target.value = maskFormatFunction(event.target.value);
+              register && register.onChange(event);
+            },
+          })}
         />
         {isPassword && (
           <InputRightElement>
@@ -53,11 +61,13 @@ export const InputForm: React.FC<InputFormProps> = ({
           </InputRightElement>
         )}
       </InputGroup>
-      <Collapse in={error} animateOpacity>
-        <Text fontSize="md" color="red" mt="0.5rem">
-          *{error?.message && error?.message}
-        </Text>
-      </Collapse>
+      <Flex w="50%" align="left">
+        <Collapse in={error} animateOpacity>
+          <Text fontSize="sm" color="red" mt="0.2rem">
+            {error?.message && error?.message}
+          </Text>
+        </Collapse>
+      </Flex>
     </>
   );
 };
