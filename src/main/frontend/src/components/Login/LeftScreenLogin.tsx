@@ -1,21 +1,23 @@
 import { Divider, Flex, Text } from "@chakra-ui/react";
 
-import { InputForm } from "../../Input";
-import { ButtonForm } from "../../Button";
+import { InputForm } from "../Input";
+import { ButtonForm } from "../Button";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { LoginSchema } from "../../../assets";
+import { LoginSchema } from "../../assets";
+import { useNavigate } from "react-router-dom";
 
 type User = { email: string; password: string };
 
-export const LeftScreen = () => {
+export const LeftScreenLogin = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm<User>({ mode: "onSubmit", resolver: yupResolver(LoginSchema) });
+  const navigate = useNavigate();
 
   const submitLoginForm = (data: User) => {
     console.log(data);
@@ -92,6 +94,7 @@ export const LeftScreen = () => {
         h="3.5rem"
         border="1px solid"
         borderColor="brand.700"
+        handleClick={() => navigate("/registro-usuario")}
         _active={{}}
         _hover={{}}
         _focus={{}}
