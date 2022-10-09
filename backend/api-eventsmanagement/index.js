@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const conn = require('./database/database')
 const User = require('./model/User')
+const Admin = require('./model/Administrator')
 const bodyParser = require('body-parser')
 conn.authenticate().then(() => {
     console.log("conexao feita")
@@ -78,6 +79,73 @@ app.delete("/users/delete/:cpf", (req, res) => {
         }
     }).then(() => {
         res.send("user " + cpf + " deleted")
+    })
+})
+
+// ==================================================
+
+app.post("/admins/save", (req, res) => {
+    var cpf = req.body.cpf
+    var name = req.body.name
+    var password = req.body.password
+    var email = req.body.email
+    
+    Admin.create({
+        cpf: cpf,
+        name: name,
+        password: password,
+        email: email,
+        
+    }).then(() => {
+        res.send("admin " + cpf + " saved")
+    })
+})
+
+app.get("/admins/all", (req, res) => {
+    Admin.findAll({
+        raw: true
+    }).then(user => {
+        res.send(user)
+    })
+})
+
+app.get("/admins/:cpf", (req, res) => {
+    var cpf = req.params.cpf
+    Admin.findOne({
+        where: {
+            cpf: cpf
+        }
+    }).then(user => {
+        res.send(user)
+    });
+})
+
+app.put("/admins/update/:cpf", (req, res) => {
+    var cpf = req.params.cpf
+    var name = req.body.name
+    var password = req.body.password
+    var email = req.body.email
+    Admin.update({
+        name: name,
+        password: password,
+        email: email,
+    }, {
+        where: {
+            cpf: cpf
+        }
+    }).then(() => {
+        res.send("admin" + cpf + " updated")
+    })
+})
+
+app.delete("/admins/delete/:cpf", (req, res) => {
+    var cpf = req.params.cpf
+    Admin.destroy({
+        where: {
+            cpf: cpf
+        }
+    }).then(() => {
+        res.send("admin " + cpf + " deleted")
     })
 })
 
