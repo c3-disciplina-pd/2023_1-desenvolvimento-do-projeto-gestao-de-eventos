@@ -10,7 +10,8 @@ export function Login() {
       <S.ContainerBottom>
         <S.TitleBottom>Login</S.TitleBottom>
         <S.Input placeholder="Email" />
-        <S.Input placeholder="Password" />
+        <S.Input placeholder="Password" secureTextEntry />
+        <S.TextForgotPassword>Forgot your password?</S.TextForgotPassword>
       </S.ContainerBottom>
     </S.Container>
   );
