@@ -1,4 +1,5 @@
 import { Header } from "@components/Header";
+import { Input } from "@components/Input";
 import * as S from "./styles";
 
 export function Login() {
@@ -9,8 +10,8 @@ export function Login() {
       </S.ContainerTop>
       <S.ContainerBottom>
         <S.TitleBottom>Entrar</S.TitleBottom>
-        <S.Input placeholder="Email" />
-        <S.Input placeholder="Password" secureTextEntry />
+        <Input placeholder="Email" />
+        <Input placeholder="Password" secureTextEntry />
         <S.ContainerForgotPassword>
           <S.TextForgotPassword>Esqueceu sua senha?</S.TextForgotPassword>
           <S.ActionClickHere>

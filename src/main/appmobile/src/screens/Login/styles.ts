@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
     flex: 1;
@@ -18,9 +18,11 @@ export const ContainerTop = styled.View`
 `;
 
 export const TitleTop = styled.Text`
-    font-size: 20px;
-    color: ${({ theme }) => theme.COLORS.WHITE};
-    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+    ${({ theme }) => css`
+        color: ${theme.COLORS.WHITE};
+        font-family: ${theme.FONT_FAMILY.BOLD};
+        font-size: ${theme.FONT_SIZE.XL}px;
+    `};
 `;
 
 export const ContainerBottom = styled.View`
@@ -35,20 +37,11 @@ export const ContainerBottom = styled.View`
 `;
 
 export const TitleBottom = styled.Text`
-    font-size: 20px;
-    color: ${({ theme }) => theme.COLORS.GRAY_700};
-    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
-`;
-
-export const Input = styled.TextInput`
-    width: 100%;
-    height: 48px;
-    background-color: ${({ theme }) => theme.COLORS.WHITE};
-    border: 1px solid ${({ theme }) => theme.COLORS.GRAY_200};
-    border-radius: 5px;
-    padding: 0 16px;
-    margin-top: 32px;
-    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+    ${({ theme }) => css`
+        color: ${theme.COLORS.GRAY_700};
+        font-family: ${theme.FONT_FAMILY.BOLD};
+        font-size: ${theme.FONT_SIZE.XL}px;
+    `};
 `;
 
 export const ContainerForgotPassword = styled.View`
@@ -59,9 +52,11 @@ export const ContainerForgotPassword = styled.View`
 `;
 
 export const TextForgotPassword = styled.Text`
-    font-size: 14px;
-    color: ${({ theme }) => theme.COLORS.GREEN_700};
-    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+    ${({ theme }) => css`
+        color: ${theme.COLORS.GREEN_700};
+        font-family: ${theme.FONT_FAMILY.REGULAR};
+        font-size: ${theme.FONT_SIZE.SM}px;
+    `};
 `;
 
 export const ActionClickHere = styled.TouchableOpacity`
@@ -69,9 +64,11 @@ export const ActionClickHere = styled.TouchableOpacity`
 `;
 
 export const TextClickHere = styled.Text`
-    font-size: 14px;
-    color: ${({ theme }) => theme.COLORS.GREEN_700};
-    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+    ${({ theme }) => css`
+        color: ${theme.COLORS.GREEN_700};
+        font-family: ${theme.FONT_FAMILY.BOLD};
+        font-size: ${theme.FONT_SIZE.SM}px;
+    `};
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -85,9 +82,11 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const TextButton = styled.Text`
-    font-size: 16px;
-    color: ${({ theme }) => theme.COLORS.WHITE};
-    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+    ${({ theme }) => css`
+        color: ${theme.COLORS.WHITE};
+        font-family: ${theme.FONT_FAMILY.BOLD};
+        font-size: ${theme.FONT_SIZE.MD}px;
+    `};
 `;
 
 export const ContainerDontHaveAccount = styled.View`
@@ -98,9 +97,11 @@ export const ContainerDontHaveAccount = styled.View`
 `;
 
 export const TextDontHaveAccount = styled.Text`
-    font-size: 14px;
-    color: ${({ theme }) => theme.COLORS.GRAY_700};
-    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+    ${({ theme }) => css`
+        color: ${theme.COLORS.GRAY_700};
+        font-family: ${theme.FONT_FAMILY.REGULAR};
+        font-size: ${theme.FONT_SIZE.SM}px;
+    `};
 `;
 
 export const ActionRegister = styled.TouchableOpacity`
@@ -108,7 +109,9 @@ export const ActionRegister = styled.TouchableOpacity`
 `;
 
 export const TextRegister = styled.Text`
-    font-size: 14px;
-    color: ${({ theme }) => theme.COLORS.GREEN_700};
-    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+    ${({ theme }) => css`
+        color: ${theme.COLORS.GREEN_700};
+        font-family: ${theme.FONT_FAMILY.BOLD};
+        font-size: ${theme.FONT_SIZE.SM}px;
+    `};
 `;
