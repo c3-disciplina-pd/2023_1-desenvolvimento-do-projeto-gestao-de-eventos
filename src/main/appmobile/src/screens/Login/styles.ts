@@ -38,7 +38,7 @@ export const ContainerBottom = styled.View`
 
 export const TitleBottom = styled.Text`
     ${({ theme }) => css`
-        color: ${theme.COLORS.GRAY_700};
+        color: ${theme.COLORS.GRAY_500};
         font-family: ${theme.FONT_FAMILY.BOLD};
         font-size: ${theme.FONT_SIZE.XL}px;
     `};
