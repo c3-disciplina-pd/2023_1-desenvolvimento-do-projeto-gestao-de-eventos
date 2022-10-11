@@ -31,7 +31,7 @@ export const ContainerBottom = styled.View`
   height: 100%;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
   align-items: center;
-  padding: 52px 32px;
+  padding: 32px;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
 `;
@@ -49,7 +49,7 @@ export const Button = styled.TouchableOpacity`
   height: 48px;
   background-color: ${({ theme }) => theme.COLORS.GREEN_700};
   border-radius: 5px;
-  margin-top: 32px;
+  margin-top: 16px;
   align-items: center;
   justify-content: center;
 `;
