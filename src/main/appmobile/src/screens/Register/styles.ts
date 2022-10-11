@@ -26,7 +26,7 @@ export const TitleTop = styled.Text`
 `;
 
 export const ContainerBottom = styled.View`
-  flex: 2;
+  flex: 3;
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
@@ -42,6 +42,7 @@ export const TitleBottom = styled.Text`
     font-family: ${theme.FONT_FAMILY.BOLD};
     font-size: ${theme.FONT_SIZE.XL}px;
   `};
+  margin-bottom: 12px;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -59,5 +60,32 @@ export const TextButton = styled.Text`
     color: ${theme.COLORS.WHITE};
     font-family: ${theme.FONT_FAMILY.BOLD};
     font-size: ${theme.FONT_SIZE.MD}px;
+  `};
+`;
+
+export const ContainerHaveAccount = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 4px;
+`;
+
+export const TextHaveAccount = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_700};
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+    font-size: ${theme.FONT_SIZE.SM}px;
+  `};
+`;
+
+export const ActionLogin = styled.TouchableOpacity`
+  margin-left: 4px;
+`;
+
+export const TextLogin = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GREEN_700};
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    font-size: ${theme.FONT_SIZE.SM}px;
   `};
 `;

@@ -18,6 +18,12 @@ export function Register() {
         <S.Button>
           <S.TextButton>Cadastrar</S.TextButton>
         </S.Button>
+        <S.ContainerHaveAccount>
+          <S.TextHaveAccount>Já tem uma conta?</S.TextHaveAccount>
+          <S.ActionLogin>
+            <S.TextLogin>Login</S.TextLogin>
+          </S.ActionLogin>
+        </S.ContainerHaveAccount>
       </S.ContainerBottom>
     </S.Container>
   );
