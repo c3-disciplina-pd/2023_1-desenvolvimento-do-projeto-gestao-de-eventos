@@ -1,4 +1,4 @@
-import { Divider, Flex, Text } from "@chakra-ui/react";
+import { Divider, Flex, Image, Text } from "@chakra-ui/react";
 
 import { InputForm } from "../Input";
 import { ButtonForm } from "../Button";
@@ -8,6 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { LoginSchema } from "../../assets";
 import { useNavigate } from "react-router-dom";
+
+import UnicapLogo from "../../assets/images/UnicapLogo.png";
 
 type User = { email: string; password: string };
 
@@ -34,15 +36,17 @@ export const LeftScreenLogin = () => {
       as="form"
       onSubmit={handleSubmit(submitLoginForm)}
     >
-      <Text
-        fontWeight="bold"
-        fontStyle="italic"
-        color="brand.900"
-        fontSize="3xl"
-      >
-        Events Management
-      </Text>
-      <Text mt="2rem" fontWeight="bold" color="brand.800" fontSize="2xl">
+      <Flex
+        bgColor="brand.700"
+        borderRadius="1rem"
+        w="15rem"
+        h="10rem"
+        bgImage={UnicapLogo}
+        bgRepeat="no-repeat"
+        bgSize="cover"
+        bgPos="center"
+      />
+      <Text mt="2rem" fontWeight="bold" color="brand.900" fontSize="2xl">
         Login
       </Text>
       <InputForm
@@ -62,19 +66,19 @@ export const LeftScreenLogin = () => {
         w="50%"
         mt="2rem"
         color="white"
-        bg="brand.900"
+        bg="brand.600"
         h="3.5rem"
         _active={{}}
         _hover={{}}
         _focus={{}}
       />
-      <Flex color="brand.600" mt="0.5rem" w="50%" align="left">
+      <Flex color="brand.900" mt="0.5rem" w="50%" align="left">
         <Text>Esqueceu sua senha?</Text>
         <Text fontWeight="bold" cursor="pointer" ml="0.2rem">
           Clique aqui
         </Text>
       </Flex>
-      <Divider w="50%" mt="3rem" borderColor="brand.700" />
+      <Divider w="50%" mt="2.5rem" borderColor="brand.700" />
       <Text
         color="brand.700"
         position="relative"
@@ -88,7 +92,7 @@ export const LeftScreenLogin = () => {
       <ButtonForm
         title="Cadastre-se"
         w="50%"
-        mt="3rem"
+        mt="2.5rem"
         color="brand.800"
         bg="white"
         h="3.5rem"

@@ -9,6 +9,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Masks, RegisterSchema } from "../../assets";
 import { useNavigate } from "react-router-dom";
 
+import UnicapLogo from "../../assets/images/UnicapLogo.png";
+
 type RegisterUser = {
   name: string;
   lastName: string;
@@ -43,15 +45,7 @@ export const LeftScreenRegister = () => {
       as="form"
       onSubmit={handleSubmit(submitRegisterForm)}
     >
-      <Text
-        fontWeight="bold"
-        fontStyle="italic"
-        color="brand.900"
-        fontSize="3xl"
-      >
-        Events Management
-      </Text>
-      <Text mt="2rem" fontWeight="bold" color="brand.800" fontSize="2xl">
+      <Text mt="2rem" fontWeight="bold" color="brand.900" fontSize="2xl">
         Criar conta
       </Text>
       <InputForm
@@ -87,13 +81,13 @@ export const LeftScreenRegister = () => {
         w="50%"
         mt="2rem"
         color="white"
-        bg="brand.900"
+        bg="brand.600"
         h="3.5rem"
         _active={{}}
         _hover={{}}
         _focus={{}}
       />
-      <Flex color="brand.600" mt="0.5rem" w="50%" justify="center">
+      <Flex color="brand.900" mt="0.5rem" w="50%" justify="center">
         <Text>Já possui uma conta?</Text>
         <Text
           fontWeight="bold"
