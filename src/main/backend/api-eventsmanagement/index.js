@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
+const bcrypt = require('bcrypt')
 const conn = require('./database/database')
 const User = require('./model/User')
-const Admin = require('./model/Administrator')
 const bodyParser = require('body-parser')
 conn.authenticate().then(() => {
     console.log("conexao feita")
@@ -17,21 +17,28 @@ app.get("/", (req, res) => {
     res.send("hello")
 })
 
-app.post("/users/save", (req, res) => {
+app.post("/users/save", async (req, res) => {
+    try { 
     var cpf = req.body.cpf
     var name = req.body.name
-    var password = req.body.password
     var email = req.body.email
+    var password = req.body.password
+    const salt = await bcrypt.genSalt()
+        User.create({
+            cpf: cpf,
+            name: name,
+            password: await bcrypt.hash(password, salt),
+            email: email,
+            
+        }).then(() => {
+            res.status(201).send()
+        }) 
+    } catch {
+        res.status(500).send()
+    }
     
-    User.create({
-        cpf: cpf,
-        name: name,
-        password: password,
-        email: email,
-        
-    }).then(() => {
-        res.send("user " + cpf + " saved")
-    })
+    
+    
 })
 
 app.get("/users/all", (req, res) => {

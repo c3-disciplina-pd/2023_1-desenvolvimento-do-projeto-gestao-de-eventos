@@ -14,14 +14,14 @@ const User = conn.define("users", {
     password: {
         type: Sequelize.STRING,
         allowNull: false
+        
     },
     email: {
         type: Sequelize.STRING,
         allowNull: false,
         isEmail: true
     }
-})
-
+});
 User.sync({ force: false }).then(() => {
     console.log("user table retrieved")
 })
