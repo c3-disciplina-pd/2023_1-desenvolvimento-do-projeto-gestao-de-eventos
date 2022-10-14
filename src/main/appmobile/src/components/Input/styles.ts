@@ -25,6 +25,6 @@ export const Error = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.RED};
     font-family: ${theme.FONT_FAMILY.REGULAR};
-    font-size: ${theme.FONT_SIZE.SM} px;
+    font-size: ${theme.FONT_SIZE.SM}px;
   `};
 `;
