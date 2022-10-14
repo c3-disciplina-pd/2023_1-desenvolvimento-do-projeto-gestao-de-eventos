@@ -8,8 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Masks, RegisterSchema } from "../../assets";
 import { useNavigate } from "react-router-dom";
-import { RegisterUser } from "../../configs";
-
+import { RegisterUser, useCreateUser } from "../../configs";
 
 export const LeftScreenRegister = () => {
   const {
@@ -21,6 +20,8 @@ export const LeftScreenRegister = () => {
     resolver: yupResolver(RegisterSchema),
   });
   const navigate = useNavigate();
+
+  const { createUserMutation, createUserLoading } = useCreateUser();
 
   const submitRegisterForm = (data: RegisterUser) => {
     console.log(data);
