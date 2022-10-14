@@ -4,14 +4,14 @@ export const Container = styled.View`
     flex: 1;
     background-color: #fff;
     align-items: center;
-    background-color: ${({ theme }) => theme.COLORS.GREEN_500};
+    background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
 `;
 
 export const ContainerTop = styled.View`
     flex: 1;
     width: 100%;
     height: 100%;
-    background-color: ${({ theme }) => theme.COLORS.GREEN_500};
+    background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
     align-items: center;
     justify-content: center;
     padding: 24px;
@@ -53,7 +53,7 @@ export const ContainerForgotPassword = styled.View`
 
 export const TextForgotPassword = styled.Text`
     ${({ theme }) => css`
-        color: ${theme.COLORS.GREEN_700};
+        color: ${theme.COLORS.RED_700};
         font-family: ${theme.FONT_FAMILY.REGULAR};
         font-size: ${theme.FONT_SIZE.SM}px;
     `};
@@ -65,7 +65,7 @@ export const ActionClickHere = styled.TouchableOpacity`
 
 export const TextClickHere = styled.Text`
     ${({ theme }) => css`
-        color: ${theme.COLORS.GREEN_700};
+        color: ${theme.COLORS.RED_700};
         font-family: ${theme.FONT_FAMILY.BOLD};
         font-size: ${theme.FONT_SIZE.SM}px;
     `};
@@ -74,7 +74,7 @@ export const TextClickHere = styled.Text`
 export const Button = styled.TouchableOpacity`
     width: 100%;
     height: 48px;
-    background-color: ${({ theme }) => theme.COLORS.GREEN_700};
+    background-color: ${({ theme }) => theme.COLORS.RED_700};
     border-radius: 5px;
     margin-top: 32px;
     align-items: center;
@@ -110,7 +110,7 @@ export const ActionRegister = styled.TouchableOpacity`
 
 export const TextRegister = styled.Text`
     ${({ theme }) => css`
-        color: ${theme.COLORS.GREEN_700};
+        color: ${theme.COLORS.RED_700};
         font-family: ${theme.FONT_FAMILY.BOLD};
         font-size: ${theme.FONT_SIZE.SM}px;
     `};

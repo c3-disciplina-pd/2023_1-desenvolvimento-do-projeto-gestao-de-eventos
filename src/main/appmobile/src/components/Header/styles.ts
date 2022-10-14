@@ -11,7 +11,7 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
     font-size: 20px;
-    color: ${({ theme }) => theme.COLORS.GREEN_700};
+    color: ${({ theme }) => theme.COLORS.RED_700};
     font-weight: bold;
 `;
 
@@ -21,6 +21,6 @@ export const BackButton = styled.TouchableOpacity`
 `;
 
 export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
-    color: theme.COLORS.GREEN_700,
+    color: theme.COLORS.RED_700,
     size: 32,
 }))``;
