@@ -9,7 +9,7 @@ export const LoginSchema = yup.object().shape({
 });
 
 export const RegisterSchema = yup.object().shape({
-  name: yup
+  firstName: yup
     .string()
     .matches(
       /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+$/,

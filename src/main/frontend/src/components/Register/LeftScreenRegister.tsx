@@ -8,16 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Masks, RegisterSchema } from "../../assets";
 import { useNavigate } from "react-router-dom";
-
-import UnicapLogo from "../../assets/images/UnicapLogo.png";
-
-type RegisterUser = {
-  name: string;
-  lastName: string;
-  cpf: string;
-  email: string;
-  password: string;
-};
+import { RegisterUser, useCreateUser } from "../../configs";
 
 export const LeftScreenRegister = () => {
   const {
@@ -30,8 +21,16 @@ export const LeftScreenRegister = () => {
   });
   const navigate = useNavigate();
 
-  const submitRegisterForm = (data: RegisterUser) => {
-    console.log(data);
+  const { createUserMutation, createUserLoading } = useCreateUser();
+
+  const submitRegisterForm = async (data: RegisterUser) => {
+    await createUserMutation({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      cpf: data.cpf,
+      email: data.email,
+      password: data.password,
+    });
   };
 
   return (
@@ -49,8 +48,8 @@ export const LeftScreenRegister = () => {
         Criar conta
       </Text>
       <InputForm
-        register={register("name")}
-        error={errors.name}
+        register={register("firstName")}
+        error={errors.firstName}
         placeholder="Digite seu nome"
       />
       <InputForm
@@ -77,6 +76,7 @@ export const LeftScreenRegister = () => {
       />
       <ButtonForm
         title="Cadastrar"
+        isLoading={createUserLoading}
         type="submit"
         w="50%"
         mt="2rem"

@@ -10,8 +10,7 @@ import { LoginSchema } from "../../assets";
 import { useNavigate } from "react-router-dom";
 
 import UnicapLogo from "../../assets/images/UnicapLogo.png";
-
-type User = { email: string; password: string };
+import { User } from "../../configs";
 
 export const LeftScreenLogin = () => {
   const {
@@ -43,7 +42,7 @@ export const LeftScreenLogin = () => {
         h="10rem"
         bgImage={UnicapLogo}
         bgRepeat="no-repeat"
-        bgSize="cover"
+        bgSize="100%"
         bgPos="center"
       />
       <Text mt="2rem" fontWeight="bold" color="brand.900" fontSize="2xl">
