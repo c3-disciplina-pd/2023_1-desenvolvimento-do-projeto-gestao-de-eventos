@@ -5,10 +5,11 @@ export const ButtonForm: React.FC<ButtonFormProps> = ({
   title,
   type,
   handleClick,
+  isLoading,
   ...rest
 }) => {
   return (
-    <Button type={type} {...rest} onClick={handleClick && handleClick}>
+    <Button type={type} {...rest} isLoading={isLoading} onClick={handleClick && handleClick}>
       {title}
     </Button>
   );

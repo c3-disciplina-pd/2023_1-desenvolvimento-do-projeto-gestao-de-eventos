@@ -23,8 +23,15 @@ export const LeftScreenRegister = () => {
 
   const { createUserMutation, createUserLoading } = useCreateUser();
 
-  const submitRegisterForm = (data: RegisterUser) => {
+  const submitRegisterForm = async (data: RegisterUser) => {
     console.log(data);
+    await createUserMutation({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      cpf: data.cpf,
+      email: data.email,
+      password: data.password,
+    });
   };
 
   return (
@@ -42,8 +49,8 @@ export const LeftScreenRegister = () => {
         Criar conta
       </Text>
       <InputForm
-        register={register("name")}
-        error={errors.name}
+        register={register("firstName")}
+        error={errors.firstName}
         placeholder="Digite seu nome"
       />
       <InputForm
@@ -70,6 +77,7 @@ export const LeftScreenRegister = () => {
       />
       <ButtonForm
         title="Cadastrar"
+        isLoading={createUserLoading}
         type="submit"
         w="50%"
         mt="2rem"

@@ -1,7 +1,7 @@
 export type User = { email: string; password: string };
 
 export type RegisterUser = {
-  name: string;
+  firstName: string;
   lastName: string;
   cpf: string;
   email: string;
