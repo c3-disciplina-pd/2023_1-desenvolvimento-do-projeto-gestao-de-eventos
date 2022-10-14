@@ -7,19 +7,27 @@ const User = conn.define("users", {
         allowNull:false,
         primaryKey: true
     },
-    name: {
+    firstName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    lastName: {
         type: Sequelize.STRING,
         allowNull: false
     },
     password: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.TEXT,
+        allowNull: true
         
     },
     email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false, 
         isEmail: true
+    }, 
+    type: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 User.sync({ force: false }).then(() => {

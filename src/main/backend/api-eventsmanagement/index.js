@@ -20,24 +20,30 @@ app.get("/", (req, res) => {
 app.post("/users/save", async (req, res) => {
     try { 
     var cpf = req.body.cpf
-    var name = req.body.name
+    var firstName = req.body.firstName
+    var lastName = req.body.lastName
     var email = req.body.email
     var password = req.body.password
+    var stringPassword = password.toString()
     const salt = await bcrypt.genSalt()
+    const hashedPassowrd =  await bcrypt.hash(stringPassword, salt)
+        console.log(salt)
+        console.log(hashedPassowrd)
         User.create({
             cpf: cpf,
-            name: name,
-            password: await bcrypt.hash(password, salt),
+            firstName: firstName,
+            lastName: lastName,
+            password: hashedPassowrd,
             email: email,
+            type: "User"
             
         }).then(() => {
             res.status(201).send()
         }) 
-    } catch {
+    } catch(error) {
+        console.log(error)
         res.status(500).send()
-    }
-    
-    
+    }  
     
 })
 
@@ -65,16 +71,18 @@ app.put("/users/update/:cpf", (req, res) => {
     var name = req.body.name
     var password = req.body.password
     var email = req.body.email
+    var type = req.body.type
     User.update({
         name: name,
         password: password,
         email: email,
+        type: type
     }, {
         where: {
             cpf: cpf
         }
     }).then(() => {
-        res.send("user" + cpf + " updated")
+        res.send("user " + cpf + " updated")
     })
 })
 
