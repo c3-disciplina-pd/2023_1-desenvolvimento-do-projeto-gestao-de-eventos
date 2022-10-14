@@ -8,16 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Masks, RegisterSchema } from "../../assets";
 import { useNavigate } from "react-router-dom";
+import { RegisterUser } from "../../configs";
 
-import UnicapLogo from "../../assets/images/UnicapLogo.png";
-
-type RegisterUser = {
-  name: string;
-  lastName: string;
-  cpf: string;
-  email: string;
-  password: string;
-};
 
 export const LeftScreenRegister = () => {
   const {
