@@ -24,7 +24,6 @@ export const LeftScreenRegister = () => {
   const { createUserMutation, createUserLoading } = useCreateUser();
 
   const submitRegisterForm = async (data: RegisterUser) => {
-    console.log(data);
     await createUserMutation({
       firstName: data.firstName,
       lastName: data.lastName,
