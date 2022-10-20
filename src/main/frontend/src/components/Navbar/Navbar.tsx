@@ -24,7 +24,7 @@ export const Navbar = () => {
           color="white"
           ml="2rem"
         >
-          Events Manager
+          Events Management
         </Text>
       </Flex>
       <Flex align="center">
