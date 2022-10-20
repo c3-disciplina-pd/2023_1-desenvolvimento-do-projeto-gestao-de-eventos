@@ -1,9 +1,5 @@
-import { PublicRoutes } from "./routes";
+import { AllRoutes } from "./routes";
 
-const App = () => {
-  return (
-    <PublicRoutes />
-  );
-};
+const App = () => <AllRoutes />;
 
 export default App;

@@ -97,7 +97,7 @@ export const LeftScreenLogin = () => {
         h="3.5rem"
         border="1px solid"
         borderColor="brand.700"
-        handleClick={() => navigate("/registro-usuario")}
+        handleClick={() => navigate("/cadastro-usuario")}
         _active={{}}
         _hover={{}}
         _focus={{}}
