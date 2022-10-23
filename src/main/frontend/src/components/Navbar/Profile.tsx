@@ -24,7 +24,7 @@ export const Profile = () => {
           _focus={{}}
         >
           <Avatar name="Davi Mateus" />
-          <Text ml="1rem" color="white" fontSize="1rem" fontWeight="600">
+          <Text ml="1rem" color="white" fontSize="md" fontWeight="600">
             Davi Mateus
           </Text>
         </Button>

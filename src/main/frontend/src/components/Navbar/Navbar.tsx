@@ -18,7 +18,7 @@ export const Navbar = () => {
     >
       <Flex>
         <Text
-          fontSize="1.5rem"
+          fontSize="2xl"
           fontWeight="600"
           fontStyle="italic"
           color="white"
