@@ -54,7 +54,7 @@ export const FlatList = styled.FlatList`
 `;
 
 // horizontal card with left image and right title and subtitle
-export const CardItem = styled.View`
+export const CardItem = styled.TouchableOpacity`
     width: 100%;
     background-color: ${({ theme }) => theme.COLORS.WHITE};
     border-radius: 8px;

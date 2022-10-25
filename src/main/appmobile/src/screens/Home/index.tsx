@@ -63,8 +63,13 @@ function carouselCardItem({
 }
 
 function cardItem({ item, index }: { item: EventItem; index: number }) {
+  function handleAcessEvent() {
+    alert("Acessar evento");
+  }
   return (
-    <S.CardItem>
+    <S.CardItem
+      onPress={handleAcessEvent}
+    >
       <S.CardItemImage
         source={{ uri: item.illustration }}
         resizeMode="cover"
