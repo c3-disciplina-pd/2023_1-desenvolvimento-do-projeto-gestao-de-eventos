@@ -40,3 +40,14 @@ export const CarouselCardItemImage = styled.Image`
     height: 100%;
     border-radius: 8px;
 `;
+
+export const FlatListTitle = styled.Text`
+    font-size: 24px;
+    font-weight: bold;
+    color: ${({ theme }) => theme.COLORS.GRAY_700};
+    margin-bottom: 16px;
+`;
+
+export const FlatList = styled.FlatList`
+    width: 100%;
+`;

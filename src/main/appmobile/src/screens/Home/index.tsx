@@ -44,6 +44,17 @@ function carouselCardItem({
   );
 }
 
+function cardItem({ item, index }: { item: CarouselItem; index: number }) {
+  return (
+    <S.CarouselCardItem>
+      <S.CarouselCardItemImage
+        source={{ uri: item.illustration }}
+        resizeMode="cover"
+      />
+    </S.CarouselCardItem>
+  );
+}
+
 export function Home() {
   const [entries, setEntries] = useState([]) as any;
   const carouselRef = useRef(null) as any;
@@ -67,7 +78,13 @@ export function Home() {
           hasParallaxImages={true}
         />
       </S.ContainerTop>
-      <S.ContainerBottom></S.ContainerBottom>
+      <S.ContainerBottom>
+        <S.FlatListTitle>Adicionados rescentemente</S.FlatListTitle>
+        <S.FlatList
+          data={entries}
+          renderItem={cardItem}
+        />
+      </S.ContainerBottom>
     </S.Container>
   );
 }
