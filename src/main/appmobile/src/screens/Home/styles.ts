@@ -32,33 +32,11 @@ export const CarouselCardItem = styled.View`
     height: 100%;
     background-color: ${({ theme }) => theme.COLORS.WHITE};
     border-radius: 8px;
-    padding: 16px;
     justify-content: space-between;
 `;
 
-export const CarouselCardItemTitle = styled.Text`
-    ${({ theme }) => css`
-        color: ${theme.COLORS.GRAY_700};
-        font-family: ${theme.FONT_FAMILY.BOLD};
-        font-size: ${theme.FONT_SIZE.XL}px;
-    `};
+export const CarouselCardItemImage = styled.Image`
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
 `;
-
-export const CarouselCardItemSubtitle = styled.Text`
-    ${({ theme }) => css`
-        color: ${theme.COLORS.GRAY_500};
-        font-family: ${theme.FONT_FAMILY.REGULAR};
-        font-size: ${theme.FONT_SIZE.MD}px;
-    `};
-`;
-
-// export const CarouselCardItemContainer = styled.View`
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: space-between;
-// `;
-
-// export const CarouselCardItemImage = styled.Image`
-//     width: 64px;
-//     height: 64px;
-// `;
