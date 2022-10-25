@@ -15,7 +15,7 @@ export const CarouselMainPage = ({}) => {
   const navigate = useNavigate();
 
   return (
-    <Flex w="50%" h="50%">
+    <Flex w="60%" h="50%">
       <Carousel
         autoPlay
         infiniteLoop
