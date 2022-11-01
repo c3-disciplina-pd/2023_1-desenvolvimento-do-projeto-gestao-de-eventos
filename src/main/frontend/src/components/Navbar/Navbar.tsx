@@ -5,7 +5,7 @@ import { Profile } from "./Profile";
 import { LinkPages } from "./utils";
 
 export const Navbar = () => {
-  const authUser = true;
+  const authUser = false;
   const navigate = useNavigate();
 
   return (
@@ -38,16 +38,28 @@ export const Navbar = () => {
           {authUser ? (
             <Profile />
           ) : (
-            <ButtonForm
-              title="Login"
-              color="white"
-              bg="brand.600"
-              m="0 2rem"
-              handleClick={() => navigate("/")}
-              _active={{}}
-              _hover={{}}
-              _focus={{}}
-            />
+            <Flex>
+              <ButtonForm
+                title="Login"
+                color="white"
+                bg="brand.600"
+                m="0 1rem"
+                handleClick={() => navigate("/")}
+                _active={{}}
+                _hover={{}}
+                _focus={{}}
+              />
+              <ButtonForm
+                title="Cadastro"
+                color="white"
+                bg="brand.600"
+                m="0 1rem"
+                handleClick={() => navigate("/registro-usuario")}
+                _active={{}}
+                _hover={{}}
+                _focus={{}}
+              />
+            </Flex>
           )}
         </Center>
       </Flex>

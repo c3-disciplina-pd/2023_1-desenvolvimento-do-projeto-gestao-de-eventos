@@ -5,6 +5,7 @@ import Background from "../../assets/images/Background.svg";
 import { CarouselMainPage } from "../Carousel";
 import { EventCard } from "../EventCard";
 import { Filter } from "../Filter";
+import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 
 export const HomeComponent = () => {
@@ -33,6 +34,7 @@ export const HomeComponent = () => {
         <EventCard />
         <EventCard />
       </Flex>
+      <Footer />
     </Flex>
   );
 };
