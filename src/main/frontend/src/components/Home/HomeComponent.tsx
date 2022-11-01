@@ -1,6 +1,10 @@
 import { Flex, Text } from "@chakra-ui/react";
+
+import Background from "../../assets/images/Background.svg";
+
 import { CarouselMainPage } from "../Carousel";
 import { EventCard } from "../EventCard";
+import { Filter } from "../Filter";
 import { Navbar } from "../Navbar";
 
 export const HomeComponent = () => {
@@ -11,6 +15,7 @@ export const HomeComponent = () => {
       h="auto"
       direction="column"
       overflowX="hidden"
+      bgImage={Background}
     >
       <Navbar />
       <Flex justify="center" direction="column" align="center">
@@ -18,6 +23,7 @@ export const HomeComponent = () => {
           Destaques
         </Text>
         <CarouselMainPage />
+        <Filter />
       </Flex>
       <Flex maxW="100%" flexWrap="wrap" justify="center" align="center">
         <EventCard />

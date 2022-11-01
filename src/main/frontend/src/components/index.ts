@@ -6,3 +6,4 @@ export * from "./RightPartScreen";
 export * from "./Home";
 export * from "./Navbar";
 export * from "./Carousel";
+export * from "./Filter";
