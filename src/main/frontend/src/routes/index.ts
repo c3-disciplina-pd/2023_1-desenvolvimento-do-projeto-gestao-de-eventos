@@ -1,1 +1,1 @@
-export * from "./PublicRoutes";
+export * from "./AllRoutes";
