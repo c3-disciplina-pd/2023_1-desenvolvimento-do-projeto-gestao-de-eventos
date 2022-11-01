@@ -5,7 +5,7 @@ import { Profile } from "./Profile";
 import { LinkPages } from "./utils";
 
 export const Navbar = () => {
-  const authUser = false;
+  const authUser = true;
   const navigate = useNavigate();
 
   return (

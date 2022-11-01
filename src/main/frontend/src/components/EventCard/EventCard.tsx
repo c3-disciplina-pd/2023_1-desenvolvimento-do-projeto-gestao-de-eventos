@@ -1,7 +1,11 @@
 import { Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+
 import EventMock from "../../assets/images/EventMock.svg";
 
 export const EventCard = () => {
+  const navigate = useNavigate();
+
   return (
     <Flex
       w="20rem"
@@ -13,8 +17,10 @@ export const EventCard = () => {
       m="1rem"
       border="5px solid"
       borderColor="brand.600"
+      onClick={() => navigate("/detalhe-evento/1")}
+      cursor="pointer"
     >
-      <Image src={EventMock} w="100%" borderRadius="0.5rem"/>
+      <Image src={EventMock} w="100%" borderRadius="0.5rem" />
       <Flex direction="column" p="0.5rem" color="white">
         <Heading fontSize="xl" noOfLines={2}>
           Brazil Promotion 2022
