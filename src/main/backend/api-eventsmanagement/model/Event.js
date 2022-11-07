@@ -4,18 +4,16 @@ const conn = require('../database/database')
 const Event = conn.define('events', {
     name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     workload: {
-        type: Sequelize.FLOAT,
-        allowNull: false
+        type: Sequelize.INTEGER,
+        allowNull: true
     },
     date: {
         type: Sequelize.DATEONLY,
-        allowNull: false
+        allowNull: true
     },
-
-    createdAt: false
 
 })
 Event.sync({ force: false }).then(() => {

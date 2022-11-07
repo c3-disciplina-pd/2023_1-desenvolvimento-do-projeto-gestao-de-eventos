@@ -7,6 +7,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv-safe").config()
 const jwt = require('jsonwebtoken')
+const Event = require('./model/Event')
+
+
 conn
     .authenticate()
     .then(() => {
@@ -19,6 +22,7 @@ conn
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+
 
 app.post('/login', (req, res) => {
     var email = req.body.email;
@@ -35,7 +39,7 @@ app.post('/login', (req, res) => {
             })
             return res.json({ auth: true, token: token })
         } else {
-            res.status(500).json({ message: 'Invalid login!' });
+            res.status(401).json({ message: 'Invalid login!' });
         }
 
     });
@@ -136,6 +140,32 @@ app.delete("/users/delete/:cpf", (req, res) => {
         res.send("user " + cpf + " deleted");
     });
 });
+
+app.post('/create-event/:cpf', (req, res) => {
+    var cpf = req.params.cpf;
+    var type = req.body.type;
+    var name = req.body.name;
+    var workload = req.body.workload;
+    var date = req.body.date;
+    User.findOne({
+        where: {
+            cpf: cpf,
+        }
+    }).then((cpf) => {
+        if (cpf && type == "Manager" || type == "Administrator") {
+            Event.create({
+                name: name,
+                workload: workload,
+                date: date
+            }).then(() => {
+                res.status(201).send();
+            })
+        } else {
+            res.status(500).json({ message: 'Invalid CPF or auth!' });
+        }
+
+    })
+})
 
 app.listen(process.env.PORT || 8080, function() {
     console.log(
