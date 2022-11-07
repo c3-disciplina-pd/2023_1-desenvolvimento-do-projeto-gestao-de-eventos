@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { HomePage, LoginPage, RegisterPage } from "../pages";
+import { EventDetailsPage, HomePage, LoginPage, RegisterPage } from "../pages";
 
 export const AllRoutes = () => {
   const authUser = true;
@@ -22,6 +22,14 @@ export const AllRoutes = () => {
           element={
             <PrivateRoute>
               <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/detalhe-evento/:id"
+          element={
+            <PrivateRoute>
+              <EventDetailsPage />
             </PrivateRoute>
           }
         />
