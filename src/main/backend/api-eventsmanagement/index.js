@@ -21,16 +21,16 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/login', (req, res) => {
-    var cpf = req.body.cpf;
+    var email = req.body.email;
     var password = req.body.password;
     User.findOne({
         where: {
-            cpf: cpf,
+            email: email,
             password: password
         },
-    }).then((cpf) => {
-        if (cpf) {
-            const token = jwt.sign({ cpf }, process.env.SECRET, {
+    }).then((email) => {
+        if (email) {
+            const token = jwt.sign({ email }, process.env.SECRET, {
                 expiresIn: 300
             })
             return res.json({ auth: true, token: token })
@@ -63,6 +63,7 @@ app.post("/users/save", async(req, res) => {
             lastName: lastName,
             password: password,
             email: email,
+            type: "User"
         }).then(() => {
             res.status(201).send();
         });
@@ -90,6 +91,20 @@ app.get("/users/:cpf", (req, res) => {
         res.send(user);
     });
 });
+
+app.put("/users/update-tag/:cpf", (req, res) => {
+    var cpf = req.params.cpf;
+    var type = req.body.type;
+    User.update({
+        type: type
+    }, {
+        where: {
+            cpf: cpf
+        }
+    }).then(() => {
+        res.status(200).send();
+    })
+})
 
 app.put("/users/update/:cpf", (req, res) => {
     var cpf = req.params.cpf;
