@@ -1,16 +1,16 @@
-import { Divider, Flex, Image, Text } from "@chakra-ui/react";
+import UnicapLogo from "../../assets/images/UnicapLogo.png";
+
+import { Divider, Flex, Text } from "@chakra-ui/react";
 
 import { InputForm } from "../Input";
 import { ButtonForm } from "../Button";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-import { LoginSchema } from "../../assets";
 import { useNavigate } from "react-router-dom";
 
-import UnicapLogo from "../../assets/images/UnicapLogo.png";
-import { User } from "../../configs";
+import { LoginSchema } from "../../assets";
+import { useLogin, User } from "../../configs";
 
 export const LeftScreenLogin = () => {
   const {
@@ -18,10 +18,12 @@ export const LeftScreenLogin = () => {
     formState: { errors },
     handleSubmit,
   } = useForm<User>({ mode: "onSubmit", resolver: yupResolver(LoginSchema) });
-  const navigate = useNavigate();
 
-  const submitLoginForm = (data: User) => {
-    console.log(data);
+  const navigate = useNavigate();
+  const { loginMutation, loginLoading } = useLogin();
+
+  const submitLoginForm = ({ email, password }: User) => {
+    loginMutation({ email, password });
   };
 
   return (
@@ -62,6 +64,7 @@ export const LeftScreenLogin = () => {
       <ButtonForm
         title="Login"
         type="submit"
+        isLoading={loginLoading}
         w="50%"
         mt="2rem"
         color="white"
