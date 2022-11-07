@@ -26,10 +26,12 @@ app.use(cors());
 
 app.post('/login', (req, res) => {
     var email = req.body.email;
+    var cpf = req.body.cpf;
     var password = req.body.password;
     User.findOne({
         where: {
             email: email,
+            cpf: cpf,
             password: password
         },
     }).then((email) => {
@@ -37,7 +39,7 @@ app.post('/login', (req, res) => {
             const token = jwt.sign({ email }, process.env.SECRET, {
                 expiresIn: 300
             })
-            return res.json({ auth: true, token: token })
+            return res.json({ auth: true, token: token, cpf: cpf })
         } else {
             res.status(401).json({ message: 'Invalid login!' });
         }
@@ -161,7 +163,7 @@ app.post('/create-event/:cpf', (req, res) => {
                 res.status(201).send();
             })
         } else {
-            res.status(500).json({ message: 'Invalid CPF or auth!' });
+            res.status(401).json({ message: 'Invalid CPF or auth!' });
         }
 
     })
