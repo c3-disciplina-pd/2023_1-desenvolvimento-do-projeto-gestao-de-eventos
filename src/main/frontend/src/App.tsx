@@ -1,5 +1,7 @@
 import { AllRoutes } from "./routes";
 
-const App = () => <AllRoutes />;
+const App = () => {
+  return <AllRoutes />;
+};
 
 export default App;

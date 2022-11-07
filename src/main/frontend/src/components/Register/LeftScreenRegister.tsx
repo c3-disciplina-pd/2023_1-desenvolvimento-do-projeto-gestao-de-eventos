@@ -1,4 +1,4 @@
-import { Divider, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 import { InputForm } from "../Input";
 import { ButtonForm } from "../Button";
@@ -19,8 +19,8 @@ export const LeftScreenRegister = () => {
     mode: "onSubmit",
     resolver: yupResolver(RegisterSchema),
   });
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const { createUserMutation, createUserLoading } = useCreateUser();
 
   const submitRegisterForm = async (data: RegisterUser) => {
@@ -31,6 +31,7 @@ export const LeftScreenRegister = () => {
       email: data.email,
       password: data.password,
     });
+    navigate("/");
   };
 
   return (
