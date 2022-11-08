@@ -1,11 +1,14 @@
 import { Center, Divider, Flex, Link, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { ButtonForm } from "../Button";
+
 import { Profile } from "./Profile";
 import { LinkPages } from "./utils";
 
+import Cookies from "js-cookie";
+
 export const Navbar = () => {
-  const authUser = true;
+  const authUser = Cookies.get("userCPF");
   const navigate = useNavigate();
 
   return (
@@ -35,7 +38,7 @@ export const Navbar = () => {
         ))}
         <Center height="3rem">
           <Divider orientation="vertical" />
-          {authUser ? (
+          {authUser !== undefined ? (
             <Profile />
           ) : (
             <Flex>

@@ -1,6 +1,3 @@
-import { BsFillGearFill } from "react-icons/bs";
-import { AiOutlineLogout } from "react-icons/ai";
-
 export const LinkPages = [
   {
     name: "Inicio",
@@ -13,16 +10,5 @@ export const LinkPages = [
   {
     name: "Colaboradores",
     path: "/",
-  },
-];
-
-export const ButtonOptions = [
-  {
-    name: "Configurações",
-    Icon: BsFillGearFill,
-  },
-  {
-    name: "Logout",
-    Icon: AiOutlineLogout,
   },
 ];

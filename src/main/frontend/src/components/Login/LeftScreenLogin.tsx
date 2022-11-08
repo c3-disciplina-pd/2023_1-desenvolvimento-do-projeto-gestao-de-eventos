@@ -9,8 +9,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
-import { LoginSchema } from "../../assets";
+import { LoginSchema, Masks } from "../../assets";
 import { useLogin, User } from "../../configs";
+import { useEffect } from "react";
 
 export const LeftScreenLogin = () => {
   const {
@@ -22,10 +23,18 @@ export const LeftScreenLogin = () => {
   const navigate = useNavigate();
   const { loginMutation, loginLoading } = useLogin();
 
-  const submitLoginForm = ({ email, password }: User) => {
-    loginMutation({ email, password });
-    navigate("/pagina-inicial");
+  const isAuth = () => {
+    if (localStorage.getItem("accessToken") !== null) {
+      navigate("/pagina-inicial");
+    }
   };
+
+  const submitLoginForm = ({ cpf, password }: User) => {
+    loginMutation({ cpf, password });
+    setTimeout(() => isAuth(), 1000);
+  };
+
+  useEffect(() => isAuth(), []);
 
   return (
     <Flex
@@ -52,9 +61,10 @@ export const LeftScreenLogin = () => {
         Login
       </Text>
       <InputForm
-        register={register("email")}
-        error={errors.email}
-        placeholder="Digite seu e-mail"
+        register={register("cpf")}
+        error={errors.cpf}
+        placeholder="Digite seu CPF"
+        maskFormatFunction={Masks.formatCPF}
       />
       <InputForm
         register={register("password")}

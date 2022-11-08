@@ -1,2 +1,2 @@
-export * from "./useCreateUser";
+export * from "./useFunctionUsers";
 export * from "./useLogin";

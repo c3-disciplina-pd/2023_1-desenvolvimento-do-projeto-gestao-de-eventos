@@ -1,6 +1,11 @@
 import { useToast } from "@chakra-ui/react";
-import { useMutation, UseMutateAsyncFunction } from "react-query";
-import { CreateUser } from "../requests";
+import {
+  useMutation,
+  UseMutateAsyncFunction,
+  UseQueryOptions,
+  useQuery,
+} from "react-query";
+import { CreateUser, GetUser } from "../requests";
 import { RegisterUser } from "../types";
 
 type UseCreateUserProps = {
@@ -11,6 +16,11 @@ type UseCreateUserProps = {
     unknown
   >;
   createUserLoading: boolean;
+};
+
+type UseGetOrderDetailsProps = {
+  config?: UseQueryOptions<void, unknown, RegisterUser, ["user-infos", string]>;
+  cpf: string;
 };
 
 export const useCreateUser = (): UseCreateUserProps => {
@@ -37,4 +47,8 @@ export const useCreateUser = (): UseCreateUserProps => {
     });
 
   return { createUserMutation, createUserLoading };
+};
+
+export const useGetUser = ({ config, cpf }: UseGetOrderDetailsProps) => {
+  return useQuery(["user-infos", cpf], () => GetUser({ cpf }), config);
 };

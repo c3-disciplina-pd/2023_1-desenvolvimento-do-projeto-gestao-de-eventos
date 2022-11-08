@@ -1,10 +1,10 @@
 import * as yup from "yup";
 
 export const LoginSchema = yup.object().shape({
-  email: yup
+  cpf: yup
     .string()
-    .email("Preencha o e-mail da forma correta!")
-    .required("E-mail incorreto!"),
+    .min(14, "Formato de CPF inválido")
+    .required("CPF incorreto"),
   password: yup.string().required("Senha incorreta!"),
 });
 
@@ -27,6 +27,9 @@ export const RegisterSchema = yup.object().shape({
     .string()
     .email("Preencha o e-mail da forma correta!")
     .required("Preencha o campo!"),
-  cpf: yup.string().min(14, "Formato de CPF inválido").required("CPF incorreto"),
+  cpf: yup
+    .string()
+    .min(14, "Formato de CPF inválido")
+    .required("CPF incorreto"),
   password: yup.string().required("Preencha o campo!"),
 });
