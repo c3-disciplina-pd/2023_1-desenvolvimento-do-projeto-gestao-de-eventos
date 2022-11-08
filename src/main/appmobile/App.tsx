@@ -12,13 +12,14 @@ import { StatusBar } from "react-native";
 import { Login } from "@screens/Login";
 import { Register } from "@screens/Register";
 import { Home } from "@screens/Home";
+import { EventDetails } from "@screens/EventDetails";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
   return (
     <ThemeProvider theme={theme}>
       <StatusBar backgroundColor="transparent" translucent />
-      {fontsLoaded ? <Home /> : <Loading />}
+      {fontsLoaded ? <EventDetails /> : <Loading />}
     </ThemeProvider>
   );
 }
