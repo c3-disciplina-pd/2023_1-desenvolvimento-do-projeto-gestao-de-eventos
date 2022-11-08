@@ -145,17 +145,29 @@ app.post('/create-event/:cpf', (req, res) => {
     var cpf = req.params.cpf;
     var name = req.body.name;
     var description = req.body.description;
-    var datetime = req.body.datetime;
+    var date = req.body.date;
+    var price = req.body.price;
+    var vacancies = req.body.vacancies;
+    var location = req.body.location;
+    var imageUrl = req.body.imageUrl;
+    var creator = req.body.creator;
+    var type = req.body.type;
     User.findOne({
         where: {
             cpf: cpf,
+            lastName: creator
         }
     }).then((cpf) => {
         if (cpf && type == "Manager" || type == "Administrator") {
             Event.create({
-                name: name,
-                workload: workload,
-                date: date
+                name,
+                description,
+                date,
+                price,
+                vacancies,
+                location,
+                imageUrl,
+                creator
             }).then(() => {
                 res.status(201).send();
             })
