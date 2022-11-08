@@ -178,6 +178,14 @@ app.post('/create-event/:cpf', (req, res) => {
     })
 })
 
+app.get("/events/all", (req, res) => {
+    Event.findAll({
+        raw: true,
+    }).then((event) => {
+        res.send(event);
+    });
+})
+
 app.listen(process.env.PORT || 8080, function() {
     console.log(
         "Express server listening on port %d in %s mode",
