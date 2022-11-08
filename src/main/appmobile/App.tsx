@@ -18,7 +18,7 @@ export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
       {fontsLoaded ? <EventDetails /> : <Loading />}
     </ThemeProvider>
   );
