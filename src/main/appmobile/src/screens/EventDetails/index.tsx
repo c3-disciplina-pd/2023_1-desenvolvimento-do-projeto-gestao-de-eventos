@@ -1,6 +1,7 @@
 import * as S from "./styles";
 
 import { FlatList, ScrollView } from "react-native";
+import { RedButton } from "@components/RedButton";
 
 export function EventDetails() {
     return (
@@ -36,13 +37,15 @@ export function EventDetails() {
                     Perto da padaria
                     Nº: 55
                 </S.ContainerEventText>
-                <S.Button>
-                    <S.TextButton>Ver no mapa</S.TextButton>
-                </S.Button>
+                <RedButton
+                    text="Ver no Mapa"
+                    onPress={() => {}}
+                />
                 </S.ContainerEvent>
-            <S.Button>
-                    <S.TextButton>Inscreva-se</S.TextButton>
-            </S.Button>
+                <RedButton
+                    text="Participar do Evento"
+                    onPress={() => {}}
+                />
             </ScrollView>
         </S.ContainerBottom>
         </S.Container>
