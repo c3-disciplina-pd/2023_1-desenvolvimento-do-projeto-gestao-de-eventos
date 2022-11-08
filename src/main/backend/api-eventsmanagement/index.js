@@ -3,11 +3,11 @@ const app = express();
 const bcrypt = require("bcrypt");
 const conn = require("./database/database");
 const User = require("./model/User");
+const Event = require('./model/Event')
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv-safe").config()
 const jwt = require('jsonwebtoken')
-const Event = require('./model/Event')
 
 
 conn
@@ -16,7 +16,7 @@ conn
         console.log("conexao feita");
     })
     .catch((msgErro) => {
-        console.log(msgErro);
+        console.log("msgErro");
     });
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,12 +25,10 @@ app.use(cors());
 
 
 app.post('/login', (req, res) => {
-    var email = req.body.email;
     var cpf = req.body.cpf;
     var password = req.body.password;
     User.findOne({
         where: {
-            email: email,
             cpf: cpf,
             password: password
         },
@@ -128,7 +126,7 @@ app.put("/users/update/:cpf", (req, res) => {
             cpf: cpf,
         },
     }).then(() => {
-        res.send("user " + cpf + " updated");
+        res.status(200).send();
     });
 });
 
@@ -139,16 +137,15 @@ app.delete("/users/delete/:cpf", (req, res) => {
             cpf: cpf,
         },
     }).then(() => {
-        res.send("user " + cpf + " deleted");
+        res.status(200).send();
     });
 });
 
 app.post('/create-event/:cpf', (req, res) => {
     var cpf = req.params.cpf;
-    var type = req.body.type;
     var name = req.body.name;
-    var workload = req.body.workload;
-    var date = req.body.date;
+    var description = req.body.description;
+    var datetime = req.body.datetime;
     User.findOne({
         where: {
             cpf: cpf,
