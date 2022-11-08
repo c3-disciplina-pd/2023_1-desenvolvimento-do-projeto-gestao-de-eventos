@@ -9,3 +9,4 @@ export * from "./Footer";
 export * from "./Carousel";
 export * from "./Filter";
 export * from "./EventDetails";
+export * from "./CreateEvent";

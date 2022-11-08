@@ -11,11 +11,13 @@ import {
 import Cookies from "js-cookie";
 
 import { AiOutlineLogout } from "react-icons/ai";
-import { BsFillGearFill } from "react-icons/bs";
+import { BsFillCalendar2EventFill, BsFillGearFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
-import { useGetUser } from "../../configs";
+import { useGetUser, UserType } from "../../configs";
 
 export const Profile = () => {
+  const navigate = useNavigate();
   const authUser = Cookies.get("userCPF");
 
   const { data: user } = useGetUser({ cpf: authUser ?? "" });
@@ -60,6 +62,20 @@ export const Profile = () => {
       >
         <PopoverArrow bg="brand.900" />
         <PopoverBody display="flex" flexDirection="column" border="none">
+          {user?.type === UserType.Admin && (
+            <Button
+              bg="brand.900"
+              rightIcon={<BsFillCalendar2EventFill />}
+              mt="1rem"
+              color="white"
+              _active={{}}
+              _hover={{}}
+              _focus={{}}
+              onClick={() => navigate("/criar-evento")}
+            >
+              Criar Evento
+            </Button>
+          )}
           <Button
             bg="brand.900"
             rightIcon={<BsFillGearFill />}
