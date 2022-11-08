@@ -24,6 +24,7 @@ export const LeftScreenLogin = () => {
 
   const submitLoginForm = ({ email, password }: User) => {
     loginMutation({ email, password });
+    navigate("/pagina-inicial");
   };
 
   return (
