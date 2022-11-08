@@ -16,7 +16,7 @@ const Event = conn.define('events', {
         allowNull: false,
     },
     date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false
     },
     price: {
@@ -33,10 +33,6 @@ const Event = conn.define('events', {
     },
     imageUrl: {
         type: Sequelize.STRING,
-        allowNull: false
-    },
-    date: {
-        type: Sequelize.DATE,
         allowNull: false
     },
     creator: {
