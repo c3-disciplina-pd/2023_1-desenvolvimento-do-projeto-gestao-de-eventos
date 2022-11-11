@@ -1,13 +1,12 @@
 import { Header } from "@components/Header";
 import { Input } from "@components/Input";
 import * as S from "./styles";
+import logoImg from "@assets/logo.png";
 
 export function Login() {
   return (
     <S.Container>
-      <S.ContainerTop>
-        <S.TitleTop>Events Management</S.TitleTop>
-      </S.ContainerTop>
+      <Header />
       <S.ContainerBottom>
         <S.TitleBottom>Entrar</S.TitleBottom>
         <Input placeholder="Email" />

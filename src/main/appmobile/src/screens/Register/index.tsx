@@ -1,3 +1,4 @@
+import { Header } from "@components/Header";
 import { Input } from "@components/Input";
 
 import * as S from "./styles";
@@ -5,9 +6,7 @@ import * as S from "./styles";
 export function Register() {
   return (
     <S.Container>
-      <S.ContainerTop>
-        <S.TitleTop>Events Managment</S.TitleTop>
-      </S.ContainerTop>
+      <Header />
       <S.ContainerBottom>
         <S.TitleBottom>Criar conta</S.TitleBottom>
         <Input placeholder="Digite seu nome" />

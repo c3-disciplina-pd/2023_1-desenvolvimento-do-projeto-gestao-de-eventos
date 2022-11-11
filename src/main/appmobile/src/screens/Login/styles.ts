@@ -7,24 +7,6 @@ export const Container = styled.View`
     background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
 `;
 
-export const ContainerTop = styled.View`
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-`;
-
-export const TitleTop = styled.Text`
-    ${({ theme }) => css`
-        color: ${theme.COLORS.WHITE};
-        font-family: ${theme.FONT_FAMILY.BOLD};
-        font-size: ${theme.FONT_SIZE.XL}px;
-    `};
-`;
-
 export const ContainerBottom = styled.View`
     flex: 2;
     width: 100%;

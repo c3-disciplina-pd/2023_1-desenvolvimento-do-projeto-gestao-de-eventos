@@ -32,6 +32,7 @@ export const ContainerBottom = styled.View`
     align-items: center;
     justify-content: center;
     padding: 24px;
+    box-shadow: 10px 10px 5px black;
 `;
 
 export const TitleBottom = styled.Text`
@@ -39,6 +40,7 @@ export const TitleBottom = styled.Text`
     font-weight: bold;
     color: ${({ theme }) => theme.COLORS.RED_700};
     text-align: center;
+    margin-bottom: 24px;
 `;
 
 export const TitleBottomScroll = styled.Text`

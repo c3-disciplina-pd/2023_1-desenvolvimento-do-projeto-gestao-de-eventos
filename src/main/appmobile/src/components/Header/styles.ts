@@ -1,26 +1,16 @@
 import styled from 'styled-components/native';
-import { CaretLeft } from 'phosphor-react-native'
 
 export const Container = styled.View`
+    flex: 1;
     width: 100%;
-    flex-direction: row;
-    justify-content: center;
+    height: 100%;
+    background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
     align-items: center;
-    margin-top: 50px;
+    justify-content: center;
+    padding: 24px;
 `;
 
-export const Title = styled.Text`
-    font-size: 20px;
-    color: ${({ theme }) => theme.COLORS.RED_700};
-    font-weight: bold;
+export const Logo = styled.Image`
+    width: 50%;
+    height: 50%;
 `;
-
-export const BackButton = styled.TouchableOpacity`
-    position: absolute;
-    left: 0;
-`;
-
-export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
-    color: theme.COLORS.RED_700,
-    size: 32,
-}))``;

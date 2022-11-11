@@ -1,18 +1,11 @@
 import * as S from "./styles";
 
-type Props = {
-  showBackButton?: boolean;
-};
+import logoImg from "@assets/logo.png";
 
-export function Header({ showBackButton = false }: Props) {
+export function Header() {
   return (
     <S.Container>
-      { showBackButton && (
-        <S.BackButton>
-          <S.BackIcon />
-        </S.BackButton>
-      )}
-      <S.Title>Events Management</S.Title>
+      <S.Logo source={logoImg}/>
     </S.Container>
   );
 }
