@@ -13,3 +13,14 @@ export type RegisterUser = {
   password: string;
   type?: UserType;
 };
+
+export type Event = {
+  name: string;
+  description: string;
+  imageUrl: string;
+  date: Date | string;
+  price: number | string;
+  vacancies: number | string;
+  location: string;
+  creator: string;
+};

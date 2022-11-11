@@ -15,13 +15,16 @@ export const AllRoutes = () => {
   const authUser = Cookies.get("userCPF");
   const { data: user } = useGetUser({ cpf: authUser ?? "" });
 
-  const PrivateRoute = useCallback(({ children }: { children: any }) => {
-    if (authUser === undefined || user?.type !== UserType.Admin) {
-      return <Navigate to="/pagina-inicial" />;
-    } else {
-      return children;
-    }
-  }, []);
+  const PrivateRoute = useCallback(
+    ({ children }: { children: any }) => {
+      if (authUser === undefined || user?.type !== UserType.Admin) {
+        return <Navigate to="/pagina-inicial" />;
+      } else {
+        return children;
+      }
+    },
+    [user?.type]
+  );
 
   return (
     <BrowserRouter>
