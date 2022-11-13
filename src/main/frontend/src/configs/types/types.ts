@@ -2,6 +2,7 @@ export type User = { cpf: string; password: string };
 
 export enum UserType {
   Admin = "Admin",
+  Manager = "Manager",
   User = "User",
 }
 
@@ -15,12 +16,14 @@ export type RegisterUser = {
 };
 
 export type Event = {
+  id?: number
   name: string;
   description: string;
   imageUrl: string;
-  date: Date | string;
+  date: Date | string | number | undefined;
   price: number | string;
   vacancies: number | string;
   location: string;
-  creator: string;
+  creator?: string;
+  type?: UserType;
 };

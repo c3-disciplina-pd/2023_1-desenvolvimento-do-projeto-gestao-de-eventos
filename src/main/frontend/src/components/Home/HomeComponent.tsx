@@ -1,6 +1,8 @@
 import { Flex, Text } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 import Background from "../../assets/images/Background.svg";
+import { useGetEvents } from "../../configs";
 
 import { CarouselMainPage } from "../Carousel";
 import { EventCard } from "../EventCard";
@@ -9,6 +11,13 @@ import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 
 export const HomeComponent = () => {
+  const { data: events, refetch: eventsRefetch } = useGetEvents({});
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    eventsRefetch();
+  }, [events]);
+
   return (
     <Flex
       maxW="100%"
@@ -27,12 +36,9 @@ export const HomeComponent = () => {
         <Filter />
       </Flex>
       <Flex maxW="100%" flexWrap="wrap" justify="center" align="center">
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
+        {events?.map((event) => (
+          <EventCard key={event.id} event={event} />
+        ))}
       </Flex>
       <Footer />
     </Flex>

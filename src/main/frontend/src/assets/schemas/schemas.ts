@@ -39,9 +39,8 @@ export const EventSchema = yup.object().shape({
   name: yup.string().required("Preencha o campo!"),
   description: yup.string().required("Preencha o campo!"),
   location: yup.string().required("Preencha o campo!"),
-  creator: yup.string().required("Preencha o campo!"),
   date: yup.string().required("Preencha a data corretamente!"),
-  vacancies: yup.number().required("Preencha o horário corretamente!"),
+  vacancies: yup.string().required("Preencha o campo!"),
   price: yup
     .number()
     .typeError("Insira apenas ponto e números")
