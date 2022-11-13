@@ -1,35 +1,43 @@
+import Cookies from "js-cookie";
+import { useCallback } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { EventDetailsPage, HomePage, LoginPage, RegisterPage } from "../pages";
+
+import { useGetUser, UserType } from "../configs";
+import {
+  CreateEventPage,
+  EventDetailsPage,
+  HomePage,
+  LoginPage,
+  RegisterPage,
+} from "../pages";
 
 export const AllRoutes = () => {
-  const authUser = true;
+  const authUser = Cookies.get("userCPF");
+  const { data: user } = useGetUser({ cpf: authUser ?? "" });
 
-  const PrivateRoute = ({ children }: { children: any }) => {
-    if (!authUser) {
-      return <Navigate to="/" />;
-    } else {
-      return children;
-    }
-  };
+  const PrivateRoute = useCallback(
+    ({ children }: { children: any }) => {
+      if (authUser === undefined || user?.type !== UserType.Admin) {
+        return <Navigate to="/pagina-inicial" />;
+      } else {
+        return children;
+      }
+    },
+    [user?.type]
+  );
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/registro-usuario" element={<RegisterPage />} />
+        <Route path="/pagina-inicial" element={<HomePage />} />
+        <Route path="/detalhe-evento/:id" element={<EventDetailsPage />} />
         <Route
-          path="/pagina-inicial"
+          path="/criar-evento"
           element={
             <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/detalhe-evento/:id"
-          element={
-            <PrivateRoute>
-              <EventDetailsPage />
+              <CreateEventPage />
             </PrivateRoute>
           }
         />

@@ -20,4 +20,5 @@ const applyMask = (value: string | number, mask: string) => {
 
 export const Masks = {
   formatCPF: (value: string): string => applyMask(value, "***.***.***-**"),
+  parseNumbers: (value: string): string => String(value).replace(/\D+/g, ''),
 };

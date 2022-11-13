@@ -1,10 +1,10 @@
 import * as yup from "yup";
 
 export const LoginSchema = yup.object().shape({
-  email: yup
+  cpf: yup
     .string()
-    .email("Preencha o e-mail da forma correta!")
-    .required("E-mail incorreto!"),
+    .min(14, "Formato de CPF inválido")
+    .required("CPF incorreto"),
   password: yup.string().required("Senha incorreta!"),
 });
 
@@ -27,6 +27,23 @@ export const RegisterSchema = yup.object().shape({
     .string()
     .email("Preencha o e-mail da forma correta!")
     .required("Preencha o campo!"),
-  cpf: yup.string().min(14, "Formato de CPF inválido").required("CPF incorreto"),
+  cpf: yup
+    .string()
+    .min(14, "Formato de CPF inválido")
+    .required("CPF incorreto"),
   password: yup.string().required("Preencha o campo!"),
+});
+
+export const EventSchema = yup.object().shape({
+  imageUrl: yup.string().required("Preencha o campo!"),
+  name: yup.string().required("Preencha o campo!"),
+  description: yup.string().required("Preencha o campo!"),
+  location: yup.string().required("Preencha o campo!"),
+  creator: yup.string().required("Preencha o campo!"),
+  date: yup.string().required("Preencha a data corretamente!"),
+  vacancies: yup.number().required("Preencha o horário corretamente!"),
+  price: yup
+    .number()
+    .typeError("Insira apenas ponto e números")
+    .required("Preencha o horário corretamente!"),
 });

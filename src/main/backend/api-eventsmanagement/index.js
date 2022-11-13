@@ -67,7 +67,7 @@ app.post("/users/save", async(req, res) => {
             lastName: lastName,
             password: password,
             email: email,
-            type: "User"
+            type: "Admin"
         }).then(() => {
             res.status(201).send();
         });

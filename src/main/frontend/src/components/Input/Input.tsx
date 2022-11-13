@@ -1,10 +1,18 @@
 import {
+  Button,
   Collapse,
   Flex,
   Icon,
   Input,
   InputGroup,
   InputRightElement,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
@@ -12,13 +20,17 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 
 import { InputFormProps } from "./types";
+import { AiFillInfoCircle } from "react-icons/ai";
 
 export const InputForm: React.FC<InputFormProps> = ({
   register,
   error,
   placeholder,
   isPassword = false,
+  hasTooltip = false,
   maskFormatFunction,
+  children,
+  type,
   ...rest
 }) => {
   const [show, setShow] = useState<boolean>(false);
@@ -35,7 +47,7 @@ export const InputForm: React.FC<InputFormProps> = ({
       >
         <Input
           h="3.5rem"
-          type={isPassword ? (show ? "text" : "password") : "text"}
+          type={isPassword ? (show ? "text" : "password") : (type ? type : "text")}
           placeholder={placeholder}
           _active={{ borderColor: "brand.900" }}
           _hover={{ borderColor: "brand.900" }}
@@ -58,6 +70,36 @@ export const InputForm: React.FC<InputFormProps> = ({
               fontSize="xl"
               color="brand.700"
             />
+          </InputRightElement>
+        )}
+        {hasTooltip && (
+          <InputRightElement>
+            <Popover>
+              <PopoverTrigger>
+                <Button
+                  mt="1rem"
+                  bg="none"
+                  _hover={{}}
+                  _focus={{}}
+                  _active={{}}
+                >
+                  <Icon
+                    as={AiFillInfoCircle}
+                    cursor="pointer"
+                    fontSize="xl"
+                    color="brand.900"
+                  />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow />
+                <PopoverHeader>Info</PopoverHeader>
+                <PopoverCloseButton />
+                <PopoverBody>
+                  {children}
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
           </InputRightElement>
         )}
       </InputGroup>
