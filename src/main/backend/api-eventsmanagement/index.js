@@ -158,7 +158,7 @@ app.post('/create-event/:cpf', (req, res) => {
             lastName: creator
         }
     }).then((cpf) => {
-        if (cpf && type == "Manager" || type == "Administrator") {
+        if (cpf && type == "Manager" || type == "Admin") {
             Event.create({
                 name,
                 description,
@@ -184,6 +184,17 @@ app.get("/events/all", (req, res) => {
     }).then((event) => {
         res.send(event);
     });
+})
+
+app.get("/events/:id", (req, res) => {
+    var id = req.params.id
+    Event.findOne({
+        where: {
+            id: id
+        }
+    }).then((event) => {
+        res.send(event)
+    })
 })
 
 app.listen(process.env.PORT || 8080, function() {
