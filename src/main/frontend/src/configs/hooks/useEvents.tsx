@@ -1,15 +1,29 @@
 import { useToast } from "@chakra-ui/react";
-import { UseMutateAsyncFunction, useMutation } from "react-query";
+import {
+  UseMutateAsyncFunction,
+  useMutation,
+  useQuery,
+  UseQueryOptions,
+} from "react-query";
 
-import { CreateEvent } from "../requests";
+import { CreateEvent, GetEvent, GetEvents } from "../requests";
 import { Event } from "../types";
 
-type UseCreateUserProps = {
+type UseCreateEventProps = {
   createEventMutation: UseMutateAsyncFunction<void, unknown, Event, unknown>;
   createEventLoading: boolean;
 };
 
-export const useCreateEvent = (): UseCreateUserProps => {
+type UseGetUsersProps = {
+  config?: UseQueryOptions<void, unknown, Event[], "all-events">;
+};
+
+type UseGetUserProps = {
+  config?: UseQueryOptions<void, unknown, Event, [`event-${number}`, number]>;
+  id: number;
+};
+
+export const useCreateEvent = (): UseCreateEventProps => {
   const toast = useToast();
   const { mutateAsync: createEventMutation, isLoading: createEventLoading } =
     useMutation({
@@ -33,4 +47,12 @@ export const useCreateEvent = (): UseCreateUserProps => {
     });
 
   return { createEventMutation, createEventLoading };
+};
+
+export const useGetEvents = ({ config }: UseGetUsersProps) => {
+  return useQuery("all-events", () => GetEvents(), config);
+};
+
+export const useGetEvent = ({ config, id }: UseGetUserProps) => {
+  return useQuery([`event-${id}`, id], () => GetEvent({ id }), config);
 };

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { EventSchema, Masks } from "../../assets";
-import { Event, useCreateEvent } from "../../configs";
+import { Event, useCreateEvent, useGetUser } from "../../configs";
 import { ButtonForm } from "../Button";
 import { Footer } from "../Footer";
 import { InputForm } from "../Input";
@@ -24,19 +24,22 @@ export const CreateEventComponent = () => {
   const navigate = useNavigate();
   const { createEventMutation, createEventLoading } = useCreateEvent();
 
+  const authUser = Cookies.get("userCPF");
+  const { data: user } = useGetUser({ cpf: authUser ?? "" });
+
   const submitRegisterForm = async (data: Event) => {
-    console.log(data);
     await createEventMutation({
       name: data.name,
       description: data.description,
       date: data.date,
-      creator: data.creator,
+      price: data.price,
+      creator: user?.lastName,
+      vacancies: data.vacancies,
       imageUrl: data.imageUrl,
       location: data.location,
-      price: data.price,
-      vacancies: data.vacancies,
+      type: user?.type,
     });
-    // navigate("/");
+    navigate("/");
   };
 
   return (
@@ -91,21 +94,6 @@ export const CreateEventComponent = () => {
       <InputForm
         register={register("name")}
         error={errors.name}
-        placeholder="|"
-      />
-      <Text
-        mt="1rem"
-        fontWeight="400"
-        color="brand.900"
-        fontSize="lg"
-        textAlign="left"
-        w="50%"
-      >
-        Promotor do evento
-      </Text>
-      <InputForm
-        register={register("creator")}
-        error={errors.creator}
         placeholder="|"
       />
       <Text
@@ -182,7 +170,7 @@ export const CreateEventComponent = () => {
       />
       <ButtonForm
         title="Cadastrar"
-        // isLoading={createUserLoading}
+        isLoading={createEventLoading}
         type="submit"
         w="50%"
         m="2rem 0"

@@ -1,8 +1,9 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Background from "../../assets/images/Background.svg";
-import EventMock from "../../assets/images/EventMock.svg";
+import DefaultImage from "../../assets/images/DefaultImage.jpeg";
+import { useGetEvent } from "../../configs";
 
 import { ButtonForm } from "../Button";
 import { Footer } from "../Footer";
@@ -10,6 +11,11 @@ import { Navbar } from "../Navbar";
 
 export const EventDetailsComponent = () => {
   const navigate = useNavigate();
+
+  const { id } = useParams();
+  const { data: event } = useGetEvent({ id: Number(id) });
+
+  const eventDate = new Date(event?.date ?? "");
 
   return (
     <Flex
@@ -36,9 +42,13 @@ export const EventDetailsComponent = () => {
           fontWeight="bold"
           mt="2rem"
         >
-          Brazil Promotion 2022
+          {event?.name}
         </Text>
-        <Image src={EventMock} w="40vw" />
+        <Image
+          src={event?.imageUrl ?? DefaultImage}
+          maxW="40vw"
+          borderRadius="1rem"
+        />
         <Text
           fontSize="4xl"
           m="1rem 0"
@@ -63,15 +73,15 @@ export const EventDetailsComponent = () => {
             <Flex direction="column" textAlign="left" p="1rem">
               <Flex>
                 <Text color="brand.900">Data:</Text>
-                <Text ml="0.2rem">13 a 15 de Setembro de 2022</Text>
+                <Text ml="0.2rem">{eventDate.toLocaleDateString("pt-BR")}</Text>
               </Flex>
               <Flex>
-                <Text color="brand.900">Horário:</Text>
-                <Text ml="0.2rem">13h às 20h</Text>
+                <Text color="brand.900">Promovido por:</Text>
+                <Text ml="0.2rem">{event?.creator}</Text>
               </Flex>
               <Flex>
                 <Text color="brand.900">Local:</Text>
-                <Text ml="0.2rem">Pro Magno Centro de Eventos</Text>
+                <Text ml="0.2rem">{event?.location}</Text>
               </Flex>
             </Flex>
           </Flex>
@@ -88,22 +98,16 @@ export const EventDetailsComponent = () => {
           >
             <Flex direction="column" textAlign="left" p="1rem">
               <Flex>
-                <Text color="brand.900">Ponto de referência:</Text>
-                <Text ml="0.2rem">Perto da padaria</Text>
+                <Text color="brand.900"> Nome do evento:</Text>
+                <Text ml="0.2rem">{event?.name}</Text>
               </Flex>
               <Flex>
-                <Text color="brand.900">Nº:</Text>
-                <Text ml="0.2rem">13</Text>
+                <Text color="brand.900">Total de vagas:</Text>
+                <Text ml="0.2rem">{event?.vacancies}</Text>
               </Flex>
-              <Flex direction="column">
-                <Text color="brand.900"> Informações adicionais:</Text>
-                <Text noOfLines={3}>
-                  Informações adicionais: Lorem ipsum dolor sit amet
-                  consectetur, adipisicing elit. Quia voluptatum iste,
-                  distinctio atque et architecto est! Quos, quidem excepturi.
-                  Delectus, molestias repellat ipsam minima aut corporis atque
-                  error sunt officiis.
-                </Text>
+              <Flex>
+                <Text color="brand.900">Valor:</Text>
+                <Text ml="0.2rem">{event?.price === 0 ? "Gratuito" : `R$ ${event?.price}`}</Text>
               </Flex>
             </Flex>
           </Flex>
@@ -129,19 +133,7 @@ export const EventDetailsComponent = () => {
           fontWeight="bold"
           p="3rem"
         >
-          <Text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-            asperiores fugiat quia ipsa omnis in temporibus molestias facere
-            error, officiis accusantium maiores iusto ab nam, soluta quisquam
-            fuga voluptatum doloremque! Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Commodi exercitationem sit ducimus deserunt dicta,
-            id fugiat. Amet excepturi quis, doloremque officiis saepe sapiente
-            delectus architecto fuga esse, debitis ab labore? Lorem ipsum dolor
-            sit, amet consectetur adipisicing elit. Sit iusto eius debitis
-            aliquid fugit? Eius soluta voluptatem natus quae, cumque ad vitae
-            magni ullam maxime, repudiandae possimus nesciunt sit eveniet. Lorem
-            ipsum dolor sit amet consectetur adipisicing elit.
-          </Text>
+          <Text>{event?.description}</Text>
         </Flex>
       </Flex>
       <Flex justify="center" align="center" m="2rem">

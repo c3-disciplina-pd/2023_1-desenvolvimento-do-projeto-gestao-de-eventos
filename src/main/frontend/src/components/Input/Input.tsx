@@ -28,6 +28,7 @@ export const InputForm: React.FC<InputFormProps> = ({
   placeholder,
   isPassword = false,
   hasTooltip = false,
+  isReadOnly = false,
   maskFormatFunction,
   children,
   type,
@@ -47,7 +48,11 @@ export const InputForm: React.FC<InputFormProps> = ({
       >
         <Input
           h="3.5rem"
-          type={isPassword ? (show ? "text" : "password") : (type ? type : "text")}
+          type={
+            isPassword ? (show ? "text" : "password") : type ? type : "text"
+          }
+          readOnly={isReadOnly}
+          _readOnly={{ cursor: "not-allowed" }}
           placeholder={placeholder}
           _active={{ borderColor: "brand.900" }}
           _hover={{ borderColor: "brand.900" }}
@@ -95,9 +100,7 @@ export const InputForm: React.FC<InputFormProps> = ({
                 <PopoverArrow />
                 <PopoverHeader>Info</PopoverHeader>
                 <PopoverCloseButton />
-                <PopoverBody>
-                  {children}
-                </PopoverBody>
+                <PopoverBody>{children}</PopoverBody>
               </PopoverContent>
             </Popover>
           </InputRightElement>

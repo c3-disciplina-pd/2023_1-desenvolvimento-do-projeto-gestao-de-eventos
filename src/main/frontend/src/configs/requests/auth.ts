@@ -25,3 +25,10 @@ export const LoginUser = async (data: User): Promise<void> => {
     return;
   }
 };
+
+export const UpdateUser = async (data: RegisterUser): Promise<void> => {
+  const cpf = Cookies.get("userCPF");
+
+  const response = await api.put(`/users/update/${cpf}`, data);
+  return response.data;
+};

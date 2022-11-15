@@ -3,6 +3,7 @@ export * from "./Register";
 export * from "./Input";
 export * from "./Button";
 export * from "./RightPartScreen";
+export * from "./Configs";
 export * from "./Home";
 export * from "./Navbar";
 export * from "./Footer";
