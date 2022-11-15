@@ -75,7 +75,7 @@ export const ContainerDontHaveAccount = styled.View`
     width: 100%;
     flex-direction: row;
     justify-content: center;
-    margin-top: 32px;
+    margin-top: 22px;
 `;
 
 export const TextDontHaveAccount = styled.Text`

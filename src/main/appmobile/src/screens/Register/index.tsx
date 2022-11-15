@@ -1,9 +1,16 @@
 import { Header } from "@components/Header";
 import { Input } from "@components/Input";
+import { useNavigation } from "@react-navigation/native";
 
 import * as S from "./styles";
 
 export function Register() {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     <S.Container>
       <Header />
@@ -19,7 +26,7 @@ export function Register() {
         </S.Button>
         <S.ContainerHaveAccount>
           <S.TextHaveAccount>Já tem uma conta?</S.TextHaveAccount>
-          <S.ActionLogin>
+          <S.ActionLogin onPress={handleGoBack}>
             <S.TextLogin>Login</S.TextLogin>
           </S.ActionLogin>
         </S.ContainerHaveAccount>

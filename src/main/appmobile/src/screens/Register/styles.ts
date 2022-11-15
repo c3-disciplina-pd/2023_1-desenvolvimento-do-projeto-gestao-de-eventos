@@ -49,7 +49,7 @@ export const ContainerHaveAccount = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: center;
-  margin-top: 4px;
+  margin-top: 10px;
 `;
 
 export const TextHaveAccount = styled.Text`
