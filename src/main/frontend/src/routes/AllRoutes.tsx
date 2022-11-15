@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { useGetUser, UserType } from "../configs";
 import {
+  ConfigsPage,
   CreateEventPage,
   EventDetailsPage,
   HomePage,
@@ -38,6 +39,14 @@ export const AllRoutes = () => {
           element={
             <PrivateRoute>
               <CreateEventPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/editar-perfil"
+          element={
+            <PrivateRoute>
+              <ConfigsPage />
             </PrivateRoute>
           }
         />

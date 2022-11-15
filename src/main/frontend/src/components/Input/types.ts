@@ -8,6 +8,7 @@ export type InputFormProps = {
   placeholder?: string;
   isPassword?: boolean;
   hasTooltip?: boolean;
+  isReadOnly?: boolean;
   children?: ReactNode;
   type?: string;
   maskFormatFunction?: (value: string) => string;

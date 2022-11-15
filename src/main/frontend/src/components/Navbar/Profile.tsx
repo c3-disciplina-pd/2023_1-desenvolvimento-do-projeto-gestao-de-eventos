@@ -84,6 +84,7 @@ export const Profile = () => {
             _active={{}}
             _hover={{}}
             _focus={{}}
+            onClick={() => navigate("/editar-perfil")}
           >
             Configurações
           </Button>
