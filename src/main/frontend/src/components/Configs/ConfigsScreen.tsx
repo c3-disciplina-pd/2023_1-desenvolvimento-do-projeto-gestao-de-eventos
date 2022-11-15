@@ -1,18 +1,12 @@
 import { Avatar, Flex, Text } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from "js-cookie";
-import { useLayoutEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Masks, RegisterSchema } from "../../assets";
-import {
-  RegisterUser,
-  useCreateEvent,
-  useGetUser,
-  User,
-  useUpdateUser,
-} from "../../configs";
+import { RegisterSchema } from "../../assets";
+import Background from "../../assets/images/Background.svg";
+import { RegisterUser, useGetUser, useUpdateUser } from "../../configs";
 import { ButtonForm } from "../Button";
 import { Footer } from "../Footer";
 import { InputForm } from "../Input";
@@ -47,7 +41,6 @@ export const ConfigsScreen = () => {
     await updateUserMutation({
       firstName: data.firstName,
       lastName: data.lastName,
-      cpf: data.cpf,
       email: data.email,
       password: data.password,
     });
@@ -63,6 +56,7 @@ export const ConfigsScreen = () => {
       direction="column"
       as="form"
       onSubmit={handleSubmit(submitUpdateUser)}
+      bgImage={Background}
     >
       <Navbar />
       <Flex w="60%" justify="center" align="center" m="3rem">
@@ -78,8 +72,7 @@ export const ConfigsScreen = () => {
             fontSize="xl"
             color="black"
             fontWeight="600"
-            noOfLines={1}
-            maxW="10rem"
+            maxW="20rem"
           >
             {user?.firstName} {user?.lastName}
           </Text>
@@ -88,8 +81,7 @@ export const ConfigsScreen = () => {
             color="black"
             fontSize="xl"
             fontWeight="600"
-            noOfLines={1}
-            maxW="10rem"
+            maxW="20rem"
           >
             {user?.email}
           </Text>
@@ -122,7 +114,7 @@ export const ConfigsScreen = () => {
         isPassword
       />
       <ButtonForm
-        title="Cadastrar"
+        title="Confirmar edição"
         isLoading={updateUserLoading}
         type="submit"
         w="50%"

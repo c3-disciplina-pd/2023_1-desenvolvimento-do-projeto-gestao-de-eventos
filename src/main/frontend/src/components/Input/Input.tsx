@@ -57,6 +57,7 @@ export const InputForm: React.FC<InputFormProps> = ({
           _active={{ borderColor: "brand.900" }}
           _hover={{ borderColor: "brand.900" }}
           _focus={{ borderColor: "brand.900" }}
+          bg="white"
           {...register}
           {...(maskFormatFunction && {
             onChange: (event) => {

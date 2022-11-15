@@ -9,7 +9,7 @@ export enum UserType {
 export type RegisterUser = {
   firstName: string;
   lastName: string;
-  cpf: string;
+  cpf?: string;
   email: string;
   password: string;
   type?: UserType;

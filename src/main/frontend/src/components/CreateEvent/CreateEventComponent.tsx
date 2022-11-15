@@ -1,9 +1,11 @@
 import { Flex, Link, Text } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from "js-cookie";
+
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
+import Background from "../../assets/images/Background.svg";
 import { EventSchema, Masks } from "../../assets";
 import { Event, useCreateEvent, useGetUser } from "../../configs";
 import { ButtonForm } from "../Button";
@@ -51,6 +53,7 @@ export const CreateEventComponent = () => {
       direction="column"
       as="form"
       onSubmit={handleSubmit(submitRegisterForm)}
+      bgImage={Background}
     >
       <Navbar />
       <Text mt="2rem" fontWeight="bold" color="brand.900" fontSize="2xl">
