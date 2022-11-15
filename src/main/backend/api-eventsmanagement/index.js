@@ -112,15 +112,15 @@ app.put("/users/update-tag/:cpf", (req, res) => {
 
 app.put("/users/update/:cpf", (req, res) => {
     var cpf = req.params.cpf;
-    var name = req.body.name;
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName
     var password = req.body.password;
     var email = req.body.email;
-    var type = req.body.type;
     User.update({
-        name: name,
+        firstName: firstName,
+        lastName: lastName,
         password: password,
-        email: email,
-        type: type,
+        email: email
     }, {
         where: {
             cpf: cpf,
@@ -196,6 +196,8 @@ app.get("/events/:id", (req, res) => {
         res.send(event)
     })
 })
+
+
 
 app.listen(process.env.PORT || 8080, function() {
     console.log(
