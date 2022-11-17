@@ -167,7 +167,8 @@ app.post('/create-event/:cpf', (req, res) => {
                 vacancies,
                 location,
                 imageUrl,
-                creator
+                creator,
+                isEmphasis: false
             }).then(() => {
                 res.status(201).send();
             })

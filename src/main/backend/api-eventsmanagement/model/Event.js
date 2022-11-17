@@ -38,6 +38,10 @@ const Event = conn.define('events', {
     creator: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    isEmphasis: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
     }
 
 })
