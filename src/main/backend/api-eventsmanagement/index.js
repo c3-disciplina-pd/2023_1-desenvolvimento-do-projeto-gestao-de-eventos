@@ -198,6 +198,35 @@ app.get("/events/:id", (req, res) => {
     })
 })
 
+app.put("/events/update/:id/:cpf", (req, res) => {
+    var id = req.params.id
+    var cpf = req.params.cpf
+    var editor = req.body.editor
+    var type = req.body.type
+    var isEmphasis = req.body.isEmphasis
+    User.findOne({
+        where: {
+            cpf: cpf,
+            lastName: editor
+        }
+    }).then((cpf) => {
+        if (cpf && type == "Manager" || type == "Admin") {
+            Event.update({
+                isEmphasis: isEmphasis
+            }, {
+                where: {
+                    id: id
+                },
+            }).then(() => {
+                res.status(200).send();
+            });
+        } else {
+            res.status(401).json({ message: 'Invalid CPF or auth!' });
+        }
+
+    })
+})
+
 
 
 app.listen(process.env.PORT || 8080, function() {
