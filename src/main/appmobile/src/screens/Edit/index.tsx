@@ -24,9 +24,9 @@ export function Edit(){
                 </S.ContainerBottomTitle>
                 <Input placeholder="Primeiro Nome" />
                 <Input placeholder="Sobrenome" />
-                <Input placeholder="CPF" />
                 <Input placeholder="Email" />
-                <Input placeholder="Senha" />
+                <Input placeholder="Senha" secureTextEntry />
+                <Input placeholder="Confirmar Senha" secureTextEntry />
                 <YellowButton 
                 text="Editar"
                 onPress={() => {}}

@@ -8,17 +8,18 @@ export const Container = styled.View`
 
 export const ContainerTop = styled.View`
     flex: 0.1;
-    width: 100%;
+    width: 60%;
     height: 100%;
     align-items: center;
     justify-content: center;
     padding: 64px 24px 24px 24px;
+    flex-direction: row;
     `;
 
 export const UserImage = styled.Image`
-    width: 40%;
-    height: 50%;
-    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+
 `;
 
 export const UserInfo = styled.View`
@@ -51,4 +52,5 @@ export const ContainerBottomTitle = styled.Text`
     font-weight: bold;
     text-align: center;
     margin-bottom: 24px;
+    color: ${({ theme }) => theme.COLORS.RED_700};
 `;
