@@ -5,7 +5,7 @@ import logoImg from "@assets/logo.png";
 export function Header() {
   return (
     <S.Container>
-      <S.Logo source={logoImg}/>
+      <S.Logo source={logoImg} defaultSource={logoImg} />
     </S.Container>
   );
 }
