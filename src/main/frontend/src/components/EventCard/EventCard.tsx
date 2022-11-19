@@ -28,6 +28,7 @@ export const EventCard = ({ event }: { event: Event }) => {
       <Image
         src={event.imageUrl ?? DefaultImage}
         w="100%"
+        maxH="8.5rem"
         borderRadius="0.5rem"
       />
       <Flex direction="column" p="0.5rem" color="white">

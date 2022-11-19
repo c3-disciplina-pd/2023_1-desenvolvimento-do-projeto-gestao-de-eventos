@@ -46,11 +46,3 @@ export const EventSchema = yup.object().shape({
     .typeError("Insira apenas ponto e números")
     .required("Preencha o horário corretamente!"),
 });
-
-export const UpdateUserSchema = yup.object().shape({
-  firstName: yup.string().required("Preencha o campo!"),
-  description: yup.string().required("Preencha o campo!"),
-  description: yup.string().required("Preencha o campo!"),
-  description: yup.string().required("Preencha o campo!"),
-  description: yup.string().required("Preencha o campo!"),
-});

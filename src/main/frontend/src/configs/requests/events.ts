@@ -18,3 +18,16 @@ export const GetEvent = async ({ id }: { id: number }): Promise<void> => {
   const response = await api.get(`/events/${id}`);
   return response.data;
 };
+
+export const UpdateEvent = async ({
+  data,
+  id,
+}: {
+  data: Event;
+  id: number;
+}): Promise<void> => {
+  const cpf = Cookies.get("userCPF");
+
+  const response = await api.put(`/events/update/${id}/${cpf}`, data);
+  return response.data;
+};

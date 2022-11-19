@@ -16,14 +16,20 @@ export type RegisterUser = {
 };
 
 export type Event = {
-  id?: number
-  name: string;
-  description: string;
-  imageUrl: string;
-  date: Date | string | number | undefined;
-  price: number | string;
-  vacancies: number | string;
-  location: string;
+  id?: number;
+  name?: string;
+  description?: string;
+  imageUrl?: string;
+  date?: Date | string | number | undefined;
+  price?: number | string;
+  vacancies?: number | string;
+  location?: string;
   creator?: string;
   type?: UserType;
+} & AdditionalInfosEvent;
+
+type AdditionalInfosEvent = {
+  cpf?: string;
+  editor?: string;
+  isEmphasis?: boolean | number;
 };

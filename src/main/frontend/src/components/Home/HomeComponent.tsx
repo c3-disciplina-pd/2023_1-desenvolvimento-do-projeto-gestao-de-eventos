@@ -32,13 +32,23 @@ export const HomeComponent = () => {
         <Text fontSize="4xl" m="1rem 0" color="brand.900" fontWeight="bold">
           Destaques
         </Text>
-        <CarouselMainPage />
+        {events?.find((event) => event.isEmphasis === 1) ? (
+          <CarouselMainPage />
+        ) : (
+          <Text fontSize="4xl" m="10rem" color="brand.600" fontWeight="bold">
+            Não há eventos em destaque no momento
+          </Text>
+        )}
         <Filter />
       </Flex>
       <Flex maxW="100%" flexWrap="wrap" justify="center" align="center">
-        {events?.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
+        {events?.length === 0 ? (
+          <Text fontSize="4xl" m="10rem" color="brand.600" fontWeight="bold">
+            Ainda não existem eventos cadastrados
+          </Text>
+        ) : (
+          events?.map((event) => <EventCard key={event.id} event={event} />)
+        )}
       </Flex>
       <Footer />
     </Flex>
