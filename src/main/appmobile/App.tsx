@@ -14,13 +14,14 @@ import { Register } from "@screens/Register";
 import { Home } from "@screens/Home";
 import { EventDetails } from "@screens/EventDetails";
 import { Edit } from "@screens/Edit";
+import { CreateEvent } from "@screens/CreateEvent";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
-      {fontsLoaded ? <Edit /> : <Loading />}
+      {fontsLoaded ? <CreateEvent /> : <Loading />}
     </ThemeProvider>
   );
 }
