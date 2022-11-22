@@ -16,6 +16,12 @@ export const ContainerTop = styled.View`
     padding: 64px 24px 24px 24px;
 `;
 
+export const BannerTop = styled.Image`
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+`;
+
 export const ContainerBottom = styled.View`
     flex: 2;
     width: 100%;
@@ -25,20 +31,6 @@ export const ContainerBottom = styled.View`
     padding: 32px;
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
-`;
-
-export const CarouselCardItem = styled.View`
-    width: 100%;
-    height: 100%;
-    background-color: ${({ theme }) => theme.COLORS.WHITE};
-    border-radius: 8px;
-    justify-content: space-between;
-`;
-
-export const CarouselCardItemImage = styled.Image`
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
 `;
 
 export const FlatListTitle = styled.Text`
@@ -88,3 +80,4 @@ export const CardItemSubtitle = styled.Text`
     font-size: 14px;
     color: ${({ theme }) => theme.COLORS.GRAY_100};
 `;
+

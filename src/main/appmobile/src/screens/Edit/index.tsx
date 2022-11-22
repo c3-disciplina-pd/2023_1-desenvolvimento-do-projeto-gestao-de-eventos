@@ -32,7 +32,7 @@ export function Edit(){
                 onPress={() => {}}
                 />
             </S.ContainerBottom>
-            <Footer />
+            {/* <Footer /> */}
         </S.Container>
     )
 }

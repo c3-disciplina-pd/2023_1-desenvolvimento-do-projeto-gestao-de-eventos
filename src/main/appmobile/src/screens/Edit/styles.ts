@@ -14,6 +14,7 @@ export const ContainerTop = styled.View`
     justify-content: center;
     padding: 64px 24px 24px 24px;
     flex-direction: row;
+    margin-top: 30px;
     `;
 
 export const UserImage = styled.Image`

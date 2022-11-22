@@ -9,10 +9,11 @@ import { Home } from "@screens/Home";
 import { House, UserCircle } from "phosphor-react-native";
 import { useTheme } from "styled-components/native";
 import { Platform } from "react-native";
+import { Edit } from "@screens/Edit";
 
 type AppRoutes = {
   Home: undefined;
-  EventDetails: undefined;
+  Edit: undefined;
 };
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -39,8 +40,8 @@ export function AppRoutes() {
         options={{ tabBarIcon: ({ color }) => <House color={color} /> }}
       />
       <Screen
-        name="EventDetails"
-        component={EventDetails}
+        name="Edit"
+        component={Edit}
         options={{ tabBarIcon: ({ color }) => <UserCircle color={color} /> }}
       />
     </Navigator>

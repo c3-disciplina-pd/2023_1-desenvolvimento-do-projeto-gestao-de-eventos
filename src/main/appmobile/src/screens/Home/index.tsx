@@ -64,14 +64,20 @@ function cardItem({ item, index }: { item: EventItem; index: number }) {
 
 export function Home() {
   const [entries, setEntries] = useState([]) as any;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setEntries(ENTRIES1);
-  }, []);
+    setLoading(false);
+  }, [entries]);
 
   return (
     <S.Container>
       <S.ContainerTop>
+        <S.BannerTop 
+          source={{ uri: "https://i.imgur.com/UYiroysl.jpg" }}
+          resizeMode="cover"
+         />
       </S.ContainerTop>
       <S.ContainerBottom>
         <S.FlatListTitle>Adicionados rescentemente</S.FlatListTitle>
