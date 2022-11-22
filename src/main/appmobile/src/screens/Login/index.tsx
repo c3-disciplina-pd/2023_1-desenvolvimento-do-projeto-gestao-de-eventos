@@ -2,8 +2,16 @@ import { Header } from "@components/Header";
 import { Input } from "@components/Input";
 import * as S from "./styles";
 import logoImg from "@assets/logo.png";
+import { useNavigation } from "@react-navigation/native";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 export function Login() {
+  const navigation = useNavigation<AuthNavigatorRoutesProps>();
+
+  function handleRegister() {
+    navigation.navigate("Register");
+  }
+
   return (
     <S.Container>
       <Header />
@@ -22,7 +30,7 @@ export function Login() {
         </S.Button>
         <S.ContainerDontHaveAccount>
           <S.TextDontHaveAccount>Não tem uma conta?</S.TextDontHaveAccount>
-          <S.ActionRegister>
+          <S.ActionRegister onPress={handleRegister}>
             <S.TextRegister>Cadastre-se</S.TextRegister>
           </S.ActionRegister>
         </S.ContainerDontHaveAccount>
