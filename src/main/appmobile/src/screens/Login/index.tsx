@@ -1,12 +1,13 @@
 import { Header } from "@components/Header";
 import { Input } from "@components/Input";
 import * as S from "./styles";
-import logoImg from "@assets/logo.png";
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
+import { useLogin } from "../../hooks/useLogin";
 
 export function Login() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
+  const [loggedIn, setLoggedIn] = useLogin();
 
   function handleRegister() {
     navigation.navigate("Register");
@@ -25,7 +26,12 @@ export function Login() {
             <S.TextClickHere>Clique aqui</S.TextClickHere>
           </S.ActionClickHere>
         </S.ContainerForgotPassword>
-        <S.Button>
+        <S.Button
+          onPress={() => {
+            setLoggedIn(true);
+            console.log(loggedIn);
+          }}
+        >
           <S.TextButton>Entrar</S.TextButton>
         </S.Button>
         <S.ContainerDontHaveAccount>
