@@ -33,7 +33,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias até o momento:
 
 <br>
 
-## 💻 Projeto
+## 💻 Projeto - Frontend
 
 O Events Management consiste em um projeto de manuseamento de eventos, tais como: Criar eventos, anunciar, permitir que as pessoas possam se inscrever em eventos que sejam do seu interesse e diversas outras funcionalidades.
 
@@ -41,7 +41,7 @@ O Events Management consiste em um projeto de manuseamento de eventos, tais como
 
 ## 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/B9yKSnYAIhLejFAc3JP5tf/Project?node-id=6%3A2813&t=OAajRRVRoOJrJG0h-0).
+Você pode visualizar o layout da aplicação através [desse link](https://www.figma.com/file/B9yKSnYAIhLejFAc3JP5tf/Project?node-id=6%3A2813&t=OAajRRVRoOJrJG0h-0).
 
 <br>
 
@@ -57,13 +57,71 @@ Agora você pode acessar [`localhost:3000`](http://localhost:3000) no seu navega
 <br>
 
 ---
-<h3 align="center">Explicação das pastas do projeto</h3>
+<h3 align="center">Explicação das pastas do frontend</h3>
+
+<h4>📂 components</h4>
+<p>Como nós sabemos, o react é famoso por sua componentização, com isso, nesta pasta estão todos os componentes que podem ser reutilizados por todoa os locais que forem necessários da aplicaçao, dentro dela temos vários componentes já criados:</p>
+<ul>
+ <li>TextInput (Componente de Input para usarmos nos formulários)</li>
+ <li>Carousel (Carousel responsivo para mostrarmos os eventos em destaque da aplicação)</li>
+ <li>ButtonForm (Botão usado em grande parte da aplicação, tanto nos formulários quanto em outras ocasiões também)</li>
+ <li>EventCard (Card que mostra os eventos e suas informações, para tratar e mostar ao usuário dados que vem do Backend)</li>
+ <li>Diversos outros que estão nessa pasta de components</li>
+</ul>
+
+<h4>📂 assets</h4>
+<p>Dentro dessa pasta nós temos todos os utilitários da nossa aplicação, tais como:</p>
+<ul>
+ <li>images (Todas as imagens estáticas usadas no nosso frontend)</li>
+ <li>masks (Consite na pasta que temos nossas máscaras de formatação, por exemplo o a formatação do CPF)</li>
+ <li>schemas (Pasta que contém os schemas de validação de todos os formulários presentes na aplicação)</li>
+ <li>themes (Contém o tema global de toda a aplicação, com variáveis que podem ser utilizadas por toda parte)</li>
+</ul>
+
+<h4>📂 configs</h4>
+<p>Dentro dessa pasta nós temos todos as coisas mais importantes da nossa aplicação que fazem o auxilio na integração entre o Frontend e Backend, tais como:</p>
+<ul>
+ <li>hooks (O React tem a possibilidade de criar custom hooks, que básiamente são hooks feitos pelo desenvolvedor, nessa pasta nós temos os hooks que vão auxiliar na nossa requisição de dados de maneira bem peformática)</li>
+ <li>requests (Antes de usarmos os hooks, precisamos criar as funções para cada requisição especifica com o auxílio do nosso querido Axios, todas as requisições da plataforma estão presentes nessa pasta)</li>
+ <li>types (Já que estamos usando o TypeScript, temos que ter as tipagens adequeadas e corretas para cada coisa da nossa aplicação, nessa pasta contém as tipagens que mais são utilizadas pela aplicação)</li>
+</ul>
+
+<h4>📂 pages</h4>
+<p>Dentro dessa pasta nós temos todas as telas que existem atualmente na nossa aplicação cada arquivo está relacionado ao seu componente lá da pasta de components para uma melhor organização, os componentes são:</p>
+<ul>
+  <li>ConfigsPage (Tela de configurações do usuário, para alterar suas informações pessoais)</li>
+  <li>CreateEventPage (Tela que o Admin pode criar eventos para serem exibidos na plataforma)</li>
+  <li>EventDetailsPage (Tela que mostra os detalhes de um evento especifico da plataforma)</li>
+  <li>HomePage (Tela principal, que teremos os destaques, filtros e todos os eventos listados)</li>
+  <li>LoginPage (Tela de Login, para que o usuário possa ter acesso a aplicação)</li>
+  <li>RegisterPage (Tela de registro, para a pessoa se cadastrar e tornar-se um usuário da aplicação)</li>
+</ul>
+
+<h4>📂 routes</h4>
+<p>Dentro dessa pasta nós temos temos o sistema de roteamento completo da nossa aplicação, no arquivo AllRoutes existe uma função para que possamos tornar uma rota privada, ou seja, apenas Administradores e pessoas com permissão podem ter acesso, essas rotas são as seguintes:</p>
+<br>
+<p>Rotas públicas</p>
+<ul>
+  <li>EventDetailsPage</li>
+  <li>HomePage</li>
+  <li>LoginPage</li>
+  <li>RegisterPage</li>
+</ul>
+<br>
+<p>Rotas privadas</p>
+<ul>
+  <li>ConfigsPage</li>
+  <li>CreateEventPage</li>
+</ul>
+
+<h4>📂 services</h4>
+<p>Para finalizar, dentro dessa pasta temos a conexão com a nossa api criada pelo backend, utilizamos o axios e passamos a url da api para podermos ter acesso aos dados dela, com isso, conseguimos fazer todas as manipulações de dados que precisarmos na parte do frontend.</p>
 
 ---
 
 <br>
 
-<h3 align="center">Estruturamento de pastas do projeto</h3>
+<h3 align="center">Estruturamento completo do frontend</h3>
 
 ```bask
 ├── index.html
@@ -174,3 +232,12 @@ Agora você pode acessar [`localhost:3000`](http://localhost:3000) no seu navega
 └── vite.config.ts
 
 ```
+
+---
+
+<h3>👥 Desenvolvedores:</h3>
+
+#### Nome: Davi Mateus Gomes de Almeida
+- Registro do Aluno (RA): 00000009960
+- GitHub: [davimateus1](https://github.com/davimateus1)
+- Linkedin: [Davi Mateus](https://www.linkedin.com/in/davimateusg/)
