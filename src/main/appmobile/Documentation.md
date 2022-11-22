@@ -24,10 +24,20 @@
 
 
 ### 👨‍💻 Estratégias:
+#### Na navegação:
+Para as telas de login e registro utilizamos o *Stack-Navigation* e para as demais telas da aplicação utilizamos a estratégia de *Tab-Navigation*, ambos com a tecnologia do *React-Navigation*
+#### Tela de Criação do Evento:
+Para pegar todos os dados dos inputs da criação de um evento utilizamos o *React-Hook-Form*.
 
 ### ✨ Tecnologias:
-- [babel-plugin-module-resolver](https://github.com/tleunen/babel-plugin-module-resolver/blob/master/DOCS.md)
+#### Tecnologias Principais:
+- [react-native](https://reactnative.dev/)
+- [typescript](https://www.typescriptlang.org/)
 - [styled-components](https://styled-components.com/)
+#### Tecnologias Complementares:
+- [babel-plugin-module-resolver](https://github.com/tleunen/babel-plugin-module-resolver/blob/master/DOCS.md)
+- [phosporicons](https://phosphoricons.com/)
+- [react-navigation](https://reactnavigation.org/)
 - [react-hook-form](https://react-hook-form.com/)
 
 ### 🚀 Como Executar:
