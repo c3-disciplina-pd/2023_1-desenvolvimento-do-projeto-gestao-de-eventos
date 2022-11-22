@@ -2,9 +2,11 @@
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#-rotas">Rotas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#-duvidas">Dúvidas/a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
-## ✨ Tecnologias
+##  Tecnologias
 O projeto foi desenvolvido com as seguintes tecnologias:
 - [Node.js](https://nodejs.org/en/)
 - [Body-parser](https://www.npmjs.com/package/body-parser) -> leitura de JSON
@@ -18,7 +20,7 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 
 
 
-## 💻 Projetoa
+## 💻 Projeto
 API desenvolvida para o back-end do projeto Events Management
 
 ## Como executar
