@@ -12,16 +12,26 @@
 ### 📱 Telas:
 
 #### Tela de Sign In:
+<img src="https://user-images.githubusercontent.com/63603061/203981617-78453c64-e3eb-48fb-832e-fd473a051d39.png"
+ width=20%>
 #### Tela de Sign Up:
+<img src="https://user-images.githubusercontent.com/63603061/203982032-993cedae-38c7-4370-a99d-d33b5f57a3d4.png"
+ width=20%>
 #### Tela Inicial:
+<img src="https://user-images.githubusercontent.com/63603061/203982174-a79a8d16-04d3-4bee-99c1-bdf38c96540b.png"
+ width=20%>
 #### Tela de Detalhes do Evento:
+<img src="https://user-images.githubusercontent.com/63603061/203981617-78453c64-e3eb-48fb-832e-fd473a051d39.png"
+ width=20%>
 #### Tela de Edição do Perfil:
+<img src="https://user-images.githubusercontent.com/63603061/203982296-1bede706-4e9e-4315-8e76-2080a62cf58c.png"
+ width=20%>
 
 ### 📱 Tela especial do gestor:
 
 #### Tela de Criação do Evento:
-
-
+<img src="https://user-images.githubusercontent.com/63603061/203981617-78453c64-e3eb-48fb-832e-fd473a051d39.png"
+ width=20%>
 
 ### 👨‍💻 Estratégias:
 #### Na navegação:
