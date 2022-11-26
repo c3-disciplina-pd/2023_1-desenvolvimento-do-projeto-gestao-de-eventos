@@ -3,11 +3,12 @@ import { Input } from "@components/Input";
 import * as S from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
-import { useLogin } from "../../hooks/useLogin";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth";
 
 export function Login() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
-  const [loggedIn, setLoggedIn] = useLogin();
+  let { setUser } = useContext(AuthContext);
 
   function handleRegister() {
     navigation.navigate("Register");
@@ -28,8 +29,7 @@ export function Login() {
         </S.ContainerForgotPassword>
         <S.Button
           onPress={() => {
-            setLoggedIn(true);
-            console.log(loggedIn);
+            setUser(true);
           }}
         >
           <S.TextButton>Entrar</S.TextButton>

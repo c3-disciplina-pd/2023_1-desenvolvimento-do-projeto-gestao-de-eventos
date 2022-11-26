@@ -14,6 +14,7 @@ import { Edit } from "@screens/Edit";
 type AppRoutes = {
   Home: undefined;
   Edit: undefined;
+  EventDetails: undefined;
 };
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -43,6 +44,11 @@ export function AppRoutes() {
         name="Edit"
         component={Edit}
         options={{ tabBarIcon: ({ color }) => <UserCircle color={color} /> }}
+      />
+      <Screen
+        name="EventDetails"
+        component={EventDetails}
+        options={{ tabBarButton: () => null }}
       />
     </Navigator>
   );

@@ -1,6 +1,8 @@
 import { Dimensions } from "react-native";
 import * as S from "./styles";
 import { useEffect, useRef, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
 
 type EventItem = {
   id: string;
@@ -43,20 +45,20 @@ const ENTRIES1: EventItem[] = [
 ];
 
 function cardItem({ item, index }: { item: EventItem; index: number }) {
+  
   function handleAcessEvent() {
-    alert("Acessar evento");
+    const navigation = useNavigation<AppNavigatorRoutesProps>();
+    navigation.navigate("EventDetails");
   }
+
   return (
-    <S.CardItem
-      onPress={handleAcessEvent}
-    >
-      <S.CardItemImage
-        source={{ uri: item.illustration }}
-        resizeMode="cover"
-      />
+    <S.CardItem onPress={handleAcessEvent}>
+      <S.CardItemImage source={{ uri: item.illustration }} resizeMode="cover" />
       <S.CardItemTextContainer>
         <S.CardItemTitle numberOfLines={2}>{item.title}</S.CardItemTitle>
-        <S.CardItemSubtitle numberOfLines={2}>{item.subtitle}</S.CardItemSubtitle>
+        <S.CardItemSubtitle numberOfLines={2}>
+          {item.subtitle}
+        </S.CardItemSubtitle>
       </S.CardItemTextContainer>
     </S.CardItem>
   );
@@ -74,17 +76,17 @@ export function Home() {
   return (
     <S.Container>
       <S.ContainerTop>
-        <S.BannerTop 
+        <S.BannerTop
           source={{ uri: "https://i.imgur.com/UYiroysl.jpg" }}
           resizeMode="cover"
-         />
+        />
       </S.ContainerTop>
       <S.ContainerBottom>
         <S.FlatListTitle>Adicionados rescentemente</S.FlatListTitle>
         <S.FlatList
           data={entries}
           renderItem={cardItem}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item: any) => String(item.id)}
           showsVerticalScrollIndicator={false}
         />
       </S.ContainerBottom>
