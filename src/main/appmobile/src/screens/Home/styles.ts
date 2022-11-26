@@ -16,6 +16,11 @@ export const ContainerTop = styled.View`
     padding: 64px 24px 24px 24px;
 `;
 
+export const TouchableArea = styled.TouchableOpacity`
+    width: 100%;
+    height: 100%;
+`;
+
 export const BannerTop = styled.Image`
     width: 100%;
     height: 100%;

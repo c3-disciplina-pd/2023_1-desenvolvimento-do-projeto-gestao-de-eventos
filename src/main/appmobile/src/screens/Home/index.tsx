@@ -45,10 +45,10 @@ const ENTRIES1: EventItem[] = [
 ];
 
 function cardItem({ item, index }: { item: EventItem; index: number }) {
+  // const navigation = useNavigation<AppNavigatorRoutesProps>();
   
   function handleAcessEvent() {
-    const navigation = useNavigation<AppNavigatorRoutesProps>();
-    navigation.navigate("EventDetails");
+    // navigation.navigate("EventDetails");
   }
 
   return (
@@ -68,6 +68,12 @@ export function Home() {
   const [entries, setEntries] = useState([]) as any;
   const [loading, setLoading] = useState(true);
 
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
+  
+  function handleAcessEvent() {
+    navigation.navigate("EventDetails");
+  }
+
   useEffect(() => {
     setEntries(ENTRIES1);
     setLoading(false);
@@ -76,10 +82,12 @@ export function Home() {
   return (
     <S.Container>
       <S.ContainerTop>
+        <S.TouchableArea onPress={handleAcessEvent}>
         <S.BannerTop
           source={{ uri: "https://i.imgur.com/UYiroysl.jpg" }}
           resizeMode="cover"
         />
+        </S.TouchableArea>
       </S.ContainerTop>
       <S.ContainerBottom>
         <S.FlatListTitle>Adicionados rescentemente</S.FlatListTitle>
