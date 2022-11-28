@@ -30,7 +30,7 @@
 ### 📱 Tela especial do gestor:
 
 #### Tela de Criação do Evento:
-<img src="https://user-images.githubusercontent.com/63603061/203981617-78453c64-e3eb-48fb-832e-fd473a051d39.png"
+<img src="https://user-images.githubusercontent.com/63603061/204378457-ad5ce43e-97b7-4da0-8561-2072acec41c5.png"
  width=20%>
 
 ### 👨‍💻 Estratégias:
