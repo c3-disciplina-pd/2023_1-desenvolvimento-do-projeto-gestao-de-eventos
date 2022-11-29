@@ -94,7 +94,7 @@ export function CreateEvent() {
         />
         <YellowButton text="Criar" onPress={() => {}} />
       </S.Form>
-      <Footer />
+      {/* <Footer /> */}
     </S.Container>
   );
 }

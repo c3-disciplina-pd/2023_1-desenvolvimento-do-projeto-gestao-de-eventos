@@ -10,7 +10,7 @@ export const Title = styled.Text`
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    margin-top: 70px;
+    margin-top: 80px;
     margin-bottom: 5px;
     color: ${({ theme }) => theme.COLORS.RED_700};
 `;

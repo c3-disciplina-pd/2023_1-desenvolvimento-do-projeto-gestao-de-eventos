@@ -6,13 +6,15 @@ import {
 import { EventDetails } from "@screens/EventDetails";
 import { Home } from "@screens/Home";
 
-import { House, UserCircle } from "phosphor-react-native";
+import { House, PlusCircle, UserCircle } from "phosphor-react-native";
 import { useTheme } from "styled-components/native";
 import { Platform } from "react-native";
 import { Edit } from "@screens/Edit";
+import { CreateEvent } from "@screens/CreateEvent";
 
 type AppRoutes = {
   Home: undefined;
+  CreateEvent: undefined;
   Edit: undefined;
   EventDetails: undefined;
 };
@@ -39,6 +41,11 @@ export function AppRoutes() {
         name="Home"
         component={Home}
         options={{ tabBarIcon: ({ color }) => <House color={color} /> }}
+      />
+      <Screen
+        name="CreateEvent"
+        component={CreateEvent}
+        options={{ tabBarIcon: ({ color }) => <PlusCircle color={color} /> }}
       />
       <Screen
         name="Edit"
