@@ -1,6 +1,5 @@
-import { Header } from "@components/Header";
-import { Input } from "@components/Input";
 import * as S from "./styles";
+import { Header } from "@components/Header";
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 import { useContext } from "react";
@@ -9,7 +8,7 @@ import { AuthContext } from "../../contexts/auth";
 import * as yup from "yup";
 import React, { useState } from 'react';
 import * as Animatable from "react-native-animatable";
-import { ScrollView, TextInput, View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -67,7 +66,7 @@ export function Login() {
             <S.TitleBottom>Entrar</S.TitleBottom>
 
             {errors.cpf && (
-              <Text style={styles.labelError}>{errors.cpf?.message}</Text>
+              <S.labelError >{errors.cpf?.message}</S.labelError>
             )}
             <Controller
               control={control}
@@ -77,8 +76,10 @@ export function Login() {
                   style={[
 
                     {
-                      borderWidth: errors.cpf && 1,
+
                       borderColor: errors.cpf && theme.COLORS.RED,
+                      borderTopColor: errors.cpf && theme.COLORS.RED,
+                      borderBottomColor: errors.cpf && theme.COLORS.RED,
                     },
                   ]}
                   placeholder="Digite seu CPF"
@@ -90,7 +91,7 @@ export function Login() {
             />
 
             {errors.password && (
-              <Text style={styles.labelError}>{errors.password?.message}</Text>
+              <S.labelError >{errors.password?.message} </S.labelError>
             )}
             <Controller
               control={control}
@@ -102,6 +103,8 @@ export function Login() {
                       {
                         borderWidth: errors.password && 1,
                         borderColor: errors.password && theme.COLORS.RED,
+                        borderTopColor: errors.cpf && theme.COLORS.RED,
+                        borderBottomColor: errors.cpf && theme.COLORS.RED,
                       },
                     ]}
                     placeholder="Digite sua senha"
@@ -120,10 +123,6 @@ export function Login() {
 
               )}
             />
-
-
-
-
             <S.ContainerForgotPassword>
               <S.TextForgotPassword>Esqueceu sua senha?</S.TextForgotPassword>
               <S.ActionClickHere>
@@ -141,18 +140,9 @@ export function Login() {
                 <S.TextRegister>Cadastre-se</S.TextRegister>
               </S.ActionRegister>
             </S.ContainerDontHaveAccount>
-
           </ScrollView>
         </Animatable.View >
       </S.ContainerBottom>
     </S.Container>
   );
 }
-const styles = StyleSheet.create({
-  labelError: {
-    alignSelf: "flex-start",
-    color: theme.COLORS.RED,
-    marginBottom: 2,
-    marginTop: 0,
-  },
-});

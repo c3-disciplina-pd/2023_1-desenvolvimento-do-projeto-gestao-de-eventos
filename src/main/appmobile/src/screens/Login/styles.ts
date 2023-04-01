@@ -26,20 +26,6 @@ export const TitleBottom = styled.Text`
     font-size: ${theme.FONT_SIZE.XL}px;
   `};
 `;
-export const TextInput = styled.TextInput`
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-left-width: 1px;
-  border-radius: 5px;
-  padding-left: 10px;
-  height: 50px;
-  margin-bottom: 16px;
-  border-left-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-right-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-top-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
-`;
 export const Input = styled.TextInput`
   border-bottom-width: 1px;
   border-top-width: 1px;
@@ -50,10 +36,16 @@ export const Input = styled.TextInput`
   height: 50px;
   width: 100%;
   margin-bottom: 16px;
-  border-left-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-right-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-top-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
+`;
+export const TextInput = styled.TextInput`
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  border-radius: 5px;
+  padding-left: 10px;
+  height: 50px;
+  margin-bottom: 16px;
 `;
 export const TouchableOpacity = styled.View`
   justify-content: center;
@@ -109,6 +101,12 @@ export const TextButton = styled.Text`
     font-family: ${theme.FONT_FAMILY.BOLD};
     font-size: ${theme.FONT_SIZE.MD}px;
   `};
+`;
+export const labelError = styled.Text`
+  align-self: flex-start;
+  margin-bottom: 2px;
+  margin-top: 0px;
+  color: ${({ theme }) => theme.COLORS.RED};
 `;
 
 export const ContainerDontHaveAccount = styled.View`
