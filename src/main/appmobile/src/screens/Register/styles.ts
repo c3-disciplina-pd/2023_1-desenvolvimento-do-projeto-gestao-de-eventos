@@ -7,6 +7,48 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
 `;
 
+export const ContainerPassword = styled.View`
+  flex-direction: row;
+  width: 89%;
+  align-items: center;
+`;
+
+export const Input = styled.TextInput`
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  border-radius: 5px;
+  padding-left: 10px;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 16px;
+  border-left-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-right-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-top-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
+`;
+export const TextInput = styled.TextInput`
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  border-radius: 5px;
+  padding-left: 10px;
+  height: 50px;
+  margin-bottom: 16px;
+  border-left-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-right-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-top-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
+`;
+
+export const TouchableOpacity = styled.View`
+  justify-content: center;
+  padding: 5px;
+`;
+export const PasswordOpacity = styled.TouchableOpacity``;
+
 export const ContainerBottom = styled.View`
   flex: 3;
   width: 100%;
