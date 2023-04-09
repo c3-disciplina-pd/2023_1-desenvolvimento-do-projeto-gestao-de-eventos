@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import theme from '../../theme';
 import Axios from "axios";
 
+
 const schema = yup.object({
   cpf: yup.string().required("Informe seu cpf"),
   password: yup
@@ -24,6 +25,13 @@ const schema = yup.object({
 });
 
 export function Login() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
   let { setUser } = useContext(AuthContext);
@@ -34,17 +42,11 @@ export function Login() {
   }
   const [hidePass, setHidePass] = useState(true);
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+
+  const PortaExpo = "192.168.1.4";
 
   function handleSignIn(data: any) {
-    Axios.post("http://192.168.1.2:8080/login", {
-
+    Axios.post("http://" + PortaExpo + ":8080/login", {
       cpf: data.cpf,
       password: data.password,
     }).then((response) => {
@@ -65,9 +67,12 @@ export function Login() {
           <ScrollView>
             <S.TitleBottom>Entrar</S.TitleBottom>
 
-            {errors.cpf && (
-              <S.labelError >{errors.cpf?.message}</S.labelError>
-            )}
+           
+              {errors.cpf && (
+                <S.labelError >{errors.cpf?.message}</S.labelError>
+              )}
+          
+
             <Controller
               control={control}
               name="cpf"

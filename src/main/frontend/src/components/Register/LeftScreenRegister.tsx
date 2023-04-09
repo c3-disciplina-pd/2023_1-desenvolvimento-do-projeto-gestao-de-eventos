@@ -48,11 +48,13 @@ export const LeftScreenRegister = () => {
       <Text mt="2rem" fontWeight="bold" color="brand.900" fontSize="2xl">
         Criar conta
       </Text>
+
       <InputForm
         register={register("firstName")}
         error={errors.firstName}
         placeholder="Digite seu nome"
       />
+      
       <InputForm
         register={register("lastName")}
         error={errors.lastName}

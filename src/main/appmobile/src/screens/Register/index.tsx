@@ -24,33 +24,39 @@ const schema = yup.object({
     .min(6, "A senha deve ter pelo menos 6 digitos")
     .required("informe sua senha"),
 });
-
+import { RegisterUser, useCreateUser } from "../../configs";
+import { RegisterSchema } from "../../assets";
 export function Register() {
-  const navigation = useNavigation();
-  const [hidePass, setHidePass] = useState(true);
 
+
+
+
+
+  const [hidePass, setHidePass] = useState(true);
 
   const {
     control,
-    handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
+    handleSubmit,
+  } = useForm<RegisterUser>({
+    mode: "onSubmit",
+    resolver: yupResolver(RegisterSchema),
   });
-
-  function handleSignUp(data: any) {
-    Axios.post("http://192.168.1.2:8080/users/save", {
+  const navigation = useNavigation();
+  const { createUserMutation, createUserLoading } = useCreateUser();
+  function handleGoBack() {
+    navigation.goBack();
+  }
+  const submitRegisterForm = async (data: RegisterUser) => {
+    await createUserMutation({
       firstName: data.firstName,
       lastName: data.lastName,
       cpf: data.cpf,
       email: data.email,
       password: data.password,
-    }).catch((error) => console.log(error));
-  }
-
-  function handleGoBack() {
-    navigation.goBack();
-  }
+    });
+    handleGoBack();
+  };
 
   return (
     <S.Container>
@@ -63,6 +69,8 @@ export function Register() {
             {errors.firstName && (
               <Text style={styles.labelError}> {errors.firstName?.message}</Text>
             )}
+
+
 
             <Controller
               control={control}
@@ -86,6 +94,7 @@ export function Register() {
             {errors.lastName && (
               <Text style={styles.labelError}>{errors.lastName?.message}</Text>
             )}
+
             <Controller
               control={control}
               name="lastName"
@@ -108,6 +117,7 @@ export function Register() {
             {errors.cpf && (
               <Text style={styles.labelError}>{errors.cpf?.message}</Text>
             )}
+
             <Controller
               control={control}
               name="cpf"
@@ -131,6 +141,7 @@ export function Register() {
             {errors.email && (
               <Text style={styles.labelError}>{errors.email?.message}</Text>
             )}
+
             <Controller
               control={control}
               name="email"
@@ -153,6 +164,7 @@ export function Register() {
             {errors.password && (
               <Text style={styles.labelError}>{errors.password?.message}</Text>
             )}
+
             <Controller
               control={control}
               name="password"
@@ -181,7 +193,7 @@ export function Register() {
 
               )}
             />
-            <S.Button onPress={handleSubmit(handleSignUp)} >
+            <S.Button onPress={handleSubmit(submitRegisterForm)} >
               <S.TextButton>Cadastrar</S.TextButton>
             </S.Button>
 
