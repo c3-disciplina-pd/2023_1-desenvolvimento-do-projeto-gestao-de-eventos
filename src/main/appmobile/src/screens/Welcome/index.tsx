@@ -29,7 +29,7 @@ export function Welcome() {
                 >
 
                     <S.TextTitle> Extenção Universitária da unicap </S.TextTitle>
-                    <S.Text>Faça login pra começar</S.Text>
+                    <S.Text  onPress={handleLogin}>Faça login pra começar</S.Text>
                     <S.TouchableOpacity onPress={handleLogin}>
                         <S.TextButtom >Acessar</S.TextButtom>
                     </S.TouchableOpacity>

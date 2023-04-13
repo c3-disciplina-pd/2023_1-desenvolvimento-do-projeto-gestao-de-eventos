@@ -1,36 +1,19 @@
-import { ScrollView, TextInput, View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import { ScrollView, Text, StyleSheet } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Ionicons } from '@expo/vector-icons';
 import { Header } from "@components/Header";
-import { Input } from "@components/Input";
+
 import theme from '../../theme';
 import React, { useState } from 'react';
-import * as yup from "yup";
-import Axios from "axios";
-
 import * as S from "./styles";
 
 
-const schema = yup.object({
-  firstName: yup.string().required("Informe seu primeiro nome"),
-  lastName: yup.string().required("Informe seu ultimo nome"),
-  cpf: yup.string().required("Informe seu cpf"),
-  email: yup.string().email("Email Invalido").required("Informe seu email"),
-  password: yup
-    .string()
-    .min(6, "A senha deve ter pelo menos 6 digitos")
-    .required("informe sua senha"),
-});
 import { RegisterUser, useCreateUser } from "../../configs";
 import { RegisterSchema } from "../../assets";
 export function Register() {
-
-
-
-
 
   const [hidePass, setHidePass] = useState(true);
 
@@ -70,8 +53,6 @@ export function Register() {
               <Text style={styles.labelError}> {errors.firstName?.message}</Text>
             )}
 
-
-
             <Controller
               control={control}
               name="firstName"
@@ -91,6 +72,7 @@ export function Register() {
                 />
               )}
             />
+
             {errors.lastName && (
               <Text style={styles.labelError}>{errors.lastName?.message}</Text>
             )}
@@ -114,6 +96,7 @@ export function Register() {
                 />
               )}
             />
+
             {errors.cpf && (
               <Text style={styles.labelError}>{errors.cpf?.message}</Text>
             )}
@@ -183,6 +166,7 @@ export function Register() {
                     value={value}
                     secureTextEntry={hidePass}
                   />
+
                   <S.TouchableOpacity >
                     <S.PasswordOpacity onPress={() => setHidePass(!hidePass)}>
                       <Ionicons name="eye" color="#121212" size={25} />
@@ -193,6 +177,7 @@ export function Register() {
 
               )}
             />
+
             <S.Button onPress={handleSubmit(submitRegisterForm)} >
               <S.TextButton>Cadastrar</S.TextButton>
             </S.Button>
@@ -203,6 +188,7 @@ export function Register() {
                 <S.TextLogin>Login</S.TextLogin>
               </S.ActionLogin>
             </S.ContainerHaveAccount>
+            
           </ScrollView>
         </Animatable.View>
       </S.ContainerBottom>

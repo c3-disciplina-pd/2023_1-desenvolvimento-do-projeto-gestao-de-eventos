@@ -5,7 +5,6 @@ import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth";
 
-import * as yup from "yup";
 import React, { useState } from 'react';
 import * as Animatable from "react-native-animatable";
 import { ScrollView } from 'react-native';
@@ -13,65 +12,76 @@ import { Ionicons } from '@expo/vector-icons';
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import theme from '../../theme';
-import Axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from "expo-secure-store";
 
 
-const schema = yup.object({
-  cpf: yup.string().required("Informe seu cpf"),
-  password: yup
-    .string()
-    .min(6, "A senha deve ter pelo menos 6 digitos")
-    .required("informe sua senha"),
-});
+import { LoginSchema } from "../../assets";
+import { useLogin, User } from "../../configs";
+import { useEffect } from "react";
+
+
 
 export function Login() {
   const {
     control,
-    handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+    handleSubmit,
+  } = useForm<User>({ mode: "onSubmit", resolver: yupResolver(LoginSchema) });
+
 
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
   let { setUser } = useContext(AuthContext);
 
+  const { loginMutation, loginLoading } = useLogin();
+
+
+
+  const isAuth = async () => {
+    const value = await SecureStore.getItemAsync('accessToken')
+
+    if (value !== null) {
+      setUser(true)
+    } else {
+      console.log('err')
+    }
+  };
+
+  const submitLoginForm = ({ cpf, password }: User, data: any) => {
+    loginMutation({ cpf, password });
+    saveUser(data);
+    setTimeout(() => isAuth(), 1000);
+  };
+
+  const saveUser = async (data: any) => {
+    const cpfUser = await AsyncStorage.setItem("userCPF", data.cpf);
+    console.log('salvo')
+  }
+ 
+  useEffect(() => {
+    isAuth();
+
+  }, []);
 
   function handleRegister() {
-    navigation.navigate("Register");
+    navigation.navigate("Register" as never);
   }
   const [hidePass, setHidePass] = useState(true);
 
 
-  const PortaExpo = "192.168.1.4";
-
-  function handleSignIn(data: any) {
-    Axios.post("http://" + PortaExpo + ":8080/login", {
-      cpf: data.cpf,
-      password: data.password,
-    }).then((response) => {
-      if (response.data.msg !== null) {
-        setUser(true);
-      } else {
-        alert(response.data.msg);
-      }
-    });
-  };
-
-
   return (
-    <S.Container>
+    <S.Container >
       <Header />
       <S.ContainerBottom>
         <Animatable.View animation={"fadeInUp"} >
           <ScrollView>
             <S.TitleBottom>Entrar</S.TitleBottom>
 
-           
-              {errors.cpf && (
-                <S.labelError >{errors.cpf?.message}</S.labelError>
-              )}
-          
+
+            {errors.cpf && (
+              <S.labelError >{errors.cpf?.message}</S.labelError>
+            )}
+
 
             <Controller
               control={control}
@@ -135,10 +145,9 @@ export function Login() {
               </S.ActionClickHere>
             </S.ContainerForgotPassword>
 
-            <S.Button onPress={handleSubmit(handleSignIn)}>
-              <S.TextButton>Entrar</S.TextButton>
+            <S.Button onPress={handleSubmit(submitLoginForm)} >
+              <S.TextButton >Entrar</S.TextButton>
             </S.Button>
-
             <S.ContainerDontHaveAccount>
               <S.TextDontHaveAccount>Não tem uma conta?</S.TextDontHaveAccount>
               <S.ActionRegister onPress={handleRegister}>

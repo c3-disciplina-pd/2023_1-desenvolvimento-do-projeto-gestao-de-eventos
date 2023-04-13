@@ -9,7 +9,7 @@ import { Home } from "@screens/Home";
 import { House, PlusCircle, UserCircle } from "phosphor-react-native";
 import { useTheme } from "styled-components/native";
 import { Platform } from "react-native";
-import { Edit } from "@screens/Edit";
+import { Edit } from "@screens/Edit/index";
 import { CreateEvent } from "@screens/CreateEvent";
 
 type AppRoutes = {

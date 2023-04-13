@@ -3,6 +3,7 @@ import { TextInputProps } from 'react-native';
 
 type Props = TextInputProps & {
   error?: string;
+ 
 };
 
 export function Input(props: Props) {
