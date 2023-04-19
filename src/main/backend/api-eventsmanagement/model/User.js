@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const conn = require("../database/database");
 
-const User = conn.define("users", {
+const User = conn.define("user", {
     cpf: {
         type: Sequelize.STRING,
         allowNull: false,
