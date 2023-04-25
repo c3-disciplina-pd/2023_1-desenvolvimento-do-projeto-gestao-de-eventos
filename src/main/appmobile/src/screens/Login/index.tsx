@@ -57,7 +57,7 @@ export function Login() {
     const cpfUser = await AsyncStorage.setItem("userCPF", data.cpf);
     console.log('salvo')
   }
- 
+
   useEffect(() => {
     isAuth();
 

@@ -14,6 +14,7 @@ import { InputForm } from "../Input";
 import { Navbar } from "../Navbar";
 
 export const CreateEventComponent = () => {
+
   const {
     register,
     formState: { errors },
@@ -28,6 +29,7 @@ export const CreateEventComponent = () => {
 
   const authUser = Cookies.get("userCPF");
   const { data: user } = useGetUser({ cpf: authUser ?? "" });
+
 
   const submitRegisterForm = async (data: Event) => {
     await createEventMutation({

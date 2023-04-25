@@ -6,13 +6,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Ionicons } from '@expo/vector-icons';
 import { Header } from "@components/Header";
 
-import theme from '../../theme';
 import React, { useState } from 'react';
+import theme from '../../theme';
 import * as S from "./styles";
 
 
 import { RegisterUser, useCreateUser } from "../../configs";
 import { RegisterSchema } from "../../assets";
+
 export function Register() {
 
   const [hidePass, setHidePass] = useState(true);
@@ -25,11 +26,14 @@ export function Register() {
     mode: "onSubmit",
     resolver: yupResolver(RegisterSchema),
   });
+
   const navigation = useNavigation();
   const { createUserMutation, createUserLoading } = useCreateUser();
+  
   function handleGoBack() {
     navigation.goBack();
   }
+
   const submitRegisterForm = async (data: RegisterUser) => {
     await createUserMutation({
       firstName: data.firstName,
@@ -67,7 +71,7 @@ export function Register() {
                   ]}
                   placeholder="Digite seu Nome"
                   onChangeText={onChange}
-                  onBlur={onBlur} //chamado quando o textinput é tocado
+                  onBlur={onBlur} 
                   value={value}
                 />
               )}
@@ -91,7 +95,7 @@ export function Register() {
                   ]}
                   placeholder="Digite seu Sobrenome"
                   onChangeText={onChange}
-                  onBlur={onBlur} //chamado quando o textinput é tocado
+                  onBlur={onBlur}
                   value={value}
                 />
               )}
@@ -115,7 +119,7 @@ export function Register() {
                   ]}
                   placeholder="Digite seu CPF"
                   onChangeText={onChange}
-                  onBlur={onBlur} //chamado quando o textinput é tocado
+                  onBlur={onBlur}
                   value={value}
                 />
               )}
@@ -139,7 +143,7 @@ export function Register() {
                   ]}
                   placeholder="Digite seu email..."
                   onChangeText={onChange}
-                  onBlur={onBlur} //chamado quando o textinput é tocado
+                  onBlur={onBlur}
                   value={value}
                 />
               )}
@@ -162,7 +166,7 @@ export function Register() {
                     ]}
                     placeholder="Digite sua senha..."
                     onChangeText={onChange}
-                    onBlur={onBlur} //chamado quando o input é tocado
+                    onBlur={onBlur} 
                     value={value}
                     secureTextEntry={hidePass}
                   />
@@ -188,7 +192,7 @@ export function Register() {
                 <S.TextLogin>Login</S.TextLogin>
               </S.ActionLogin>
             </S.ContainerHaveAccount>
-            
+
           </ScrollView>
         </Animatable.View>
       </S.ContainerBottom>

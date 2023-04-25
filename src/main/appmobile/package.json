@@ -24,7 +24,7 @@
     "deprecated-react-native-prop-types": "^2.3.0",
     "expo": "~46.0.13",
     "expo-font": "~10.2.0",
-    "expo-secure-store": "^12.1.1",
+    "expo-secure-store": "~11.3.0",
     "expo-status-bar": "~1.4.0",
     "js-cookie": "^3.0.1",
     "phosphor-react-native": "^1.1.2",

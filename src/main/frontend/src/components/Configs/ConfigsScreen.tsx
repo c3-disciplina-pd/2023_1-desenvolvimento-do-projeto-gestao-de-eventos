@@ -13,8 +13,10 @@ import { InputForm } from "../Input";
 import { Navbar } from "../Navbar";
 
 export const ConfigsScreen = () => {
+  
   const authUser = Cookies.get("userCPF");
   const { data: user } = useGetUser({ cpf: authUser ?? "" });
+
   const navigate = useNavigate();
 
   const initialValues = {

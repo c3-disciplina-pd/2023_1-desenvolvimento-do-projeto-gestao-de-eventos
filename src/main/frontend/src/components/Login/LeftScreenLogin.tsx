@@ -26,6 +26,8 @@ export const LeftScreenLogin = () => {
   const isAuth = () => {
     if (localStorage.getItem("accessToken") !== null) {
       navigate("/pagina-inicial");
+    }else{
+      navigate("/");
     }
   };
 

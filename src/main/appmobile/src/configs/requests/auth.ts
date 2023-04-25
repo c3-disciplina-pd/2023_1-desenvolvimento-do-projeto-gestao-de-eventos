@@ -24,7 +24,7 @@ export const LoginUser = async (data: User): Promise<void> => {
 };
 
 export const UpdateUser = async (data: RegisterUser): Promise<void> => {
-  const cpf = AsyncStorage.getItem("userCPF");
+  const cpf = await AsyncStorage.getItem("userCPF");
   const response = await api.put(`/users/update/${cpf}`, data);
-  return response.data;
+  return  response.data;
 };

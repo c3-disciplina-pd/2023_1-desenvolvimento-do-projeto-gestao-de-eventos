@@ -1,97 +1,59 @@
-import { Footer } from "@components/Footer";
-import { Input } from "@components/Input";
-import { YellowButton } from "@components/YellowButton";
 import * as S from "./styles";
+import { Input } from "@components/Input";
+import { Footer } from "@components/Footer";
+import { YellowButton } from "@components/YellowButton";
 import { useForm, Controller } from "react-hook-form";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Event, useCreateEvent, useGetUser } from "../../configs";
+import { useNavigation } from "@react-navigation/native";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState, useEffect } from "react";
+import { EventSchema } from "../../assets";
+
 export function CreateEvent() {
-  const { control } = useForm();
+
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<Event>({
+    mode: "onSubmit",
+    resolver: yupResolver(EventSchema),
+  });
+
+  const navigate = useNavigation();
+  const { createEventMutation, createEventLoading } = useCreateEvent();
+
+  const [userCpf, setUserCpf] = useState([{}]);
+
+  const loadUser = async () => {
+    const useGetUser = await AsyncStorage.getItem("userCPF");
+    setUserCpf(useGetUser)
+  }
+  
+  const { data: user } = useGetUser({ cpf: userCpf ?? "" });
+
+  const submitRegisterForm = async (data: Event) => {
+    await createEventMutation({
+      name: data.name,
+      description: data.description,
+      date: data.date,
+      price: data.price,
+      creator: user?.lastName,
+      vacancies: data.vacancies,
+      imageUrl: data.imageUrl,
+      location: data.location,
+      type: user?.type,
+    });
+
+  };
 
   return (
     <S.Container>
       <S.Title>Criar Evento</S.Title>
       <S.Form>
-        <Controller
-          control={control}
-          name="eventBanner"
-          render={({ field: { onChange, value } }) => (
-            <Input
-              placeholder="Link do Banner"
-              onChangeText={onChange}
-              value={value}
-              keyboardType="url"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="eventName"
-          render={({ field: { onChange, value } }) => (
-            <Input
-              placeholder="Nome do Evento"
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="eventPrice"
-          render={({ field: { onChange, value } }) => (
-            <Input
-              placeholder="Valor"
-              onChangeText={onChange}
-              value={value}
-              keyboardType="numeric"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="eventVacancies"
-          render={({ field: { onChange, value } }) => (
-            <Input
-              placeholder="Total de Vagas"
-              onChangeText={onChange}
-              value={value}
-              keyboardType="numeric"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="eventDate"
-          render={({ field: { onChange, value } }) => (
-            <Input
-              placeholder="Data do evento"
-              onChangeText={onChange}
-              value={value}
-              keyboardType="numeric"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="eventLocal"
-          render={({ field: { onChange, value } }) => (
-            <Input
-              placeholder="Local do evento"
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="eventDescription"
-          render={({ field: { onChange, value } }) => (
-            <Input
-              placeholder="Descrição do evento"
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
+        
         <YellowButton text="Criar" onPress={() => {}} />
       </S.Form>
       {/* <Footer /> */}
