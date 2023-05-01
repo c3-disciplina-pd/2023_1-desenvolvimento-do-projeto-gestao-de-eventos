@@ -7,8 +7,9 @@ class UserService{
     //Podem ser lançadas exceptions personalizadas para ser capturadas
     //e lançar diferentes status
 
-    register(body){
-        if(userRepository.getByCpf(body.cpf) == null){
+    async register(body){
+        const userExist = await userRepository.getByCpf(body.cpf);
+        if(userExist === null){
             try {
                 return userRepository.add(body);
             } catch (e) {
