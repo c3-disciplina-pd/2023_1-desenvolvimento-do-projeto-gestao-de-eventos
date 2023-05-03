@@ -23,11 +23,14 @@ userRoutes.get("/all", (req, res) => {
     })
 });
 
-userRoutes.get("/:cpf", (req, res) => {
-    userService.getByCpf(req.params.cpf)
-    .then((user) => {
-        res.json(user);
-    })
+userRoutes.get("/:cpf", async(req, res) => {
+    try{
+        await userService.getByCpf(req.params.cpf).then((user) => {
+            res.json(user);
+        })
+    }catch(e){
+        res.status(400).json({message: `${e.message}`})
+    }
 });
 
 userRoutes.patch("/update-tag/:cpf", (req, res) => {
@@ -42,9 +45,13 @@ userRoutes.put("/:cpf", (req, res) => {
     })
 });
 
-userRoutes.delete("/:cpf", (req, res) => {
-    userService.delete(req.params.cpf).then(() => {
-        res.status(200).send();
-    })
+userRoutes.delete("/:cpf", async(req, res) => {
+    try{
+        await userService.delete(req.params.cpf).then(() => {
+            res.status(200).send();
+        })    
+    }catch(e){
+        res.status(400).json({message: `${e.message}`})
+    }
 });
 module.exports = userRoutes;

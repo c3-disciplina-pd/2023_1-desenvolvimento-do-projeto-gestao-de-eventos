@@ -20,23 +20,35 @@ class UserService{
     }
     
     getAll(){
-        userRepository.getAll();
+        return userRepository.getAll();
     }
 
-    getByCpf(cpf){
-        userRepository.getByCpf();
+    async getByCpf(cpf){
+        const userExist = await userRepository.getByCpf(cpf);
+        if(userExist === null){
+            throw new Error("Usuário não encontrado")
+        }
+        try{
+            return userExist;
+        }catch(e){
+            throw new Error("Erro inesperado")
+        }
     }
 
     updatePartialTag(cpf, type){
-        userRepository.updatePartialTag(cpf, type)
+        return userRepository.updatePartialTag(cpf, type)
     }
 
     update(cpf, body){
-        userRepository.update(cpf, body)
+        return userRepository.update(cpf, body)
     }
 
-    delete(cpf){
-        userRepository.delete(cpf)
+    async delete(cpf){
+        const userExist = await userRepository.getByCpf(cpf);
+        if(userExist === null){
+            throw new Error("Cpf inexistente") 
+        }
+        return userRepository.delete(cpf)
     }
 }
 

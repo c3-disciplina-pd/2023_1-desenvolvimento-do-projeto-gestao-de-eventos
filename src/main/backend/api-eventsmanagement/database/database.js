@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-const conn = new Sequelize('eventsmanagement', 'root', '', {
+const conn = new Sequelize('eventsmanagement', 'root', '4o88L2a60', {
     host: 'localhost',
     dialect: 'mysql'
 })
