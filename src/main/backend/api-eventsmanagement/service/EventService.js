@@ -1,5 +1,5 @@
-const eventRepository = require('../repositories/eventRepository');
-const userReposotory = require('../repositories/userRepository')
+const eventRepository = require('../repository/eventRepository');
+const userReposotory = require('../repository/userRepository')
 
 class EventService{
 
