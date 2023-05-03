@@ -19,6 +19,7 @@ export const useLogin = (): UseLoginProps => {
         isClosable: true,
         status: "error",
       });
+      alert("Usuário ou senha incorretos!");
     },
     onSuccess: () => {
       toast({
@@ -27,6 +28,7 @@ export const useLogin = (): UseLoginProps => {
         isClosable: true,
         status: "success",
       });
+      alert("Login bem sucedido!");
     },
   });
 

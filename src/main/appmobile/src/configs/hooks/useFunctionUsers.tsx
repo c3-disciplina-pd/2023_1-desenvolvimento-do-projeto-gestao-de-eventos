@@ -45,6 +45,7 @@ export const useCreateUser = (): UseCreateUserProps => {
           isClosable: true,
           status: "error",
         });
+        alert("Houve um erro ao cadastrar o usuário.");
       },
       onSuccess: () => {
         toast({
@@ -53,6 +54,7 @@ export const useCreateUser = (): UseCreateUserProps => {
           isClosable: true,
           status: "success",
         });
+        alert("Usuário criado com sucesso!");
       },
     });
 
@@ -71,6 +73,7 @@ export const useUpdateUser = (): UseUpdateUserProps => {
           isClosable: true,
           status: "error",
         });
+        alert("Houve um erro ao atualizar as informações do usuário.");
       },
       onSuccess: () => {
         toast({
@@ -79,6 +82,7 @@ export const useUpdateUser = (): UseUpdateUserProps => {
           isClosable: true,
           status: "success",
         });
+        alert("Informações do usuário atualizadas com sucesso!");
       },
     });
 

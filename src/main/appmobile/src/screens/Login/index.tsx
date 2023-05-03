@@ -42,8 +42,6 @@ export function Login() {
 
     if (value !== null) {
       setUser(true)
-    } else {
-      console.log('err')
     }
   };
 
@@ -55,12 +53,10 @@ export function Login() {
 
   const saveUser = async (data: any) => {
     const cpfUser = await AsyncStorage.setItem("userCPF", data.cpf);
-    console.log('salvo')
   }
 
   useEffect(() => {
     isAuth();
-
   }, []);
 
   function handleRegister() {

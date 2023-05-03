@@ -1,53 +1,170 @@
 import * as S from "./styles";
+import * as React from 'react';
+import { useState, useEffect } from "react";
+import { ScrollView, RefreshControl, Text } from "react-native";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
-import { FlatList, ScrollView } from "react-native";
-import { RedButton } from "@components/RedButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useGetUser, useGetEvent, useUpdateEvent, UserType } from "../../configs";
 
 export function EventDetails() {
+
+    const [refreshing, setRefreshing] = useState(false);
+
+    const [eventId, setEventId] = useState();
+
+    const { updateEventMutation, updateEventLoading } = useUpdateEvent();
+
+    const [userCpf, setUserCpf] = useState([{}]);
+
+    const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+    const onRefresh = () => {
+        const loadUser = async () => {
+
+            const useGetUser = await AsyncStorage.getItem("userCPF");
+            setUserCpf(useGetUser)
+        }
+
+        setRefreshing(true);
+
+        const loadId = async () => {
+            const zero = '0'
+            setEventId(zero)
+
+            const eventGetId = await AsyncStorage.getItem(`id`);
+            setEventId(eventGetId);
+        }
+
+        setTimeout(() => {
+            setRefreshing(false);
+            loadId();
+            loadUser();
+        }, 100);
+    }
+
+    const { data: user } = useGetUser({ cpf: userCpf });
+
+    const addEventToEmphasis = async () => {
+        await updateEventMutation({
+            id: events?.id ?? 0,
+            data: {
+                cpf: user?.cpf ?? "",
+                editor: user?.lastName ?? "",
+                type: user?.type ?? undefined,
+                isEmphasis: events?.isEmphasis === true ? false : true,
+            },
+        });
+        navigation.navigate('Home')
+    };
+
+
+    useEffect(() => {
+        onRefresh();
+    }, []);
+
+    const { data: events } = useGetEvent({ id: Number(eventId) });
+
+    const eventDate = new Date(events?.date ?? "");
+
+    useFocusEffect(
+        React.useCallback(() => {
+            onRefresh();
+            return () => {
+
+            };
+        }, [])
+    );
+
+
     return (
         <S.Container>
-        <S.ContainerTop>
-            <S.TitleTop>Banner do Evento</S.TitleTop>
-        </S.ContainerTop>
-        <S.ContainerBottom>
-            <S.TitleBottom>Título do Evento</S.TitleBottom>
-            <ScrollView showsVerticalScrollIndicator={false}>
-            <S.ContainerEvent>
-                <S.ContainerEventText>
-                    13 a 15 de setembro de 2021 de 13:00 às 20:00.
-                    Laboratório Loyola, Primeiro Andar, Bloco G.
-                </S.ContainerEventText>
-            </S.ContainerEvent>
-                <S.TitleBottomScroll>Descrição</S.TitleBottomScroll>
-                <S.ContainerEvent>
-                <S.ContainerEventText>
-                A descrição é uma tipologia textual usada para retratar personagens, espaços, momentos, pensamentos etc.
-                Em suma, tudo que é nomeado pode ser descrito. A classe gramatical mais usada para essa função é o 
-                adjetivo. Não obstante, existem diversas outras formas de produzir essa tipologia, assim como há 
-                vários tipos de descrição. Além disso, os trechos descritivos são fundamentais em diversos gêneros
-                 textuais, tais como: os contos, as crônicas, as notícias, entre outros. Por isso, é fundamental saber 
-                como fazer uma boa descrição para compor bons textos.
-                </S.ContainerEventText>
-                </S.ContainerEvent>
-                <S.TitleBottomScroll>Detalhes da Localização</S.TitleBottomScroll>
-                <S.ContainerEvent>
-                <S.ContainerEventText>
-                    Pro Magno 
-                    Centro de eventos
-                    Perto da padaria
-                    Nº: 55
-                </S.ContainerEventText>
-                <RedButton
-                    text="Ver no Mapa"
-                    onPress={() => {}}
-                />
-                </S.ContainerEvent>
-                <RedButton
-                    text="Participar do Evento"
-                    onPress={() => {}}
-                />
-            </ScrollView>
-        </S.ContainerBottom>
+
+
+            <S.ContainerBottom>
+                <ScrollView refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                }>
+
+
+
+
+                    <S.TitleBottom>{events?.name}</S.TitleBottom>
+                    <S.CardItemImage source={{ uri: events?.imageUrl }} resizeMode="stretch" />
+
+                    <S.TitleBottom>{'          '} Detalhes do Evento {'           '} </S.TitleBottom>
+
+                    <S.CardItem>
+                        <S.CardItemTextContainer>
+                            <S.CardItemTitle numberOfLines={2}>Nome do evento:{' '}
+                                <S.CardItemSubtitle >
+                                    {events?.name}
+                                </S.CardItemSubtitle>
+                            </S.CardItemTitle>
+
+                            <S.CardItemTitle numberOfLines={2}>Total de vagas:{' '}
+                                <S.CardItemSubtitle >
+                                    {events?.vacancies}
+                                </S.CardItemSubtitle>
+                            </S.CardItemTitle>
+
+                            <S.CardItemTitle numberOfLines={2}>Valor:{' '}
+                                <S.CardItemSubtitle >
+                                    {events?.price === 0 ? "Gratuito" : `R$ ${events?.price}`}
+                                </S.CardItemSubtitle>
+                            </S.CardItemTitle>
+
+                        </S.CardItemTextContainer>
+                    </S.CardItem>
+
+                    <S.CardItem>
+                        <S.CardItemTextContainer>
+                            <S.CardItemTitle numberOfLines={2}>Data:{' '}
+                                <S.CardItemSubtitle >
+                                    {eventDate.toLocaleDateString("pt-BR")}
+                                </S.CardItemSubtitle>
+                            </S.CardItemTitle>
+
+                            <S.CardItemTitle numberOfLines={2}>Local:{' '}
+                                <S.CardItemSubtitle >
+                                    {events?.location}
+                                </S.CardItemSubtitle>
+                            </S.CardItemTitle>
+
+                            <S.CardItemTitle numberOfLines={2}>Promovido por:{' '}
+                                <S.CardItemSubtitle >
+                                    {events?.creator}
+                                </S.CardItemSubtitle>
+                            </S.CardItemTitle>
+
+                        </S.CardItemTextContainer>
+                    </S.CardItem>
+
+                    <S.TitleBottom>Descrição</S.TitleBottom>
+                    <S.CardItem>
+                        <S.CardItemTextContainer>
+                            <S.CardItemDecricao >
+                                {events?.description}
+                            </S.CardItemDecricao>
+                        </S.CardItemTextContainer>
+                    </S.CardItem>
+                    {user?.lastName === events?.creator &&
+                        user?.type === UserType.Admin && (
+                            <S.CardItemButton>
+                                <S.Button onPress={addEventToEmphasis}  >
+                                <S.TextButton>{
+                                        events?.isEmphasis
+                                            ? "Remover dos destaques"
+                                            : "Adicionar aos Destaques"
+                                    }</S.TextButton>
+                                </S.Button>
+                            </S.CardItemButton>
+                        )}
+
+                </ScrollView>
+            </S.ContainerBottom>
         </S.Container>
     );
 }
+

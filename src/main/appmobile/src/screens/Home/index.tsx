@@ -1,103 +1,211 @@
-import { Dimensions } from "react-native";
+import * as React from 'react';
 import * as S from "./styles";
-import { useEffect, useRef, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+
+import { useEffect, useState } from "react";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 
-type EventItem = {
-  id: string;
-  illustration: string;
-  title: string;
-  subtitle: string;
-};
+import { useGetEvents } from "../../configs";
+import { Text, Image, StyleSheet, RefreshControl, View } from 'react-native';
 
-const ENTRIES1: EventItem[] = [
-  {
-    id: "1",
-    illustration: "https://i.imgur.com/UYiroysl.jpg",
-    title: "Title 1",
-    subtitle: "Subtitle 1",
-  },
-  {
-    id: "2",
-    illustration: "https://i.imgur.com/UPrs1EWl.jpg",
-    title: "Title 2",
-    subtitle: "Subtitle 2",
-  },
-  {
-    id: "3",
-    illustration: "https://i.imgur.com/MABUbpDl.jpg",
-    title: "Title 3",
-    subtitle: "Subtitle 3",
-  },
-  {
-    id: "4",
-    illustration: "https://i.imgur.com/KZsmUi2l.jpg",
-    title: "Title 4",
-    subtitle: "Subtitle 4",
-  },
-  {
-    id: "5",
-    illustration: "https://i.imgur.com/2nCt3Sbl.jpg",
-    title: "Title 5",
-    subtitle: "Subtitle 5",
-  },
-];
+import Carousel, { PaginationLight } from 'react-native-x-carousel'
 
-function cardItem({ item, index }: { item: EventItem; index: number }) {
-  // const navigation = useNavigation<AppNavigatorRoutesProps>();
-  
-  function handleAcessEvent() {
-    // navigation.navigate("EventDetails");
-  }
+import { Dimensions } from "react-native";
+const { width } = Dimensions.get('window');
 
-  return (
-    <S.CardItem onPress={handleAcessEvent}>
-      <S.CardItemImage source={{ uri: item.illustration }} resizeMode="cover" />
-      <S.CardItemTextContainer>
-        <S.CardItemTitle numberOfLines={2}>{item.title}</S.CardItemTitle>
-        <S.CardItemSubtitle numberOfLines={2}>
-          {item.subtitle}
-        </S.CardItemSubtitle>
-      </S.CardItemTextContainer>
-    </S.CardItem>
-  );
-}
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function Home() {
-  const [entries, setEntries] = useState([]) as any;
-  const [loading, setLoading] = useState(true);
 
   const navigation = useNavigation<AppNavigatorRoutesProps>();
-  
-  function handleAcessEvent() {
-    navigation.navigate("EventDetails");
+
+  const { data: events, refetch: eventsRefetch } = useGetEvents({});
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+      eventsRefetch();
+    }, 100);
   }
 
   useEffect(() => {
-    setEntries(ENTRIES1);
-    setLoading(false);
-  }, [entries]);
+    onRefresh();
+  }, [events]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      onRefresh();
+      return () => {
+      };
+    }, [])
+  );
+  const loadUser = async (id) => {
+    try {
+      await AsyncStorage.setItem(`id`, JSON.stringify(id));
+    } catch (e) {
+      console.log(e.message)
+    }
+    navigation.navigate("EventDetails");
+  }
+
+
+  const renderItem = (events) => (
+
+
+    <View
+      key={events.id}
+      style={styles.cardContainer}
+    >
+
+      <View
+        style={styles.cardWrapper}
+      >
+        <Image
+          resizeMode="stretch"
+          style={styles.card}
+          source={{ uri: events.imageUrl }}
+        />
+        <View
+          style={[
+            styles.cornerLabel,
+            { backgroundColor: '#0080ff' },
+          ]}
+        ><S.CardItemTop onPress={() => loadUser(events.id)
+        }>
+            <Text style={styles.cornerLabelText}>
+              ver mais
+            </Text>
+          </S.CardItemTop >
+        </View>
+      </View>
+
+    </View >
+
+
+  );
+
+
+  function cardItem({ item, index }: { item: events; index: number }) {
+
+    const loadUser = async (id) => {
+      try {
+        await AsyncStorage.setItem(`id`, JSON.stringify(id));
+      } catch (e) {
+        console.log(e.message)
+      }
+    }
+
+    function handleAcessEvent() {
+      loadUser(item.id);
+      navigation.navigate("EventDetails");
+    }
+    const eventDate = new Date(item?.date ?? "");
+
+    return (
+      <S.CardItem
+        onPress={handleAcessEvent}>
+        <S.CardItemImage source={{ uri: item.imageUrl }} resizeMode="stretch" />
+        <S.CardItemTextContainer>
+          <S.CardItemTitle numberOfLines={4}>{item.name}</S.CardItemTitle>
+          <S.CardItemSubtitle numberOfLines={2}>
+            {eventDate.toLocaleDateString("pt-BR")}
+          </S.CardItemSubtitle>
+          <S.CardItemSubtitle numberOfLines={2}>
+            {item?.price === 0 ? "Gratuito" : `R$ ${item?.price}`}
+          </S.CardItemSubtitle>
+        </S.CardItemTextContainer>
+      </S.CardItem>
+    );
+  }
+
+
+
 
   return (
     <S.Container>
-      <S.ContainerTop>
-        <S.TouchableArea onPress={handleAcessEvent}>
-        <S.BannerTop
-          source={{ uri: "https://i.imgur.com/UYiroysl.jpg" }}
-          resizeMode="cover"
-        />
-        </S.TouchableArea>
+
+      <S.ContainerTop >
+        {events?.find((event) => event.isEmphasis === 1) ? (
+          <View style={styles.container} >
+            <Carousel
+              refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+              }
+              pagination={PaginationLight}
+              renderItem={renderItem}
+              data={events
+                ?.filter((event) => event.isEmphasis === 1)}
+              loop
+              autoplay
+            />
+          </View>
+
+        ) : (
+          <Text >
+            Não há eventos em destaque no momento
+          </Text>
+        )}
+
       </S.ContainerTop>
-      <S.ContainerBottom>
+
+      <S.ContainerBottom  >
         <S.FlatListTitle>Adicionados rescentemente</S.FlatListTitle>
         <S.FlatList
-          data={entries}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          data={events}
           renderItem={cardItem}
           keyExtractor={(item: any) => String(item.id)}
           showsVerticalScrollIndicator={false}
         />
       </S.ContainerBottom>
-    </S.Container>
+
+    </S.Container >
+
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cardContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width,
+  },
+  cardWrapper: {
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+  card: {
+    width: width * 0.9,
+    height: width * 0.5,
+
+  },
+  cornerLabel: {
+    position: 'absolute',
+    bottom: 20,
+    right: 120,
+    borderRadius: 5,
+    width: 100,
+    height: 30,
+  },
+  cornerLabelText: {
+    fontSize: 12,
+    color: '#fff',
+    fontWeight: '600',
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 2,
+    paddingBottom: 2,
+    position: 'relative',
+    textAlign: 'center',
+    alignItems: 'center',
+  },
+});

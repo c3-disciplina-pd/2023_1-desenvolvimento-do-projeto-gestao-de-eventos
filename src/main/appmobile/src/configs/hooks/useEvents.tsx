@@ -45,6 +45,7 @@ export const useCreateEvent = (): UseCreateEventProps => {
           isClosable: true,
           status: "error",
         });
+        alert("Houve um erro ao criar o evento");
       },
       onSuccess: () => {
         toast({
@@ -53,6 +54,7 @@ export const useCreateEvent = (): UseCreateEventProps => {
           isClosable: true,
           status: "success",
         });
+        alert("Evento criado com sucesso!");
       },
     });
 
@@ -71,6 +73,7 @@ export const useUpdateEvent = (): UseUpdateEventProps => {
           isClosable: true,
           status: "error",
         });
+        alert("Houve um erro ao realizar a ação.");
       },
       onSuccess: () => {
         toast({
@@ -79,6 +82,7 @@ export const useUpdateEvent = (): UseUpdateEventProps => {
           isClosable: true,
           status: "success",
         });
+        alert("Ação realizada com sucesso!");
       },
     });
 

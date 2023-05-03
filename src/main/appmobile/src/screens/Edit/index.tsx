@@ -1,22 +1,22 @@
 import * as React from 'react';
 import * as S from "./styles";
-import userImg from "@assets/user.png";
+import theme from '../../theme';
 
 import { ScrollView, Text, StyleSheet, RefreshControl } from 'react-native';
 import { RegisterUser, useGetUser, useUpdateUser } from "../../configs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Ionicons } from '@expo/vector-icons';
 import { RegisterSchema } from "../../assets";
 import { useState, useEffect } from "react";
-import theme from '../../theme';
+
+import UserAvatar from 'react-native-user-avatar';
 
 
 export function Edit() {
-
     const [userCpf, setUserCpf] = useState([{}]);
 
     const navigation = useNavigation<AppNavigatorRoutesProps>();
@@ -25,11 +25,10 @@ export function Edit() {
     const [refreshing, setRefreshing] = useState(false);
 
     const onRefresh = () => {
-
-        const vazio = 'vazio'
-        setUserCpf([{ vazio }])
-
         const loadUser = async () => {
+            const zero = '0'
+            setUserCpf(zero)
+
             const useGetUser = await AsyncStorage.getItem("userCPF");
             setUserCpf(useGetUser)
         }
@@ -39,9 +38,8 @@ export function Edit() {
         setTimeout(() => {
             setRefreshing(false);
             loadUser();
-        }, 2000);
+        }, 100);
     }
-
 
     useEffect(() => {
         onRefresh();
@@ -56,6 +54,7 @@ export function Edit() {
         email: user?.email,
         password: user?.password,
     };
+
     const {
         control,
         formState: { errors },
@@ -76,7 +75,17 @@ export function Edit() {
             email: data.email,
             password: data.password,
         });
+        navigation.navigate('Home');
     };
+
+    useFocusEffect(
+        React.useCallback(() => {
+            onRefresh();
+            return () => {
+
+            };
+        }, [])
+    );
 
     return (
         <S.Container>
@@ -84,8 +93,9 @@ export function Edit() {
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }>
+
                 <S.ContainerTop>
-                    <S.UserImage source={userImg} />
+                    <UserAvatar size={80} name={`${user?.firstName} ${user?.lastName}`} />
                     <S.UserInfo>
                         <S.UserName>
                             {user?.firstName} {user?.lastName}
@@ -96,8 +106,8 @@ export function Edit() {
                     </S.UserInfo>
                 </S.ContainerTop>
 
-                <S.ContainerBottom>
 
+                <S.ContainerBottom>
                     <S.ContainerBottomTitle>
                         Editar informações do perfil
                     </S.ContainerBottomTitle>
@@ -226,9 +236,9 @@ export function Edit() {
                     <S.Button onPress={handleSubmit(submitUpdateUser)} >
                         <S.TextButton>Editar</S.TextButton>
                     </S.Button>
-
                 </S.ContainerBottom>
             </ScrollView>
+
             {/* <Footer /> */}
         </S.Container >
     )

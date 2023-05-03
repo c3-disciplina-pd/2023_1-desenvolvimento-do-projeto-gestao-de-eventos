@@ -50,11 +50,11 @@ export const Input = styled.TextInput`
 `;
 export const ContainerTop = styled.View`
   flex: 0.1;
-  width: 70%;
+  width: 100%;
   height: 100%;
   align-items: center;
   justify-content: center;
-  padding: 24px 24px 24px 54px;
+  padding: 24px 84px 24px 84px;
   flex-direction: row;
   margin-top: 30px;
 `;
@@ -67,6 +67,7 @@ export const UserImage = styled.Image`
 export const UserInfo = styled.View`
   width: 100%;
   height: 100%;
+  margin-top: 30px;
 `;
 
 export const UserName = styled.Text`
@@ -96,6 +97,7 @@ export const ContainerBottomTitle = styled.Text`
   font-weight: bold;
   text-align: center;
   margin-bottom: 24px;
+
   color: ${({ theme }) => theme.COLORS.RED_700};
 `;
 export const Button = styled.TouchableOpacity`

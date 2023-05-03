@@ -1,22 +1,23 @@
 import {
-  BottomTabBarButtonProps,
   BottomTabNavigationProp,
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
 import { EventDetails } from "@screens/EventDetails";
 import { Home } from "@screens/Home";
 
-import { House, PlusCircle, UserCircle } from "phosphor-react-native";
+import { House, PlusCircle, UserCircle, GearSix } from "phosphor-react-native";
 import { useTheme } from "styled-components/native";
 import { Platform } from "react-native";
 import { Edit } from "@screens/Edit/index";
 import { CreateEvent } from "@screens/CreateEvent";
+import { Config } from "@screens/Config";
 
 type AppRoutes = {
   Home: undefined;
   CreateEvent: undefined;
   Edit: undefined;
   EventDetails: undefined;
+  Config: undefined;
 };
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -51,6 +52,11 @@ export function AppRoutes() {
         name="Edit"
         component={Edit}
         options={{ tabBarIcon: ({ color }) => <UserCircle color={color} /> }}
+      />
+      <Screen
+        name="Config"
+        component={Config}
+        options={{ tabBarIcon: ({ color }) => <GearSix color={color} /> }}
       />
       <Screen
         name="EventDetails"
