@@ -39,7 +39,11 @@ class UserService{
         return userRepository.updatePartialTag(cpf, type)
     }
 
-    update(cpf, body){
+    async update(cpf, body){
+        const userExist = await userRepository.getByCpf(cpf);
+        if(userExist === null){
+            throw new Error("Cpf inexistente")
+        }
         return userRepository.update(cpf, body)
     }
 

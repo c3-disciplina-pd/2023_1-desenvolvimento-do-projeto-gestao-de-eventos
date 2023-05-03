@@ -39,10 +39,14 @@ userRoutes.patch("/update-tag/:cpf", (req, res) => {
     })
 });
 
-userRoutes.put("/:cpf", (req, res) => {
-    userService.update(req.params.cpf, req.body).then((user) => {
-        res.status(200).json(user);
-    })
+userRoutes.put("/:cpf", async(req, res) => {
+    try{
+        await userService.update(req.params.cpf, req.body).then((user) => {
+            res.status(200).json(user);
+        })
+    }catch(e){
+        res.status(400).json({message: `${e.message}`})
+    }
 });
 
 userRoutes.delete("/:cpf", async(req, res) => {
