@@ -5,7 +5,8 @@ import {
 import { EventDetails } from "@screens/EventDetails";
 import { Home } from "@screens/Home";
 
-import { House, PlusCircle, UserCircle, GearSix } from "phosphor-react-native";
+
+import { Ionicons, EvilIcons, AntDesign } from '@expo/vector-icons';
 import { useTheme } from "styled-components/native";
 import { Platform } from "react-native";
 import { Edit } from "@screens/Edit/index";
@@ -41,22 +42,22 @@ export function AppRoutes() {
       <Screen
         name="Home"
         component={Home}
-        options={{ tabBarIcon: ({ color }) => <House color={color} /> }}
+        options={{ tabBarIcon: ({ color }) => <Ionicons name="home" size={24} color={color} /> }}
       />
       <Screen
         name="CreateEvent"
         component={CreateEvent}
-        options={{ tabBarIcon: ({ color }) => <PlusCircle color={color} /> }}
+        options={{ tabBarIcon: ({ color }) => <AntDesign name="pluscircleo" size={24} color={color} /> }}
       />
       <Screen
         name="Edit"
         component={Edit}
-        options={{ tabBarIcon: ({ color }) => <UserCircle color={color} /> }}
+        options={{ tabBarIcon: ({ color }) => <AntDesign name="user" size={24} color={color} /> }}
       />
       <Screen
         name="Config"
         component={Config}
-        options={{ tabBarIcon: ({ color }) => <GearSix color={color} /> }}
+        options={{ tabBarIcon: ({ color }) => <AntDesign name="setting" size={24} color={color} /> }}
       />
       <Screen
         name="EventDetails"
