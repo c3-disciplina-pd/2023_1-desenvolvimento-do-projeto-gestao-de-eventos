@@ -3,13 +3,14 @@ const User = require("../model/User");
 
 class UserRepository{
     
-    add({cpf, firstName, lastName, email, password}){
+    add({cpf, firstName, lastName, password, email, number}){
         return User.create({
             cpf: cpf,
             firstName: firstName,
             lastName: lastName,
             password: password,
             email: email,
+            number: number,
             type: "Admin"
         })
     }
@@ -46,12 +47,13 @@ class UserRepository{
         })
     }
 
-    update(cpf, {firstName, lastName, email, password}){
+    update(cpf, {firstName, lastName, password, email, number}){
         return User.update({
             firstName: firstName,
             lastName: lastName,
             password: password,
-            email: email
+            email: email,
+            number: number
         }, {
             where: {
                 cpf: cpf,
