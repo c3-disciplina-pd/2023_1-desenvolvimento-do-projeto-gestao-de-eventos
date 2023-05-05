@@ -32,7 +32,7 @@ API desenvolvida para o back-end do projeto Events Management
 - Crie o schema `eventsmanagement`
 - Abra o repositório em algum editor de texto (VSCode de preferência)
 - Abra o terminal do Editor de texto e execute o comando `npm install` para realizar a instação de todas as dependências (DENTRO DA PASTA api-eventsmanagement)
-- Inicie o servidor com `node server.js ou nodemon server.js` no terminal
+- Inicie o servidor com `node server.js ou npm/yarn run start(dev)` no terminal
 
 Agora você pode acessar [`localhost:8080`](http://localhost:8080)seu navegador.
 
