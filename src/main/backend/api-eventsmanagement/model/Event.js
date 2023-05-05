@@ -9,7 +9,8 @@ const Event = conn.define('events', {
     },
     name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     description: {
         type: Sequelize.TEXT,
@@ -17,6 +18,10 @@ const Event = conn.define('events', {
     },
     date: {
         type: Sequelize.DATEONLY,
+        allowNull: false
+    },
+    hour:{
+        type: Sequelize.TIME,
         allowNull: false
     },
     price: {

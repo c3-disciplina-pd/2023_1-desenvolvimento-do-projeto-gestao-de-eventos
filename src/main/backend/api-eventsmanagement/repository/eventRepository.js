@@ -3,11 +3,12 @@ const UserRepository = require('./userRepository');
 
 class EventRepository{
 
-    add({name, description, date, price, vacancies, location, imageUrl, creator}){
+    add({name, description, date, hour, price, vacancies, location, imageUrl, creator}){
         return Event.create({
             name,
             description,
             date,
+            hour: hour,
             price,
             vacancies,
             location,
