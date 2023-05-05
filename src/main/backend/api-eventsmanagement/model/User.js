@@ -24,6 +24,10 @@ const User = conn.define("user", {
         allowNull: false,
         isEmail: true,
     },
+    number:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     type: {
         type: Sequelize.STRING,
         allowNull: false
