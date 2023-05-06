@@ -1,11 +1,6 @@
-const userRepository = require("../repository/userRepository");
+const userRepository = require("../repository/user.repository");
 
 class UserService{
-
-    //Classe responsável por tratar e lançar exceções
-
-    //Podem ser lançadas exceptions personalizadas para ser capturadas
-    //e lançar diferentes status
 
     async register(body){
         const userExist = await userRepository.getByCpf(body.cpf);

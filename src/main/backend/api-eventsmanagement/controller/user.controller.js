@@ -1,4 +1,4 @@
-const userService = require("../service/UserService")
+const userService = require("../service/user.service")
 
 exports.post = async(req, res) => {
     await userService.register(req.body).then((user) => {

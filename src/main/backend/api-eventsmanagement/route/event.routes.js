@@ -1,6 +1,6 @@
 const {Router} = require('express');
-const eventService = require('../service/EventService')
-const controller = require("../controller/eventController")
+const eventService = require('../service/event.service')
+const controller = require("../controller/event.controller")
 
 const eventRoutes = new Router();
 

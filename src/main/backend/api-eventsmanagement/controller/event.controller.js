@@ -1,4 +1,4 @@
-const eventService = require("../service/EventService")
+const eventService = require("../service/event.service")
 
 exports.post = async(req, res) => {
     await eventService.add(req.params.cpf, req.body).then((event) => {
