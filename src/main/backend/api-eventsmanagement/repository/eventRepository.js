@@ -36,6 +36,14 @@ class EventRepository{
         })
     }
 
+    getByName(name){
+        return Event.findOne({
+            where: {
+                name: name
+            }
+        })
+    }
+
     updatePartialEmphasis(id, isEmphasis){
         Event.update({
             isEmphasis: isEmphasis
@@ -43,6 +51,14 @@ class EventRepository{
             where: {
                 id: id
             },
+        })
+    }
+
+    delete(id){
+        Event.destroy({
+            where: {
+                id: id
+            }
         })
     }
 }
