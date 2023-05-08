@@ -31,3 +31,11 @@ app.listen(process.env.PORT || 8080, function() {
 app.use('/user', userRoutes);
 app.use('/event', eventRoutes);
 app.use('/login', loginRoutes);
+
+app.use((error, req, res, next) => {
+    const status = error.status;
+    res.status(status).json({
+        status: `${error.status}`,
+        message: `${error.message}`
+    })
+})

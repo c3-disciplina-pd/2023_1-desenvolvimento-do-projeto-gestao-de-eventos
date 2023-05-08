@@ -1,22 +1,28 @@
 const eventRepository = require('../repository/event.repository');
-const userReposotory = require('../repository/user.repository')
+const userReposotory = require('../repository/user.repository');
+
+const EntityAlreadyExists = require('../exception/entity.already.exists');
+const EntityNotFoundInTheAppeal = require('../exception/entity.not.found.in.the.appeal');
+const EntityNotFound = require('../exception/entity.not.found');
+const SystemFail = require('../exception/system.fail');
+const UnauthorizedUser = require('../exception/unauthorized.user');
 
 class EventService{
 
     async add(cpf, body){
         const eventExist = await eventRepository.getByName(body.name);
-        if(eventExist === null){
+        if(!eventExist){
 
             const userExist = await userReposotory.getByCpfAndLastName(cpf, body.creator);
-            if(userExist != null){
+            if(userExist){
                 if(userExist.type != "Manager" && userExist.type != "Admin"){
-                    throw new Error("Usuário sem autorização")
+                    throw new UnauthorizedUser("Usuário sem autorização")
                 }
                 return eventRepository.add(body);
             }
-            throw new Error("Usuário não encontrado")
+            throw new EntityNotFoundInTheAppeal("Usuário não encontrado")
         }
-        throw new Error("Evento com esse nome já cadastrado")
+        throw new EntityAlreadyExists("Evento com esse nome já cadastrado")
     }
 
     getAll(){
@@ -24,33 +30,33 @@ class EventService{
     }
 
     getById(id){
-        return eventRepository.getById(id);
+        return eventRepository.getById(id)
     }
 
     async getByName(name){
         const eventExist = await eventRepository.getByName(name)
-        if(eventExist != null){
+        if(eventExist){
             return eventRepository.getByName(name)
         }
-        throw new Error("Evento não encontrado")
+        throw new EntityNotFoundInTheAppeal("Evento não encontrado")
     }
 
     async updatePartialEmphasis(id, cpf, body){
-        const user = await userReposotory.getByCpfAndLastName(cpf, body.creator);
-        if(user != null){
-            if(user.type != "Manager" && user.type != "Admin"){
-                throw new Error("Usuário sem autorização")
+        const eventExist = await userReposotory.getByCpfAndLastName(cpf, body.creator);
+        if(eventExist){
+            if(eventExist.type != "Manager" && eventExist.type != "Admin"){
+                throw new UnauthorizedUser("Usuário sem autorização")
             }
 
             return eventRepository.updatePartialEmphasis(id, body.isEmphasis);
         }
-        throw new Error("Usuário não encontrado")
+        throw new EntityNotFoundInTheAppeal("Usuário não encontrado")
     }
 
     async delete(id){
         const eventExist = await eventRepository.getById(id)
-        if(eventExist === null){
-            throw new Error("Evento não encontrado")
+        if(!eventExist){
+            throw new EntityNotFoundInTheAppeal("Evento não encontrado")
         }
         eventRepository.delete(id);
     }
