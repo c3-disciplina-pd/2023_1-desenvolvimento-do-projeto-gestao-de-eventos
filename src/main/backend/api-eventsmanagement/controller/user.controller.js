@@ -22,6 +22,26 @@ exports.get = async(req, res) => {
     })
 }
 
+exports.login = async(req, res) => {
+    /*(req, res) => { //Não sei se seria melhor passar os dados na rota ou body
+        userRepository.checkLogin(req.body.cpf, req.body.password).then((email) => {
+            if (email) {
+                const token = jwt.sign({ email }, process.env.SECRET, {
+                    expiresIn: 300
+                })
+                return res.json({ auth: true, token: token, cpf: cpf })
+            } else {
+                res.status(401).json({ message: 'Invalid login!' });
+            }
+        });
+    }*/
+    await userService.login(req.params.cpf, req.params.password).then(user => {
+        res.json(user)
+    }).catch(e => {
+        res.status(400).json({message: `${e.message}`})
+    })
+}
+
 exports.put = async(req, res) => {
     await userService.update(req.params.cpf, req.body).then((user) => {
         res.status(200).json(user);

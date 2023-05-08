@@ -18,26 +18,34 @@ class UserService{
         return userRepository.getAll();
     }
 
+    async login(cpf, password){
+        const userExist = await userRepository.checkLogin(cpf, password);
+        if(userExist === null){
+            throw new Error("Email ou senha inválido.");
+        }
+        return userExist;
+    }
+
     async getByCpf(cpf){
         const userExist = await userRepository.getByCpf(cpf);
         if(userExist === null){
-            throw new Error("Usuário não encontrado")
+            throw new Error("Usuário não encontrado");
         }
         try{
             return userExist;
         }catch(e){
-            throw new Error("Erro inesperado")
+            throw new Error("Erro inesperado");
         }
     }
 
     updatePartialTag(cpf, type){
-        return userRepository.updatePartialTag(cpf, type)
+        return userRepository.updatePartialTag(cpf, type);
     }
 
     async update(cpf, body){
         const userExist = await userRepository.getByCpf(cpf);
         if(userExist === null){
-            throw new Error("Cpf inexistente")
+            throw new Error("Cpf inexistente");
         }
         return userRepository.update(cpf, body)
     }
@@ -45,9 +53,9 @@ class UserService{
     async delete(cpf){
         const userExist = await userRepository.getByCpf(cpf);
         if(userExist === null){
-            throw new Error("Cpf inexistente") 
+            throw new Error("Cpf inexistente") ;
         }
-        return userRepository.delete(cpf)
+        return userRepository.delete(cpf);
     }
 }
 
