@@ -26,11 +26,11 @@ class EventService{
     }
 
     getAll(){
-        eventRepository.getAll();
+        return eventRepository.getAll();
     }
 
     getById(id){
-        return eventRepository.getById(id)
+        return eventRepository.getById(id);
     }
 
     async getByName(name){

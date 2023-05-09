@@ -33,7 +33,7 @@ app.use('/event', eventRoutes);
 app.use('/login', loginRoutes);
 
 app.use((error, req, res, next) => {
-    const status = error.status;
+    const status = error.status ? error.status : 500;
     res.status(status).json({
         status: `${error.status}`,
         message: `${error.message}`

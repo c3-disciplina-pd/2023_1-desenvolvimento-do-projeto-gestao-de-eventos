@@ -6,10 +6,8 @@ exports.post = (req, res, next) => {
         .catch(e => next(e));
 }
 
-exports.getAll = async(req, res) => {
-    eventService.getAll().then(event => {
-        res.send(event);
-    });
+exports.getAll = (req, res, next) => {
+    eventService.getAll().then(event => res.send(event)).catch(e => next(e));
 }
 
 exports.get = (req, res, next) => {
