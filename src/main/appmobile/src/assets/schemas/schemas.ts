@@ -32,6 +32,10 @@ export const RegisterSchema = yup.object().shape({
     .min(14, "Formato de CPF inválido")
     .required("CPF incorreto"),
   password: yup.string().required("Preencha o campo!"),
+  number: yup
+    .string()
+    .min(11, "Formato de telefone inválido")
+    .required("Preencha o campo!"),
 });
 
 export const EventSchema = yup.object().shape({
@@ -40,7 +44,9 @@ export const EventSchema = yup.object().shape({
   description: yup.string().required("Preencha o campo!"),
   location: yup.string().required("Preencha o campo!"),
   date: yup.string().required("Preencha a data corretamente!"),
+  hour: yup.string().required("Preencha a hora corretamente!"),
   vacancies: yup.string().required("Preencha o campo!"),
+  number: yup.string().required("Preencha o campo!"),
   price: yup
     .number()
     .typeError("Insira apenas ponto e números")

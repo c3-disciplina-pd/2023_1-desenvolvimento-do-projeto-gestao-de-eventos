@@ -29,7 +29,7 @@ export function Register() {
 
   const navigation = useNavigation();
   const { createUserMutation, createUserLoading } = useCreateUser();
-  
+
   function handleGoBack() {
     navigation.goBack();
   }
@@ -40,6 +40,7 @@ export function Register() {
       lastName: data.lastName,
       cpf: data.cpf,
       email: data.email,
+      number: data.number,
       password: data.password,
     });
     handleGoBack();
@@ -71,7 +72,7 @@ export function Register() {
                   ]}
                   placeholder="Digite seu Nome"
                   onChangeText={onChange}
-                  onBlur={onBlur} 
+                  onBlur={onBlur}
                   value={value}
                 />
               )}
@@ -148,6 +149,29 @@ export function Register() {
                 />
               )}
             />
+            {errors.number && (
+              <Text style={styles.labelError}>{errors.number?.message}</Text>
+            )}
+
+            <Controller
+              control={control}
+              name="number"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <S.TextInput
+                  style={[
+
+                    {
+                      borderWidth: errors.number && 1,
+                      borderColor: errors.number && theme.COLORS.RED,
+                    },
+                  ]}
+                  placeholder="Digite seu telefone..."
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                />
+              )}
+            />
             {errors.password && (
               <Text style={styles.labelError}>{errors.password?.message}</Text>
             )}
@@ -166,7 +190,7 @@ export function Register() {
                     ]}
                     placeholder="Digite sua senha..."
                     onChangeText={onChange}
-                    onBlur={onBlur} 
+                    onBlur={onBlur}
                     value={value}
                     secureTextEntry={hidePass}
                   />

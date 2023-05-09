@@ -214,6 +214,30 @@ export function CreateEvent() {
               />
             )}
           />
+          {errors.hour && (
+            <Text style={styles.labelError}>{errors.hour?.message}</Text>
+          )}
+
+          <Controller
+            control={control}
+            name="hour"
+            render={({ field: { onChange, onBlur, value } }) => (
+
+              <S.Input
+                style={[
+                  {
+                    borderWidth: errors.hour && 1,
+                    borderColor: errors.hour && theme.COLORS.RED,
+                  },
+                ]}
+                placeholder="horario do evento"
+                onChangeText={onChange}
+                onBlur={onBlur}
+                value={value}
+
+              />
+            )}
+          />
           {errors.location && (
             <Text style={styles.labelError}>{errors.location?.message}</Text>
           )}

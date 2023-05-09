@@ -26,7 +26,7 @@ export function Edit() {
 
     const onRefresh = () => {
         const loadUser = async () => {
-            const zero = '0'
+            const zero = '711.891.104-66'
             setUserCpf(zero)
 
             const useGetUser = await AsyncStorage.getItem("userCPF");

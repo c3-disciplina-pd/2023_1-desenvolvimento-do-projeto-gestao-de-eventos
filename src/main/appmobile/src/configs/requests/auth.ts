@@ -4,20 +4,21 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from "expo-secure-store";
 
 export const CreateUser = async (data: RegisterUser): Promise<void> => {
-  const response = await api.post("/users/save", data);
+  const response = await api.post("/user/", data);
   return response.data;
 };
 
 export const GetUser = async ({ cpf }: { cpf: string }): Promise<void> => {
-  const response = await api.get(`/users/${cpf}`);
+  const response = await api.get(`/user/${cpf}`);
   return response.data;
 };
 
 export const LoginUser = async (data: User): Promise<void> => {
-  const response = await api.post("/login", data);
+  const response = await api.get(`/login/${data.cpf}/${data.password}`);
+  const token = "300";
 
   if (response.status !== 401) {
-    await SecureStore.setItemAsync("accessToken", response.data.token);
+    await SecureStore.setItemAsync("accessToken", token);
     await AsyncStorage.setItem("userCPF", data.cpf);
     return response.data;
   }
@@ -26,5 +27,5 @@ export const LoginUser = async (data: User): Promise<void> => {
 export const UpdateUser = async (data: RegisterUser): Promise<void> => {
   const cpf = await AsyncStorage.getItem("userCPF");
   const response = await api.put(`/users/update/${cpf}`, data);
-  return  response.data;
+  return response.data;
 };
