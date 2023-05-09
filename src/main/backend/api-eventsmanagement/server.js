@@ -35,7 +35,7 @@ app.use('/login', loginRoutes);
 app.use((error, req, res, next) => {
     const status = error.status ? error.status : 500;
     res.status(status).json({
-        status: `${error.status}`,
+        status: `${status}`,
         message: `${error.message}`
     })
 })
