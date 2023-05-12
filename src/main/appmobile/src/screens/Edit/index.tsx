@@ -53,6 +53,7 @@ export function Edit() {
         cpf: user?.cpf,
         email: user?.email,
         password: user?.password,
+        number: user?.number,
     };
 
     const {
@@ -74,6 +75,7 @@ export function Edit() {
             lastName: data.lastName,
             email: data.email,
             password: data.password,
+            number: data.number,
         });
         navigation.navigate('Home');
     };
@@ -174,6 +176,29 @@ export function Edit() {
                                 onChangeText={onChange}
                                 onBlur={onBlur}
                                 value={user?.cpf}
+                            />
+                        )}
+                    />
+                    {errors.number && (
+                        <Text style={styles.labelError}>{errors.number?.message}</Text>
+                    )}
+
+                    <Controller
+                        control={control}
+                        name="number"
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <S.TextInput
+                                style={[
+
+                                    {
+                                        borderWidth: errors.number && 1,
+                                        borderColor: errors.number && theme.COLORS.RED,
+                                    },
+                                ]}
+                                placeholder={user?.number}
+                                onChangeText={onChange}
+                                onBlur={onBlur}
+                                value={value}
                             />
                         )}
                     />

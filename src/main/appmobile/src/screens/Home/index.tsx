@@ -42,9 +42,9 @@ export function Home() {
       };
     }, [])
   );
-  const loadUser = async (id) => {
+  const loadUser = async (name) => {
     try {
-      await AsyncStorage.setItem(`id`, JSON.stringify(id));
+      await AsyncStorage.setItem(`name`, JSON.stringify(name));
     } catch (e) {
       console.log(e.message)
     }
@@ -56,7 +56,7 @@ export function Home() {
 
 
     <View
-      key={events.id}
+      key={events.name}
       style={styles.cardContainer}
     >
 
@@ -73,7 +73,7 @@ export function Home() {
             styles.cornerLabel,
             { backgroundColor: '#0080ff' },
           ]}
-        ><S.CardItemTop onPress={() => loadUser(events.id)
+        ><S.CardItemTop onPress={() => loadUser(events.name)
         }>
             <Text style={styles.cornerLabelText}>
               ver mais
@@ -90,16 +90,16 @@ export function Home() {
 
   function cardItem({ item, index }: { item: events; index: number }) {
 
-    const loadUser = async (id) => {
+    const loadUser = async (name) => {
       try {
-        await AsyncStorage.setItem(`id`, JSON.stringify(id));
+        await AsyncStorage.setItem(`name`, JSON.stringify(name));
       } catch (e) {
         console.log(e.message)
       }
     }
 
     function handleAcessEvent() {
-      loadUser(item.id);
+      loadUser(item.name);
       navigation.navigate("EventDetails");
     }
     const eventDate = new Date(item?.date ?? "");
@@ -159,7 +159,7 @@ export function Home() {
           }
           data={events}
           renderItem={cardItem}
-          keyExtractor={(item: any) => String(item.id)}
+          keyExtractor={(item: any) => String(item.name)}
           showsVerticalScrollIndicator={false}
         />
       </S.ContainerBottom>

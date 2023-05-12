@@ -9,20 +9,22 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useGetUser, useGetEvent, useUpdateEvent, UserType } from "../../configs";
 
 export function EventDetails() {
+    const navigation = useNavigation<AppNavigatorRoutesProps>();
 
     const [refreshing, setRefreshing] = useState(false);
 
-    const [eventId, setEventId] = useState();
+    const [eventName, setEventName] = useState();
 
     const { updateEventMutation, updateEventLoading } = useUpdateEvent();
 
     const [userCpf, setUserCpf] = useState([{}]);
 
-    const navigation = useNavigation<AppNavigatorRoutesProps>();
+    const { data: events } = useGetEvent({ name: String(eventName) });
+
+    const eventDate = new Date(events?.date ?? "");
 
     const onRefresh = () => {
         const loadUser = async () => {
-
             const useGetUser = await AsyncStorage.getItem("userCPF");
             setUserCpf(useGetUser)
         }
@@ -30,17 +32,14 @@ export function EventDetails() {
         setRefreshing(true);
 
         const loadId = async () => {
-            const zero = '0'
-            setEventId(zero)
-
-            const eventGetId = await AsyncStorage.getItem(`id`);
-            setEventId(eventGetId);
+            const eventGetName = await AsyncStorage.getItem("name");
+            setEventName(eventGetName);
         }
 
         setTimeout(() => {
             setRefreshing(false);
-            loadId();
             loadUser();
+            loadId();
         }, 100);
     }
 
@@ -60,19 +59,12 @@ export function EventDetails() {
     };
 
 
-    useEffect(() => {
-        onRefresh();
-    }, []);
 
-    const { data: events } = useGetEvent({ id: Number(eventId) });
-
-    const eventDate = new Date(events?.date ?? "");
 
     useFocusEffect(
         React.useCallback(() => {
             onRefresh();
             return () => {
-
             };
         }, [])
     );
@@ -153,7 +145,7 @@ export function EventDetails() {
                         user?.type === UserType.Admin && (
                             <S.CardItemButton>
                                 <S.Button onPress={addEventToEmphasis}  >
-                                <S.TextButton>{
+                                    <S.TextButton>{
                                         events?.isEmphasis
                                             ? "Remover dos destaques"
                                             : "Adicionar aos Destaques"

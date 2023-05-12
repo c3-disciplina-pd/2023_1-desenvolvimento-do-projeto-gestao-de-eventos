@@ -22,12 +22,12 @@ export type Event = {
   description?: string;
   imageUrl?: string;
   date?: Date | string | number | undefined;
-  hour?: string | number | undefined;
   price?: number | string;
   vacancies?: number | string;
   location?: string;
   creator?: string;
   type?: UserType;
+  hour?: string;
 } & AdditionalInfosEvent;
 
 type AdditionalInfosEvent = {

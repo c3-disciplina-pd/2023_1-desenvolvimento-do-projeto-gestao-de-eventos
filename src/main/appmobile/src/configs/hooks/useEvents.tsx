@@ -29,15 +29,18 @@ type UseGetUsersProps = {
 };
 
 type UseGetUserProps = {
-  config?: UseQueryOptions<void, unknown, Event, [`event-${number}`, number]>;
-  id: number;
+  config?: UseQueryOptions<void, unknown, Event, [`event-${string}`, string]>;
+  name: string;
 };
 
 export const useCreateEvent = (): UseCreateEventProps => {
   const toast = useToast();
+
   const { mutateAsync: createEventMutation, isLoading: createEventLoading } =
     useMutation({
+
       mutationFn: CreateEvent,
+
       onError: () => {
         toast({
           title: "Houve um erro ao criar o evento.",
@@ -48,12 +51,13 @@ export const useCreateEvent = (): UseCreateEventProps => {
         alert("Houve um erro ao criar o evento");
       },
       onSuccess: () => {
-        toast({
-          title: "Evento criado com sucesso!",
-          duration: 3000,
-          isClosable: true,
-          status: "success",
-        });
+        console.log('2'),
+          toast({
+            title: "Evento criado com sucesso!",
+            duration: 3000,
+            isClosable: true,
+            status: "success",
+          });
         alert("Evento criado com sucesso!");
       },
     });
@@ -93,6 +97,6 @@ export const useGetEvents = ({ config }: UseGetUsersProps) => {
   return useQuery("all-events", () => GetEvents(), config);
 };
 
-export const useGetEvent = ({ config, id }: UseGetUserProps) => {
-  return useQuery([`event-${id}`, id], () => GetEvent({ id }), config);
+export const useGetEvent = ({ config, name }: UseGetUserProps) => {
+  return useQuery([`event-${name}`, name], () => GetEvent({ name }), config);
 };

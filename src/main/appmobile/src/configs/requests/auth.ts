@@ -15,9 +15,8 @@ export const GetUser = async ({ cpf }: { cpf: string }): Promise<void> => {
 
 export const LoginUser = async (data: User): Promise<void> => {
   const response = await api.get(`/login/${data.cpf}/${data.password}`);
-  const token = "300";
-
   if (response.status !== 401) {
+    const token = "300";
     await SecureStore.setItemAsync("accessToken", token);
     await AsyncStorage.setItem("userCPF", data.cpf);
     return response.data;
@@ -26,6 +25,6 @@ export const LoginUser = async (data: User): Promise<void> => {
 
 export const UpdateUser = async (data: RegisterUser): Promise<void> => {
   const cpf = await AsyncStorage.getItem("userCPF");
-  const response = await api.put(`/users/update/${cpf}`, data);
+  const response = await api.put(`/user/${cpf}`, data);
   return response.data;
 };

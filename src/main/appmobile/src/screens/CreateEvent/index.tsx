@@ -18,34 +18,37 @@ import { EventSchema } from "../../assets";
 export function CreateEvent() {
   const navigation = useNavigation<AppNavigatorRoutesProps>();
 
+  const [userCpf, setUserCpf] = useState([{}]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const { createEventMutation, createEventLoading } = useCreateEvent();
+
+
+
   const {
     control,
     formState: { errors },
     handleSubmit,
   } = useForm<Event>({
     mode: "onSubmit",
-    resolver: yupResolver(EventSchema),
+
   });
 
 
-  const { createEventMutation, createEventLoading } = useCreateEvent();
-
-  const [userCpf, setUserCpf] = useState([{}]);
-  const [refreshing, setRefreshing] = useState(false);
-
-
+  const { data: user } = useGetUser({ cpf: userCpf ?? "" });
   const onRefresh = () => {
-   
+
     const loadUser = async () => {
       const useGetUser = await AsyncStorage.getItem("userCPF");
-      setUserCpf(useGetUser)
+      
+      await setUserCpf(useGetUser)
     }
 
     setRefreshing(true);
 
     setTimeout(() => {
-      setRefreshing(false);
       loadUser();
+      setRefreshing(false);
     }, 100);
   }
 
@@ -62,7 +65,7 @@ export function CreateEvent() {
     }, [])
   );
 
-  const { data: user } = useGetUser({ cpf: userCpf ?? "" });
+
 
   const submitRegisterForm = async (data: Event) => {
     await createEventMutation({
@@ -74,9 +77,9 @@ export function CreateEvent() {
       vacancies: data.vacancies,
       imageUrl: data.imageUrl,
       location: data.location,
+      hour: data.hour,
       type: user?.type,
     });
-    onRefresh();
     navigation.navigate("Home");
   };
 
@@ -230,7 +233,7 @@ export function CreateEvent() {
                     borderColor: errors.hour && theme.COLORS.RED,
                   },
                 ]}
-                placeholder="horario do evento"
+                placeholder="Hora do evento"
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
@@ -288,7 +291,7 @@ export function CreateEvent() {
           />
 
           <S.Button onPress={handleSubmit(submitRegisterForm)} >
-            <S.TextButton>cadastrar</S.TextButton>
+            <S.TextButton>Cadastrar</S.TextButton>
           </S.Button>
 
         </S.ContainerBottom>
