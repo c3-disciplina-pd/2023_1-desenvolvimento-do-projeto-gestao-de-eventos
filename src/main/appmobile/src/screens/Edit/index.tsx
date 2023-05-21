@@ -152,7 +152,7 @@ export function Edit() {
                                 placeholder={user?.lastName}
                                 onChangeText={onChange}
                                 onBlur={onBlur}
-                                value={value}
+                                value={user?.lastName}
                             />
                         )}
                     />

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as S from "./styles";
 import theme from '../../theme';
 
-import { ScrollView, Text, StyleSheet, RefreshControl } from 'react-native';
+import { ScrollView, Text, TextInput, StyleSheet, RefreshControl, Alert, TouchableOpacity, ToastAndroid } from 'react-native';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,6 +14,8 @@ import { Event, useCreateEvent, useGetUser, useGetEvents } from "../../configs";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { EventSchema } from "../../assets";
 
+import * as ImagePicker from 'expo-image-picker';
+import axios from 'axios';
 
 export function CreateEvent() {
   const navigation = useNavigation<AppNavigatorRoutesProps>();
@@ -21,9 +23,61 @@ export function CreateEvent() {
   const [userCpf, setUserCpf] = useState([{}]);
   const [refreshing, setRefreshing] = useState(false);
 
-  const { createEventMutation, createEventLoading } = useCreateEvent();
+  const { createEventMutation } = useCreateEvent();
 
+  const [images, setImages] = useState<Array<string>>([]);
+  const [test, setTest] = useState<Array<string>>([]);
 
+  const fetchImages = async () => {
+    const response = await fetch(`http://192.168.1.2:8081/image`);
+    const json = await response.json();
+    setImages(json)
+  }
+  const handlePickerImage = async () => {
+    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      base64: false,
+      aspect: [4, 4],
+      quality: 1,
+    });
+
+    if (result.cancelled) {
+      ToastAndroid.show('Operação cancelada', ToastAndroid.SHORT);
+    } else {
+      const filename = result.uri.substring(result.uri.lastIndexOf('/') + 1, result.uri.length);
+
+      setTest(filename)
+      const extend = filename.split('.')[1];
+      const formData = new FormData();
+      formData.append('file', JSON.parse(JSON.stringify({
+        name: filename,
+        uri: result.uri,
+        type: 'image/' + extend,
+      }))); try {
+        const response = await axios.post(`http://192.168.1.2:8081/image`, formData, {
+          headers: {
+            Accept: 'aplication/json',
+            'Content-Type': 'multipart/form-data',
+          }
+        })
+        if (response.data.error) {
+          Alert.alert('erro', 'nao foi possivel enviar sua image')
+        } else {
+          Alert.alert('Sucesso ')
+          fetchImages()
+
+          console.log(test)
+        }
+      } catch (error) {
+        alert('erro ao enviar sua imagem')
+      }
+
+    }
+
+  };
 
   const {
     control,
@@ -40,7 +94,7 @@ export function CreateEvent() {
 
     const loadUser = async () => {
       const useGetUser = await AsyncStorage.getItem("userCPF");
-      
+
       await setUserCpf(useGetUser)
     }
 
@@ -98,26 +152,45 @@ export function CreateEvent() {
           {errors.imageUrl && (
             <Text style={styles.labelError}> {errors.imageUrl?.message}</Text>
           )}
+          <TouchableOpacity
+            style={{
+              marginLeft: 35,
+              borderWidth: 0.5,
+              borderColor: '#222',
+              alignItems: 'center',
+              justifyContent: 'center',
+              right: 15,
+              padding: 5,
+              marginBottom: 20,
+              borderRadius: 10,
+            }}
+            activeOpacity={0.7}
+            onPress={handlePickerImage}
+          ><TextInput style={styles.input} onChangeText={setTest} value={test} />
+            <Text> Upload </Text>
+          </TouchableOpacity>
 
           <Controller
             control={control}
             name="imageUrl"
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { value, onChange, onBlur } }) => (
+
               <S.TextInput
                 style={[
 
                   {
                     borderWidth: errors.imageUrl && 1,
-                    borderColor: errors.imageUrl && theme.COLORS.RED_700,
+                    borderColor: errors.imageUrl && theme.COLORS.RED,
                   },
                 ]}
-                placeholder="Link do Banner"
+                placeholder="Link do baner"
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
               />
             )}
           />
+
 
           {errors.name && (
             <Text style={styles.labelError}>{errors.name?.message}</Text>
@@ -307,6 +380,12 @@ const styles = StyleSheet.create({
     color: theme.COLORS.RED,
     marginBottom: 2,
     marginTop: 0,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
 

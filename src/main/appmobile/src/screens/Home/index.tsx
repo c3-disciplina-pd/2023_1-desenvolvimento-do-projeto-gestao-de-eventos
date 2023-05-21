@@ -15,6 +15,8 @@ const { width } = Dimensions.get('window');
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+
 export function Home() {
 
   const navigation = useNavigation<AppNavigatorRoutesProps>();
@@ -101,13 +103,15 @@ export function Home() {
     function handleAcessEvent() {
       loadUser(item.name);
       navigation.navigate("EventDetails");
+     
     }
     const eventDate = new Date(item?.date ?? "");
-
+  
     return (
       <S.CardItem
         onPress={handleAcessEvent}>
-        <S.CardItemImage source={{ uri: item.imageUrl }} resizeMode="stretch" />
+
+        <S.CardItemImage source={{ uri: `http://192.168.1.2:8081/public/uploads/icode-${item.imageUrl}`  }} resizeMode="stretch" />
         <S.CardItemTextContainer>
           <S.CardItemTitle numberOfLines={4}>{item.name}</S.CardItemTitle>
           <S.CardItemSubtitle numberOfLines={2}>
