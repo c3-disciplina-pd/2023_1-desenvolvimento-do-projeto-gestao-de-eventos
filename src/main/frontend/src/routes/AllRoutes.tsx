@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { useGetUser, UserType } from "../configs";
 import {
+  CartPage,
   ConfigsPage,
   CreateEventPage,
   EventDetailsPage,
@@ -34,6 +35,7 @@ export const AllRoutes = () => {
         <Route path="/registro-usuario" element={<RegisterPage />} />
         <Route path="/pagina-inicial" element={<HomePage />} />
         <Route path="/detalhe-evento/:id" element={<EventDetailsPage />} />
+        <Route path="/carrinho" element={<CartPage />} />
         <Route
           path="/criar-evento"
           element={
