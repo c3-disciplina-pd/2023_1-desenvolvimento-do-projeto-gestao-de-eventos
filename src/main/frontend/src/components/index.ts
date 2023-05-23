@@ -11,3 +11,4 @@ export * from "./Carousel";
 export * from "./Filter";
 export * from "./EventDetails";
 export * from "./CreateEvent";
+export * from "./Cart";
