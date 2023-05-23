@@ -13,8 +13,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { RegisterSchema } from "../../assets";
 import { useState, useEffect } from "react";
 
-import UserAvatar from 'react-native-user-avatar';
-
 
 export function Edit() {
     const [userCpf, setUserCpf] = useState([{}]);
@@ -37,6 +35,7 @@ export function Edit() {
 
         setTimeout(() => {
             setRefreshing(false);
+            userRefetch();
             loadUser();
         }, 100);
     }
@@ -45,7 +44,7 @@ export function Edit() {
         onRefresh();
     }, []);
 
-    const { data: user } = useGetUser({ cpf: userCpf });
+    const { data: user, refetch: userRefetch } = useGetUser({ cpf: userCpf });
 
     const initialValues = {
         firstName: user?.firstName,
@@ -77,7 +76,7 @@ export function Edit() {
             password: data.password,
             number: data.number,
         });
-        navigation.navigate('Home');
+        navigation.navigate('Perfil');
     };
 
     useFocusEffect(
@@ -95,25 +94,27 @@ export function Edit() {
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }>
-
-                <S.ContainerTop>
-                    <UserAvatar size={80} name={`${user?.firstName} ${user?.lastName}`} />
-                    <S.UserInfo>
-                        <S.UserName>
-                            {user?.firstName} {user?.lastName}
-                        </S.UserName>
-                        <S.UserEmail>
-                            {user?.email}
-                        </S.UserEmail>
-                    </S.UserInfo>
-                </S.ContainerTop>
-
-
+                <S.ContainerTop></S.ContainerTop>
                 <S.ContainerBottom>
                     <S.ContainerBottomTitle>
                         Editar informações do perfil
                     </S.ContainerBottomTitle>
 
+                    {errors.cpf && (
+                        <Text style={styles.labelError}> {errors.cpf?.message}</Text>
+                    )}
+                    <Controller
+                        control={control}
+                        name="cpf"
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <S.TextInput
+                                placeholder={user?.cpf}
+                                onChangeText={onChange}
+                                onBlur={onBlur}
+                                value={user?.cpf}
+                            />
+                        )}
+                    />
                     {errors.firstName && (
                         <Text style={styles.labelError}> {errors.firstName?.message}</Text>
                     )}
@@ -122,80 +123,37 @@ export function Edit() {
                         name="firstName"
                         render={({ field: { onChange, onBlur, value } }) => (
                             <S.TextInput
-                                style={[
-
-                                    {
-                                        borderWidth: errors.firstName && 1,
-                                        borderColor: errors.firstName && theme.COLORS.RED_700,
-                                    },
-                                ]}
-                                placeholder={user?.firstName}
+                                placeholder='Digite seu Nome...'
                                 onChangeText={onChange}
                                 onBlur={onBlur}
                                 value={value}
                             />
                         )}
                     />
-
+                    {errors.lastName && (
+                        <Text style={styles.labelError}> {errors.lastName?.message}</Text>
+                    )}
                     <Controller
                         control={control}
                         name="lastName"
                         render={({ field: { onChange, onBlur, value } }) => (
                             <S.TextInput
-                                style={[
-
-                                    {
-                                        borderWidth: errors.lastName && 1,
-                                        borderColor: errors.lastName && theme.COLORS.RED,
-                                    },
-                                ]}
-                                placeholder={user?.lastName}
+                                placeholder='Digite seu Sobrenome...'
                                 onChangeText={onChange}
                                 onBlur={onBlur}
-                                value={user?.lastName}
-                            />
-                        )}
-                    />
-                    {errors.cpf && (
-                        <Text style={styles.labelError}>{errors.cpf?.message}</Text>
-                    )}
-
-                    <Controller
-                        control={control}
-                        name="cpf"
-                        render={({ field: { onChange, onBlur, value } }) => (
-                            <S.TextInput
-                                style={[
-
-                                    {
-                                        borderWidth: errors.cpf && 1,
-                                        borderColor: errors.cpf && theme.COLORS.RED,
-                                    },
-                                ]}
-                                placeholder="Digite seu CPF"
-                                onChangeText={onChange}
-                                onBlur={onBlur}
-                                value={user?.cpf}
+                                value={value}
                             />
                         )}
                     />
                     {errors.number && (
                         <Text style={styles.labelError}>{errors.number?.message}</Text>
                     )}
-
                     <Controller
                         control={control}
                         name="number"
                         render={({ field: { onChange, onBlur, value } }) => (
                             <S.TextInput
-                                style={[
-
-                                    {
-                                        borderWidth: errors.number && 1,
-                                        borderColor: errors.number && theme.COLORS.RED,
-                                    },
-                                ]}
-                                placeholder={user?.number}
+                                placeholder='Digite seu Numero de telefone...'
                                 onChangeText={onChange}
                                 onBlur={onBlur}
                                 value={value}
@@ -211,14 +169,7 @@ export function Edit() {
                         name="email"
                         render={({ field: { onChange, onBlur, value } }) => (
                             <S.TextInput
-                                style={[
-
-                                    {
-                                        borderWidth: errors.email && 1,
-                                        borderColor: errors.email && theme.COLORS.RED,
-                                    },
-                                ]}
-                                placeholder={user?.email}
+                                placeholder='Digite seu Email...'
                                 onChangeText={onChange}
                                 onBlur={onBlur}
                                 value={value}
@@ -235,12 +186,6 @@ export function Edit() {
                         render={({ field: { onChange, onBlur, value } }) => (
                             <S.ContainerPassword>
                                 <S.Input
-                                    style={[
-                                        {
-                                            borderWidth: errors.password && 1,
-                                            borderColor: errors.password && theme.COLORS.RED,
-                                        },
-                                    ]}
                                     placeholder="Digite sua senha..."
                                     onChangeText={onChange}
                                     onBlur={onBlur}
@@ -250,7 +195,7 @@ export function Edit() {
 
                                 <S.TouchableOpacity >
                                     <S.PasswordOpacity onPress={() => setHidePass(!hidePass)}>
-                                        <Ionicons name="eye" color="#121212" size={25} />
+                                        <Ionicons name="eye" color="#121212" size={30} />
                                     </S.PasswordOpacity>
                                 </S.TouchableOpacity>
                             </S.ContainerPassword>
@@ -263,8 +208,6 @@ export function Edit() {
                     </S.Button>
                 </S.ContainerBottom>
             </ScrollView>
-
-            {/* <Footer /> */}
         </S.Container >
     )
 }

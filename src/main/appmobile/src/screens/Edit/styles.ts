@@ -10,10 +10,6 @@ export const TextInput = styled.TextInput`
   width: 100%;
   height: 50px;
   margin-bottom: 16px;
-  border-left-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-right-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-top-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
 `;
 
 export const Container = styled.View`
@@ -23,30 +19,34 @@ export const Container = styled.View`
 `;
 export const ContainerPassword = styled.View`
   flex-direction: row;
-  width: 90%;
+  width: 80%;
   align-items: center;
-  right: 3%;
+  right: 5.9%;
 `;
 export const TouchableOpacity = styled.View`
-  justify-content: center;
-  padding: 5px;
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  padding: 7.6px;
+  bottom: 3.2%;
+  right: 6%;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
 `;
-export const PasswordOpacity = styled.TouchableOpacity``;
+export const PasswordOpacity = styled.TouchableOpacity`
+  align-items: center;
+`;
 
 export const Input = styled.TextInput`
   border-bottom-width: 1px;
   border-top-width: 1px;
-  border-right-width: 1px;
   border-left-width: 1px;
   border-radius: 5px;
   padding-left: 10px;
   width: 100%;
   height: 50px;
   margin-bottom: 16px;
-  border-left-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-right-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-top-color: ${({ theme }) => theme.COLORS.GRAY};
-  border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
 `;
 export const ContainerTop = styled.View`
   flex: 0.1;
@@ -57,30 +57,6 @@ export const ContainerTop = styled.View`
   padding: 24px 84px 24px 84px;
   flex-direction: row;
   margin-top: 30px;
-`;
-
-export const UserImage = styled.Image`
-  width: 80px;
-  height: 80px;
-`;
-
-export const UserInfo = styled.View`
-  width: 100%;
-  height: 100%;
-  margin-top: 30px;
-`;
-
-export const UserName = styled.Text`
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  color: black;
-`;
-
-export const UserEmail = styled.Text`
-  font-size: 16px;
-  text-align: center;
-  color: ${({ theme }) => theme.COLORS.RED_700};
 `;
 
 export const ContainerBottom = styled.View`

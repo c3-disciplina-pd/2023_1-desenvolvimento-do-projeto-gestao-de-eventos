@@ -8,7 +8,12 @@ import { AuthContext } from "../../contexts/auth";
 
 import * as Animatable from "react-native-animatable";
 
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
+
 export function Config() {
+
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
 
   let { setUser } = useContext(AuthContext);
 
@@ -16,6 +21,10 @@ export function Config() {
     AsyncStorage.removeItem('userCPF')
     SecureStore.deleteItemAsync('accessToken')
     setUser(false)
+  };
+
+  const editarPerfil = () => {
+    navigation.navigate('Edit')
   };
 
   return (
@@ -31,10 +40,15 @@ export function Config() {
       </S.ContainerTop>
 
       <S.ContainerBottom  >
+        <S.Button onPress={editarPerfil}>
+          <S.TextButton>Editar perfil</S.TextButton>
+        </S.Button>
         <S.Button onPress={handleLogout}>
           <S.TextButton>Logout</S.TextButton>
         </S.Button>
       </S.ContainerBottom>
+
+      
 
     </S.Container >
   );

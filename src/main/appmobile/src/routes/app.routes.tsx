@@ -2,16 +2,17 @@ import {
   BottomTabNavigationProp,
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
-import { EventDetails } from "@screens/EventDetails";
-import { Home } from "@screens/Home";
 
+import { Home } from "@screens/Home";
+import { EventDetails } from "@screens/EventDetails";
+import { CreateEvent } from "@screens/CreateEvent";
+import { Edit } from "@screens/Edit/index";
+import { Config } from "@screens/Config";
+import { Perfil } from "@screens/Perfil";
 
 import { Ionicons, EvilIcons, AntDesign } from '@expo/vector-icons';
 import { useTheme } from "styled-components/native";
 import { Platform } from "react-native";
-import { Edit } from "@screens/Edit/index";
-import { CreateEvent } from "@screens/CreateEvent";
-import { Config } from "@screens/Config";
 
 type AppRoutes = {
   Home: undefined;
@@ -19,6 +20,7 @@ type AppRoutes = {
   Edit: undefined;
   EventDetails: undefined;
   Config: undefined;
+  Perfil: undefined;
 };
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -50,8 +52,8 @@ export function AppRoutes() {
         options={{ tabBarIcon: ({ color }) => <AntDesign name="pluscircleo" size={24} color={color} /> }}
       />
       <Screen
-        name="Edit"
-        component={Edit}
+        name="Perfil"
+        component={Perfil}
         options={{ tabBarIcon: ({ color }) => <AntDesign name="user" size={24} color={color} /> }}
       />
       <Screen
@@ -62,6 +64,11 @@ export function AppRoutes() {
       <Screen
         name="EventDetails"
         component={EventDetails}
+        options={{ tabBarButton: () => null }}
+      />
+      <Screen
+        name="Edit"
+        component={Edit}
         options={{ tabBarButton: () => null }}
       />
     </Navigator>

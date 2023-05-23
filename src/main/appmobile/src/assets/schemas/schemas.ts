@@ -29,7 +29,7 @@ export const RegisterSchema = yup.object().shape({
     .required("Preencha o campo!"),
   cpf: yup
     .string()
-    .min(14, "Formato de CPF inválido")
+    .min(13, "Formato de CPF inválido")
     .required("CPF incorreto"),
   password: yup.string().required("Preencha o campo!"),
   number: yup
