@@ -31,6 +31,6 @@ export const UpdateEvent = async ({
 }): Promise<void> => {
   const cpf = await AsyncStorage.getItem("userCPF");
 
-  const response = await api.put(`/event/${id}/${cpf}`, data);
+  const response = await api.put(`/events/update/${id}/${cpf}`, data);
   return response.data;
 };

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import UserAvatar from 'react-native-user-avatar';
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ScrollView, Text, StyleSheet, RefreshControl } from 'react-native';
+import { ScrollView, RefreshControl } from 'react-native';
 import { Zocial, MaterialIcons, FontAwesome, Entypo } from '@expo/vector-icons';
 
 export function Perfil() {

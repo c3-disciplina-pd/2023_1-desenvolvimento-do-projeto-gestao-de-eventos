@@ -51,7 +51,6 @@ export const useCreateEvent = (): UseCreateEventProps => {
         alert("Houve um erro ao criar o evento");
       },
       onSuccess: () => {
-        console.log('2'),
           toast({
             title: "Evento criado com sucesso!",
             duration: 3000,
