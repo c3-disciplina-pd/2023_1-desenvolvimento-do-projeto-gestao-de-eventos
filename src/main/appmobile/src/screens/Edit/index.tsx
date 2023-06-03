@@ -3,36 +3,32 @@ import * as S from "./styles";
 import theme from '../../theme';
 
 import { ScrollView, Text, StyleSheet, RefreshControl } from 'react-native';
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { RegisterUser, useGetUser, useUpdateUser } from "../../configs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Ionicons } from '@expo/vector-icons';
 import { RegisterSchema } from "../../assets";
 import { useState, useEffect } from "react";
 
-
 export function Edit() {
-    const [userCpf, setUserCpf] = useState([{}]);
 
+    const [userCpf, setUserCpf] = useState([{}]);
     const navigation = useNavigation<AppNavigatorRoutesProps>();
     const [hidePass, setHidePass] = useState(true);
-
     const [refreshing, setRefreshing] = useState(false);
 
     const onRefresh = () => {
         const loadUser = async () => {
             const zero = '711.891.104-66'
             setUserCpf(zero)
-
             const useGetUser = await AsyncStorage.getItem("userCPF");
             setUserCpf(useGetUser)
         }
 
         setRefreshing(true);
-
         setTimeout(() => {
             setRefreshing(false);
             userRefetch();
@@ -45,7 +41,6 @@ export function Edit() {
     }, []);
 
     const { data: user, refetch: userRefetch } = useGetUser({ cpf: userCpf });
-
     const initialValues = {
         firstName: user?.firstName,
         lastName: user?.lastName,
@@ -67,7 +62,6 @@ export function Edit() {
 
 
     const { updateUserMutation, updateUserLoading } = useUpdateUser();
-
     const submitUpdateUser = async (data: RegisterUser) => {
         await updateUserMutation({
             firstName: data.firstName,
@@ -192,14 +186,12 @@ export function Edit() {
                                     value={value}
                                     secureTextEntry={hidePass}
                                 />
-
                                 <S.TouchableOpacity >
                                     <S.PasswordOpacity onPress={() => setHidePass(!hidePass)}>
                                         <Ionicons name="eye" color="#121212" size={30} />
                                     </S.PasswordOpacity>
                                 </S.TouchableOpacity>
                             </S.ContainerPassword>
-
                         )}
                     />
 

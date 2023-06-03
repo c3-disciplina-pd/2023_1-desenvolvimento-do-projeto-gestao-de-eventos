@@ -1,17 +1,5 @@
 import styled, { css } from "styled-components/native";
 
-export const TextInput = styled.TextInput`
-  border-bottom-width: 1px;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-left-width: 1px;
-  border-radius: 5px;
-  padding-left: 10px;
-  width: 100%;
-  height: 50px;
-  margin-bottom: 16px;
-`;
-
 export const Container = styled.View`
   flex: 1;
   background-color: #fff;
@@ -37,7 +25,17 @@ export const TouchableOpacity = styled.View`
 export const PasswordOpacity = styled.TouchableOpacity`
   align-items: center;
 `;
-
+export const TextInput = styled.TextInput`
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  border-radius: 5px;
+  padding-left: 10px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 16px;
+`;
 export const Input = styled.TextInput`
   border-bottom-width: 1px;
   border-top-width: 1px;
@@ -58,7 +56,6 @@ export const ContainerTop = styled.View`
   flex-direction: row;
   margin-top: 30px;
 `;
-
 export const ContainerBottom = styled.View`
   flex: 1;
   width: 100%;
@@ -67,13 +64,11 @@ export const ContainerBottom = styled.View`
   justify-content: center;
   padding: 24px;
 `;
-
 export const ContainerBottomTitle = styled.Text`
   font-size: 24px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 24px;
-
   color: ${({ theme }) => theme.COLORS.RED_700};
 `;
 export const Button = styled.TouchableOpacity`
@@ -85,7 +80,6 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
-
 export const TextButton = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.WHITE};

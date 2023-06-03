@@ -10,14 +10,12 @@ import React, { useState } from 'react';
 import theme from '../../theme';
 import * as S from "./styles";
 
-
 import { RegisterUser, useCreateUser } from "../../configs";
 import { RegisterSchema } from "../../assets";
 
 export function Register() {
 
   const [hidePass, setHidePass] = useState(true);
-
   const {
     control,
     formState: { errors },
@@ -29,11 +27,9 @@ export function Register() {
 
   const navigation = useNavigation();
   const { createUserMutation, createUserLoading } = useCreateUser();
-
   function handleGoBack() {
     navigation.goBack();
   }
-
   const submitRegisterForm = async (data: RegisterUser) => {
     await createUserMutation({
       firstName: data.firstName,
@@ -199,7 +195,6 @@ export function Register() {
                     <S.PasswordOpacity onPress={() => setHidePass(!hidePass)}>
                       <Ionicons name="eye" color="#121212" size={25} />
                     </S.PasswordOpacity>
-
                   </S.TouchableOpacity>
                 </S.ContainerPassword>
 

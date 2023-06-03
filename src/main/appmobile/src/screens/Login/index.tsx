@@ -1,26 +1,23 @@
 import * as S from "./styles";
+import { useContext } from "react";
 import { Header } from "@components/Header";
+import { AuthContext } from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/auth";
 
+import theme from '../../theme';
 import React, { useState } from 'react';
-import * as Animatable from "react-native-animatable";
 import { ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import theme from '../../theme';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from "expo-secure-store";
+import { Controller, useForm } from "react-hook-form";
+import * as Animatable from "react-native-animatable";
+import { yupResolver } from "@hookform/resolvers/yup";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
+import { useEffect } from "react";
 import { LoginSchema } from "../../assets";
 import { useLogin, User } from "../../configs";
-import { useEffect } from "react";
-
-
 
 export function Login() {
   const {
@@ -29,14 +26,10 @@ export function Login() {
     handleSubmit,
   } = useForm<User>({ mode: "onSubmit", resolver: yupResolver(LoginSchema) });
 
-
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
   let { setUser } = useContext(AuthContext);
 
   const { loginMutation, loginLoading } = useLogin();
-
-
-
   const isAuth = async () => {
     const value = await SecureStore.getItemAsync('accessToken')
 
@@ -64,7 +57,6 @@ export function Login() {
   }
   const [hidePass, setHidePass] = useState(true);
 
-
   return (
     <S.Container >
       <Header />
@@ -72,22 +64,16 @@ export function Login() {
         <Animatable.View animation={"fadeInUp"} >
           <ScrollView>
             <S.TitleBottom>Entrar</S.TitleBottom>
-
-
             {errors.cpf && (
               <S.labelError >{errors.cpf?.message}</S.labelError>
             )}
-
-
             <Controller
               control={control}
               name="cpf"
               render={({ field: { onChange, onBlur, value } }) => (
                 <S.TextInput
                   style={[
-
                     {
-
                       borderColor: errors.cpf && theme.COLORS.RED,
                       borderTopColor: errors.cpf && theme.COLORS.RED,
                       borderBottomColor: errors.cpf && theme.COLORS.RED,
@@ -124,14 +110,12 @@ export function Login() {
                     value={value}
                     secureTextEntry={hidePass}
                   />
-                  <S.TouchableOpacity >
-                    <S.PasswordOpacity onPress={() => setHidePass(!hidePass)}>
+                  <S.TouchableOpacity onPress={() => setHidePass(!hidePass)}>
+                    <S.PasswordOpacity >
                       <Ionicons name="eye" color="#121212" size={25} />
                     </S.PasswordOpacity>
-
                   </S.TouchableOpacity>
                 </S.ContainerPassword>
-
               )}
             />
             <S.ContainerForgotPassword>
@@ -140,7 +124,6 @@ export function Login() {
                 <S.TextClickHere>Clique aqui</S.TextClickHere>
               </S.ActionClickHere>
             </S.ContainerForgotPassword>
-
             <S.Button onPress={handleSubmit(submitLoginForm)} >
               <S.TextButton >Entrar</S.TextButton>
             </S.Button>

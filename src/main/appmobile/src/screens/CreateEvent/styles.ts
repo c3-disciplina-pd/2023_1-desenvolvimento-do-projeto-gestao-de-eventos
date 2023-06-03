@@ -1,5 +1,47 @@
 import styled, { css } from "styled-components/native";
 
+export const Container = styled.View`
+  flex: 1;
+  background-color: #fff;
+  align-items: center;
+`;
+export const ContainerLinkImg = styled.View`
+  width: 100%;
+  align-items: center;
+  margin-bottom: 10%;
+`;
+export const Text = styled.Text`
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 25%;
+`;
+export const UploadImg = styled.TouchableOpacity`
+  align-items: center;
+  border-radius: 5px;
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  right: 100%;
+  top: -4%;
+  height: 200%;
+  width: 40%;
+`;
+export const CopiarImg = styled.TouchableOpacity`
+  border-radius: 5px;
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  left: 100%;
+  top: -4%;
+  height: 200%;
+  width: 40%;
+`;
+export const ImgButoon = styled.View`
+  flex-direction: row;
+`;
 export const TextInput = styled.TextInput`
   border-bottom-width: 1px;
   border-top-width: 1px;
@@ -15,24 +57,6 @@ export const TextInput = styled.TextInput`
   border-top-color: ${({ theme }) => theme.COLORS.GRAY};
   border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
 `;
-
-export const Container = styled.View`
-  flex: 1;
-  background-color: #fff;
-  align-items: center;
-`;
-export const ContainerPassword = styled.View`
-  flex-direction: row;
-  width: 90%;
-  align-items: center;
-  right: 3%;
-`;
-export const TouchableOpacity = styled.View`
-  justify-content: center;
-  padding: 5px;
-`;
-export const PasswordOpacity = styled.TouchableOpacity``;
-
 export const Input = styled.TextInput`
   border-bottom-width: 1px;
   border-top-width: 1px;
@@ -48,40 +72,6 @@ export const Input = styled.TextInput`
   border-top-color: ${({ theme }) => theme.COLORS.GRAY};
   border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
 `;
-export const ContainerTop = styled.View`
-  flex: 0.1;
-  width: 70%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 24px 24px 54px;
-  flex-direction: row;
-  margin-top: 30px;
-`;
-
-export const UserImage = styled.Image`
-  width: 80px;
-  height: 80px;
-`;
-
-export const UserInfo = styled.View`
-  width: 100%;
-  height: 100%;
-`;
-
-export const UserName = styled.Text`
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  color: black;
-`;
-
-export const UserEmail = styled.Text`
-  font-size: 16px;
-  text-align: center;
-  color: ${({ theme }) => theme.COLORS.RED_700};
-`;
-
 export const ContainerBottom = styled.View`
   flex: 1;
   width: 100%;
@@ -90,7 +80,6 @@ export const ContainerBottom = styled.View`
   justify-content: center;
   padding: 24px;
 `;
-
 export const ContainerBottomTitle = styled.Text`
   font-size: 24px;
   font-weight: bold;
@@ -98,7 +87,6 @@ export const ContainerBottomTitle = styled.Text`
   margin-bottom: 24px;
   margin-top: 50px;
   color: ${({ theme }) => theme.COLORS.RED_700};
-
 `;
 export const Button = styled.TouchableOpacity`
   width: 50%;
@@ -109,7 +97,6 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
-
 export const TextButton = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.WHITE};

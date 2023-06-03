@@ -1,16 +1,13 @@
-import {
-  BottomTabNavigationProp,
-  createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs";
+import { BottomTabNavigationProp, createBottomTabNavigator, } from "@react-navigation/bottom-tabs";
 
 import { Home } from "@screens/Home";
 import { EventDetails } from "@screens/EventDetails";
 import { CreateEvent } from "@screens/CreateEvent";
 import { Edit } from "@screens/Edit/index";
-import { Config } from "@screens/Config";
+import { Config } from "@screens/Sistem";
 import { Perfil } from "@screens/Perfil";
 
-import { Ionicons, EvilIcons, AntDesign } from '@expo/vector-icons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { useTheme } from "styled-components/native";
 import { Platform } from "react-native";
 

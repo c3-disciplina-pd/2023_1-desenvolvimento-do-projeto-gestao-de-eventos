@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
@@ -16,7 +16,6 @@ export const BackgroundTop = styled.View`
   width: 100%;
   height: 25%;
 `;
-
 export const UserInfo = styled.View`
   width: 100%;
   height: 100%;
@@ -59,7 +58,6 @@ export const TouchableOpacity = styled.View`
   padding: 3px;
   border-bottom-width: 1px;
   border-top-width: 1px;
-
   border-left-width: 1px;
   background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
 `;

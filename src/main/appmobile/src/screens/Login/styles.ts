@@ -6,7 +6,6 @@ export const Container = styled.View`
   align-items: center;
   background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
 `;
-
 export const ContainerBottom = styled.View`
   flex: 2;
   width: 100%;
@@ -17,7 +16,6 @@ export const ContainerBottom = styled.View`
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
 `;
-
 export const TitleBottom = styled.Text`
   padding-bottom: 20px;
   ${({ theme }) => css`
@@ -47,24 +45,31 @@ export const TextInput = styled.TextInput`
   height: 50px;
   margin-bottom: 16px;
 `;
-export const TouchableOpacity = styled.View`
-  justify-content: center;
-  padding: 5px;
+export const TouchableOpacity = styled.TouchableOpacity`
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  padding: 7.6px;
+  bottom: 2.8%;
+  right: 9%;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 50px;
 `;
-export const PasswordOpacity = styled.TouchableOpacity``;
+export const PasswordOpacity = styled.TouchableOpacity`
+  align-items: center;
+`;
 export const ContainerPassword = styled.View`
   flex-direction: row;
   width: 89%;
   align-items: center;
 `;
-
 export const ContainerForgotPassword = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: flex-end;
   margin-top: 8px;
 `;
-
 export const TextForgotPassword = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.RED_700};
@@ -72,11 +77,9 @@ export const TextForgotPassword = styled.Text`
     font-size: ${theme.FONT_SIZE.SM}px;
   `};
 `;
-
 export const ActionClickHere = styled.TouchableOpacity`
   margin-left: 4px;
 `;
-
 export const TextClickHere = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.RED_700};
@@ -84,7 +87,6 @@ export const TextClickHere = styled.Text`
     font-size: ${theme.FONT_SIZE.SM}px;
   `};
 `;
-
 export const Button = styled.TouchableOpacity`
   width: 100%;
   height: 48px;
@@ -94,7 +96,6 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
-
 export const TextButton = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.WHITE};
@@ -108,14 +109,12 @@ export const labelError = styled.Text`
   margin-top: 0px;
   color: ${({ theme }) => theme.COLORS.RED};
 `;
-
 export const ContainerDontHaveAccount = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: center;
   margin-top: 22px;
 `;
-
 export const TextDontHaveAccount = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_700};
@@ -123,11 +122,9 @@ export const TextDontHaveAccount = styled.Text`
     font-size: ${theme.FONT_SIZE.SM}px;
   `};
 `;
-
 export const ActionRegister = styled.TouchableOpacity`
   margin-left: 4px;
 `;
-
 export const TextRegister = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.RED_700};

@@ -6,13 +6,11 @@ export const Container = styled.View`
   align-items: center;
   background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
 `;
-
 export const ContainerPassword = styled.View`
   flex-direction: row;
   width: 89%;
   align-items: center;
 `;
-
 export const Input = styled.TextInput`
   border-bottom-width: 1px;
   border-top-width: 1px;
@@ -42,13 +40,23 @@ export const TextInput = styled.TextInput`
   border-top-color: ${({ theme }) => theme.COLORS.GRAY};
   border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
 `;
-
-export const TouchableOpacity = styled.View`
-  justify-content: center;
-  padding: 5px;
+export const TouchableOpacity = styled.TouchableOpacity`
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  padding: 7.6px;
+  bottom: 2.8%;
+  right: 9%;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 50px;
+  border-right-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-top-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
 `;
-export const PasswordOpacity = styled.TouchableOpacity``;
-
+export const PasswordOpacity = styled.TouchableOpacity`
+  align-items: center;
+`;
 export const ContainerBottom = styled.View`
   flex: 3;
   width: 100%;
@@ -59,7 +67,6 @@ export const ContainerBottom = styled.View`
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
 `;
-
 export const TitleBottom = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_500};
@@ -68,7 +75,6 @@ export const TitleBottom = styled.Text`
   `};
   margin-bottom: 12px;
 `;
-
 export const Button = styled.TouchableOpacity`
   width: 100%;
   height: 48px;
@@ -78,7 +84,6 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
-
 export const TextButton = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.WHITE};
@@ -86,14 +91,12 @@ export const TextButton = styled.Text`
     font-size: ${theme.FONT_SIZE.MD}px;
   `};
 `;
-
 export const ContainerHaveAccount = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: center;
   margin-top: 10px;
 `;
-
 export const TextHaveAccount = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_700};
@@ -101,11 +104,9 @@ export const TextHaveAccount = styled.Text`
     font-size: ${theme.FONT_SIZE.SM}px;
   `};
 `;
-
 export const ActionLogin = styled.TouchableOpacity`
   margin-left: 4px;
 `;
-
 export const TextLogin = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.RED_700};

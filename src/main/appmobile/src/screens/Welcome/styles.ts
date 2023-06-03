@@ -1,16 +1,14 @@
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.YELLOW_500};
 `;
-
 export const View = styled.View`
   flex: 2;
   justify-content: center;
   align-items: center;
 `;
-
 export const ContainerForm = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
@@ -28,7 +26,6 @@ export const Text = styled.Text`
   color: ${({ theme }) => theme.COLORS.GRAY};
   margin-left: 20px;
 `;
-
 export const TouchableOpacity = styled.TouchableOpacity`
   border-radius: 50px;
   width: 60%;

@@ -12,6 +12,7 @@ import { Event, useCreateEvent, useGetUser } from "../../configs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ScrollView, Text, TextInput, StyleSheet, RefreshControl, Alert, TouchableOpacity, ToastAndroid } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 
 export function CreateEvent() {
 
@@ -21,6 +22,11 @@ export function CreateEvent() {
   const { createEventMutation } = useCreateEvent();
   const [images, setImages] = useState<Array<string>>([]);
   const [test, setTest] = useState<Array<string>>([]);
+
+  const copyToClipboard = () => {
+    Clipboard.setStringAsync(test);
+    alert('Texto Copiado!');
+  };
 
   const fetchImages = async () => {
     const response = await fetch(imgRoute + `/image`);
@@ -79,13 +85,12 @@ export function CreateEvent() {
   });
 
   const { data: user } = useGetUser({ cpf: userCpf ?? "" });
-
-  setRefreshing(true);
   const onRefresh = () => {
     const loadUser = async () => {
       const useGetUser = await AsyncStorage.getItem("userCPF");
       await setUserCpf(useGetUser)
     }
+    setRefreshing(true);
     setTimeout(() => {
       loadUser();
       setRefreshing(false);
@@ -131,44 +136,42 @@ export function CreateEvent() {
           {errors.imageUrl && (
             <Text style={styles.labelError}> {errors.imageUrl?.message}</Text>)}
 
-          <TouchableOpacity
-            style={{
-              marginLeft: 35,
-              borderWidth: 0.5,
-              borderColor: '#222',
-              alignItems: 'center',
-              justifyContent: 'center',
-              right: 15,
-              padding: 5,
-              marginBottom: 20,
-              borderRadius: 10,
-            }}
-            activeOpacity={0.7}
-            onPress={handlePickerImage}
-          ><TextInput style={styles.input} onChangeText={setTest} value={test} />
-            <Text> Upload </Text>
-          </TouchableOpacity>
+
+          <S.ContainerLinkImg>
+            <S.Input onChangeText={setTest} value={test}
+              placeholder="Baixar link da imagen" />
+            <S.ImgButoon>
+              <S.UploadImg onPress={handlePickerImage}>
+                <S.Text> baixar  </S.Text>
+              </S.UploadImg>
+              <S.CopiarImg onPress={copyToClipboard}>
+                <S.Text> copiar </S.Text>
+              </S.CopiarImg>
+            </S.ImgButoon>
+          </S.ContainerLinkImg>
+
+          {errors.imageUrl && (
+            <Text style={styles.labelError}>{errors.imageUrl?.message}</Text>
+          )}
 
           <Controller
             control={control}
             name="imageUrl"
-            render={({ field: { value, onChange, onBlur } }) => (
-
+            render={({ field: { onChange, onBlur, value } }) => (
               <S.TextInput
-                style={[
-
-                  {
-                    borderWidth: errors.imageUrl && 1,
-                    borderColor: errors.imageUrl && theme.COLORS.RED,
-                  },
+                style={[{
+                  borderWidth: errors.imageUrl && 1,
+                  borderColor: errors.imageUrl && theme.COLORS.RED,
+                },
                 ]}
-                placeholder="Link do baner"
+                placeholder="Cole o link da imagem "
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
               />
             )}
           />
+
 
           {errors.name && (
             <Text style={styles.labelError}>{errors.name?.message}</Text>
