@@ -21,9 +21,9 @@ export type Event = {
   name?: string;
   description?: string;
   imageUrl?: string;
-  date?: Date | string | number | undefined;
-  price?: number | string;
-  vacancies?: number | string;
+  date?: string ;
+  price?:  string;
+  vacancies?:  string;
   location?: string;
   creator?: string;
   type?: UserType;

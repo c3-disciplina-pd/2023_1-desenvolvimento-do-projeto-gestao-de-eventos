@@ -66,7 +66,7 @@ export function Perfil() {
                         <S.TouchableOpacity >
                             <MaterialIcons name="email" color="#121212" size={31} />
                         </S.TouchableOpacity>
-                        <S.UserText> {user?.cpf}</S.UserText>
+                        <S.UserText> {user?.email}</S.UserText>
                     </S.UserPerfil>
                     <S.UserPerfil>
                         <S.TouchableOpacity >

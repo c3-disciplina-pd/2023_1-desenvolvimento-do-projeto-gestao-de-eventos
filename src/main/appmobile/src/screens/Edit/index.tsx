@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as S from "./styles";
 import theme from '../../theme';
-
 import { ScrollView, Text, StyleSheet, RefreshControl } from 'react-native';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { RegisterUser, useGetUser, useUpdateUser } from "../../configs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { TextInputMask } from 'react-native-masked-text'
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Ionicons } from '@expo/vector-icons';
@@ -59,8 +59,6 @@ export function Edit() {
         resolver: yupResolver(RegisterSchema),
         defaultValues: initialValues,
     });
-
-
     const { updateUserMutation, updateUserLoading } = useUpdateUser();
     const submitUpdateUser = async (data: RegisterUser) => {
         await updateUserMutation({
@@ -85,15 +83,10 @@ export function Edit() {
     return (
         <S.Container>
             <ScrollView
-                refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                }>
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                 <S.ContainerTop></S.ContainerTop>
                 <S.ContainerBottom>
-                    <S.ContainerBottomTitle>
-                        Editar informações do perfil
-                    </S.ContainerBottomTitle>
-
+                    <S.ContainerBottomTitle> Editar informações do perfil </S.ContainerBottomTitle>
                     {errors.cpf && (
                         <Text style={styles.labelError}> {errors.cpf?.message}</Text>
                     )}
@@ -146,7 +139,9 @@ export function Edit() {
                         control={control}
                         name="number"
                         render={({ field: { onChange, onBlur, value } }) => (
-                            <S.TextInput
+                            <TextInputMask
+                                style={styles.masked}
+                                type={'cel-phone'}
                                 placeholder='Digite seu Numero de telefone...'
                                 onChangeText={onChange}
                                 onBlur={onBlur}
@@ -173,7 +168,6 @@ export function Edit() {
                     {errors.password && (
                         <Text style={styles.labelError}>{errors.password?.message}</Text>
                     )}
-
                     <Controller
                         control={control}
                         name="password"
@@ -194,7 +188,6 @@ export function Edit() {
                             </S.ContainerPassword>
                         )}
                     />
-
                     <S.Button onPress={handleSubmit(submitUpdateUser)} >
                         <S.TextButton>Editar</S.TextButton>
                     </S.Button>
@@ -211,4 +204,15 @@ const styles = StyleSheet.create({
         marginBottom: 2,
         marginTop: 0,
     },
+    masked: {
+        borderBottomWidth: 1,
+        borderTopWidth: 1,
+        borderRightWidth: 1,
+        borderLeftWidth: 1,
+        borderRadius: 5,
+        paddingLeft: 10,
+        height: 50,
+        marginBottom: 16,
+        width: 320,
+    }
 });

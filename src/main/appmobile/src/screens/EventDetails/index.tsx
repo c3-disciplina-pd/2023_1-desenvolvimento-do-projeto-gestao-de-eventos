@@ -17,7 +17,6 @@ export function EventDetails() {
     const { updateEventMutation, updateEventLoading } = useUpdateEvent();
     const [userCpf, setUserCpf] = useState([{}]);
     const { data: events } = useGetEvent({ name: String(eventName) });
-    const eventDate = new Date(events?.date ?? "");
 
     const onRefresh = () => {
         setRefreshing(true);
@@ -83,7 +82,7 @@ export function EventDetails() {
                             </S.CardItemTitle>
                             <S.CardItemTitle numberOfLines={2}>Valor:{' '}
                                 <S.CardItemSubtitle >
-                                    {events?.price === 0 ? "Gratuito" : `R$ ${events?.price}`}
+                                    {events?.price === 'R$0,00' ? "Gratuito" : `R$ ${events?.price}`}
                                 </S.CardItemSubtitle>
                             </S.CardItemTitle>
                         </S.CardItemTextContainer>
@@ -93,7 +92,7 @@ export function EventDetails() {
                         <S.CardItemTextContainer>
                             <S.CardItemTitle numberOfLines={2}>Data:{' '}
                                 <S.CardItemSubtitle >
-                                    {eventDate.toLocaleDateString("pt-BR")}
+                                    {events?.date}
                                 </S.CardItemSubtitle>
                             </S.CardItemTitle>
                             <S.CardItemTitle numberOfLines={2}>Local:{' '}

@@ -3,16 +3,17 @@ import * as S from "./styles";
 import theme from '../../theme';
 import axios from 'axios';
 
+import * as Clipboard from 'expo-clipboard';
 import { useState, useEffect } from "react";
 import { imgRoute } from '../../services/api'
 import * as ImagePicker from 'expo-image-picker';
 import { Controller, useForm } from "react-hook-form";
+import { TextInputMask } from 'react-native-masked-text';
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { Event, useCreateEvent, useGetUser } from "../../configs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { ScrollView, Text, TextInput, StyleSheet, RefreshControl, Alert, TouchableOpacity, ToastAndroid } from 'react-native';
-import * as Clipboard from 'expo-clipboard';
+import { ScrollView, Text, StyleSheet, RefreshControl, Alert, ToastAndroid } from 'react-native';
 
 export function CreateEvent() {
 
@@ -203,12 +204,9 @@ export function CreateEvent() {
             control={control}
             name="price"
             render={({ field: { onChange, onBlur, value } }) => (
-              <S.TextInput
-                style={[{
-                  borderWidth: errors.price && 1,
-                  borderColor: errors.price && theme.COLORS.RED,
-                },
-                ]}
+              <TextInputMask
+                style={styles.masked}
+                type={'money'}
                 placeholder="Valor"
                 onChangeText={onChange}
                 onBlur={onBlur}
@@ -225,18 +223,12 @@ export function CreateEvent() {
             control={control}
             name="vacancies"
             render={({ field: { onChange, onBlur, value } }) => (
-
               <S.Input
-                style={[
-                  {
-                    borderWidth: errors.vacancies && 1,
-                    borderColor: errors.vacancies && theme.COLORS.RED,
-                  },
-                ]}
                 placeholder="Total de Vagas"
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
+                keyboardType='numeric'
 
               />
             )}
@@ -249,13 +241,12 @@ export function CreateEvent() {
             control={control}
             name="date"
             render={({ field: { onChange, onBlur, value } }) => (
-              <S.Input
-                style={[
-                  {
-                    borderWidth: errors.date && 1,
-                    borderColor: errors.date && theme.COLORS.RED,
-                  },
-                ]}
+              <TextInputMask
+                style={styles.masked}
+                type={'datetime'}
+                options={{
+                  format: 'DD-MM-YYYY'
+                }}
                 placeholder="Data do evento"
                 onChangeText={onChange}
                 onBlur={onBlur}
@@ -271,19 +262,16 @@ export function CreateEvent() {
             control={control}
             name="hour"
             render={({ field: { onChange, onBlur, value } }) => (
-
-              <S.Input
-                style={[
-                  {
-                    borderWidth: errors.hour && 1,
-                    borderColor: errors.hour && theme.COLORS.RED,
-                  },
-                ]}
+              <TextInputMask
+                style={styles.masked}
+                type={'datetime'}
+                options={{
+                  format: 'HH:mm'
+                }}
                 placeholder="Hora do evento"
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
-
               />
             )}
           />
@@ -296,17 +284,10 @@ export function CreateEvent() {
             name="location"
             render={({ field: { onChange, onBlur, value } }) => (
               <S.Input
-                style={[
-                  {
-                    borderWidth: errors.location && 1,
-                    borderColor: errors.location && theme.COLORS.RED,
-                  },
-                ]}
                 placeholder="Local do evento"
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
-
               />
             )}
           />
@@ -319,21 +300,13 @@ export function CreateEvent() {
             name="description"
             render={({ field: { onChange, onBlur, value } }) => (
               <S.Input
-                style={[
-                  {
-                    borderWidth: errors.description && 1,
-                    borderColor: errors.description && theme.COLORS.RED,
-                  },
-                ]}
                 placeholder="  Descrição do Evento"
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
-
               />
             )}
           />
-
           <S.Button onPress={handleSubmit(submitRegisterForm)} >
             <S.TextButton>Cadastrar</S.TextButton>
           </S.Button>
@@ -356,5 +329,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  masked: {
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
+    borderRadius: 5,
+    paddingLeft: 10,
+    width:300,
+    height: 50,
+    marginBottom: 16,
+    borderColor: '#C4C4CC',
+  }
 });
 

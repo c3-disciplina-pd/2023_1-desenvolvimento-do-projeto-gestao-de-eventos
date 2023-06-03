@@ -56,7 +56,6 @@ export function Register() {
               name="firstName"
               render={({ field: { onChange, onBlur, value } }) => (
                 <S.TextInput
-
                   placeholder="Digite seu Nome"
                   onChangeText={onChange}
                   onBlur={onBlur}
@@ -72,7 +71,6 @@ export function Register() {
               name="lastName"
               render={({ field: { onChange, onBlur, value } }) => (
                 <S.TextInput
-
                   placeholder="Digite seu Sobrenome"
                   onChangeText={onChange}
                   onBlur={onBlur}
@@ -105,7 +103,6 @@ export function Register() {
               name="email"
               render={({ field: { onChange, onBlur, value } }) => (
                 <S.TextInput
-
                   placeholder="Digite seu email..."
                   onChangeText={onChange}
                   onBlur={onBlur}

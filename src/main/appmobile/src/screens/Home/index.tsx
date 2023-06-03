@@ -11,6 +11,7 @@ import Carousel, { PaginationLight } from 'react-native-x-carousel';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { Text, Image, StyleSheet, RefreshControl, View } from 'react-native';
+import { EventDetails } from '@screens/EventDetails';
 
 
 export function Home() {
@@ -40,7 +41,7 @@ export function Home() {
     }, [])
   );
 
-  const loadUser = async (name) => {
+  const EventDetails = async (name) => {
     try {
       await AsyncStorage.setItem(`name`, JSON.stringify(name));
     } catch (e) {
@@ -55,7 +56,7 @@ export function Home() {
       style={styles.cardContainer}
     >
       <View style={styles.cardWrapper}>
-        <Image
+        <Image 
           resizeMode="stretch"
           style={styles.card}
           source={{ uri: imgRoute + `/public/uploads/icode-${events.imageUrl}` }}
@@ -65,7 +66,7 @@ export function Home() {
             styles.cornerLabel,
             { backgroundColor: '#0080ff' },
           ]}>
-          <S.CardItemTop onPress={() => loadUser(events.name)}>
+          <S.CardItemTop onPress={() => EventDetails(events.name)}>
             <Text style={styles.cornerLabelText}>
               ver mais
             </Text>
@@ -90,9 +91,6 @@ export function Home() {
       loadUser(item.name);
       navigation.navigate("EventDetails");
     }
-
-    const eventDate = new Date(item?.date ?? "");
-
     return (
       <S.CardItem
         onPress={handleAcessEvent}>
@@ -100,10 +98,10 @@ export function Home() {
         <S.CardItemTextContainer>
           <S.CardItemTitle numberOfLines={4}>{item.name}</S.CardItemTitle>
           <S.CardItemSubtitle numberOfLines={2}>
-            {eventDate.toLocaleDateString("pt-BR")}
+            {item.date}
           </S.CardItemSubtitle>
           <S.CardItemSubtitle numberOfLines={2}>
-            {item?.price === 0 ? "Gratuito" : `R$ ${item?.price}`}
+            {item?.price === 'R$0,00' ? "Gratuito" : ` ${item?.price}`}
           </S.CardItemSubtitle>
         </S.CardItemTextContainer>
       </S.CardItem>
@@ -173,8 +171,7 @@ const styles = StyleSheet.create({
   },
   cornerLabel: {
     position: 'absolute',
-    bottom: 20,
-    right: 120,
+    bottom: 0,
     borderRadius: 5,
     width: 100,
     height: 30,
