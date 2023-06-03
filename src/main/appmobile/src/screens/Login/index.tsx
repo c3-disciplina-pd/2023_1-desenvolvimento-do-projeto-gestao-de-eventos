@@ -5,14 +5,14 @@ import { AuthContext } from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
-import theme from '../../theme';
 import React, { useState } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as SecureStore from "expo-secure-store";
 import { Controller, useForm } from "react-hook-form";
 import * as Animatable from "react-native-animatable";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { TextInputMask } from 'react-native-masked-text'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useEffect } from "react";
@@ -71,14 +71,9 @@ export function Login() {
               control={control}
               name="cpf"
               render={({ field: { onChange, onBlur, value } }) => (
-                <S.TextInput
-                  style={[
-                    {
-                      borderColor: errors.cpf && theme.COLORS.RED,
-                      borderTopColor: errors.cpf && theme.COLORS.RED,
-                      borderBottomColor: errors.cpf && theme.COLORS.RED,
-                    },
-                  ]}
+                <TextInputMask
+                  style={styles.masked}
+                  type={'cpf'}
                   placeholder="Digite seu CPF"
                   onChangeText={onChange}
                   onBlur={onBlur} //chamado quando o textinput é tocado
@@ -96,14 +91,6 @@ export function Login() {
               render={({ field: { onChange, onBlur, value } }) => (
                 <S.ContainerPassword>
                   <S.Input
-                    style={[
-                      {
-                        borderWidth: errors.password && 1,
-                        borderColor: errors.password && theme.COLORS.RED,
-                        borderTopColor: errors.cpf && theme.COLORS.RED,
-                        borderBottomColor: errors.cpf && theme.COLORS.RED,
-                      },
-                    ]}
                     placeholder="Digite sua senha"
                     onChangeText={onChange}
                     onBlur={onBlur} //chamado quando o input é tocado
@@ -139,3 +126,15 @@ export function Login() {
     </S.Container>
   );
 }
+const styles = StyleSheet.create({
+  masked: {
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
+    borderRadius: 5,
+    paddingLeft: 10,
+    height: 50,
+    marginBottom: 16,
+  }
+});

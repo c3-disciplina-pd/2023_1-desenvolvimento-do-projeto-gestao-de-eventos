@@ -40,6 +40,20 @@ export const TextInput = styled.TextInput`
   border-top-color: ${({ theme }) => theme.COLORS.GRAY};
   border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
 `;
+export const TextInputMask = styled.TextInput`
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  border-radius: 5px;
+  padding-left: 10px;
+  height: 50px;
+  margin-bottom: 16px;
+  border-left-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-right-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-top-color: ${({ theme }) => theme.COLORS.GRAY};
+  border-bottom-color: ${({ theme }) => theme.COLORS.GRAY};
+`;
 export const TouchableOpacity = styled.TouchableOpacity`
   border-bottom-width: 1px;
   border-top-width: 1px;

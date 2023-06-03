@@ -6,6 +6,7 @@
     "expo-constants": "^14.2.1",
     "expo-modules-core": "^1.2.6",
     "expo-secure-store": "~12.1.1",
+    "react-native-text-input-mask": "^3.1.4",
     "universal-cookie": "^4.0.4"
   }
 }
