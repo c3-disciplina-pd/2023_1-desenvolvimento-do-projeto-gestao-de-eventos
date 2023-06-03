@@ -1,41 +1,35 @@
 import * as React from 'react';
 import * as S from "./styles";
 import theme from '../../theme';
-
-import { ScrollView, Text, TextInput, StyleSheet, RefreshControl, Alert, TouchableOpacity, ToastAndroid } from 'react-native';
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-import { useState, useEffect } from "react";
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Event, useCreateEvent, useGetUser, useGetEvents } from "../../configs";
-import { AppNavigatorRoutesProps } from "@routes/app.routes";
-import { EventSchema } from "../../assets";
-
-import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
 
-export function CreateEvent() {
-  const navigation = useNavigation<AppNavigatorRoutesProps>();
+import { useState, useEffect } from "react";
+import { imgRoute } from '../../services/api'
+import * as ImagePicker from 'expo-image-picker';
+import { Controller, useForm } from "react-hook-form";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { Event, useCreateEvent, useGetUser } from "../../configs";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { ScrollView, Text, TextInput, StyleSheet, RefreshControl, Alert, TouchableOpacity, ToastAndroid } from 'react-native';
 
+export function CreateEvent() {
+
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
   const [userCpf, setUserCpf] = useState([{}]);
   const [refreshing, setRefreshing] = useState(false);
-
   const { createEventMutation } = useCreateEvent();
-
   const [images, setImages] = useState<Array<string>>([]);
   const [test, setTest] = useState<Array<string>>([]);
 
   const fetchImages = async () => {
-    const response = await fetch(`http://192.168.1.2:8081/image`);
+    const response = await fetch(imgRoute + `/image`);
     const json = await response.json();
     setImages(json)
   }
   const handlePickerImage = async () => {
-    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
+    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -57,7 +51,7 @@ export function CreateEvent() {
         uri: result.uri,
         type: 'image/' + extend,
       }))); try {
-        const response = await axios.post(`http://192.168.1.2:8081/image`, formData, {
+        const response = await axios.post(imgRoute + `/image`, formData, {
           headers: {
             Accept: 'aplication/json',
             'Content-Type': 'multipart/form-data',
@@ -66,17 +60,13 @@ export function CreateEvent() {
         if (response.data.error) {
           Alert.alert('erro', 'nao foi possivel enviar sua image')
         } else {
-          Alert.alert('Sucesso ')
+          Alert.alert('Link da imagem gerado com Sucesso ')
           fetchImages()
-
-          console.log(test)
         }
       } catch (error) {
         alert('erro ao enviar sua imagem')
       }
-
     }
-
   };
 
   const {
@@ -88,18 +78,14 @@ export function CreateEvent() {
 
   });
 
-
   const { data: user } = useGetUser({ cpf: userCpf ?? "" });
-  const onRefresh = () => {
 
+  setRefreshing(true);
+  const onRefresh = () => {
     const loadUser = async () => {
       const useGetUser = await AsyncStorage.getItem("userCPF");
-
       await setUserCpf(useGetUser)
     }
-
-    setRefreshing(true);
-
     setTimeout(() => {
       loadUser();
       setRefreshing(false);
@@ -113,13 +99,8 @@ export function CreateEvent() {
   useFocusEffect(
     React.useCallback(() => {
       onRefresh();
-      return () => {
-
-      };
-    }, [])
-  );
-
-
+      return () => { };
+    }, []));
 
   const submitRegisterForm = async (data: Event) => {
     await createEventMutation({
@@ -144,14 +125,12 @@ export function CreateEvent() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         <S.ContainerBottom>
-
           <S.ContainerBottomTitle>
             Cadastro de  Novo Evento
           </S.ContainerBottomTitle>
-
           {errors.imageUrl && (
-            <Text style={styles.labelError}> {errors.imageUrl?.message}</Text>
-          )}
+            <Text style={styles.labelError}> {errors.imageUrl?.message}</Text>)}
+
           <TouchableOpacity
             style={{
               marginLeft: 35,
@@ -191,7 +170,6 @@ export function CreateEvent() {
             )}
           />
 
-
           {errors.name && (
             <Text style={styles.labelError}>{errors.name?.message}</Text>
           )}
@@ -201,12 +179,10 @@ export function CreateEvent() {
             name="name"
             render={({ field: { onChange, onBlur, value } }) => (
               <S.TextInput
-                style={[
-
-                  {
-                    borderWidth: errors.name && 1,
-                    borderColor: errors.name && theme.COLORS.RED,
-                  },
+                style={[{
+                  borderWidth: errors.name && 1,
+                  borderColor: errors.name && theme.COLORS.RED,
+                },
                 ]}
                 placeholder="Nome do Evento"
                 onChangeText={onChange}
@@ -215,8 +191,6 @@ export function CreateEvent() {
               />
             )}
           />
-
-
 
           {errors.price && (
             <Text style={styles.labelError}>{errors.price?.message}</Text>
@@ -227,12 +201,10 @@ export function CreateEvent() {
             name="price"
             render={({ field: { onChange, onBlur, value } }) => (
               <S.TextInput
-                style={[
-
-                  {
-                    borderWidth: errors.price && 1,
-                    borderColor: errors.price && theme.COLORS.RED,
-                  },
+                style={[{
+                  borderWidth: errors.price && 1,
+                  borderColor: errors.price && theme.COLORS.RED,
+                },
                 ]}
                 placeholder="Valor"
                 onChangeText={onChange}
@@ -274,7 +246,6 @@ export function CreateEvent() {
             control={control}
             name="date"
             render={({ field: { onChange, onBlur, value } }) => (
-
               <S.Input
                 style={[
                   {
@@ -286,7 +257,6 @@ export function CreateEvent() {
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
-
               />
             )}
           />
@@ -322,7 +292,6 @@ export function CreateEvent() {
             control={control}
             name="location"
             render={({ field: { onChange, onBlur, value } }) => (
-
               <S.Input
                 style={[
                   {
@@ -346,7 +315,6 @@ export function CreateEvent() {
             control={control}
             name="description"
             render={({ field: { onChange, onBlur, value } }) => (
-
               <S.Input
                 style={[
                   {
@@ -366,14 +334,12 @@ export function CreateEvent() {
           <S.Button onPress={handleSubmit(submitRegisterForm)} >
             <S.TextButton>Cadastrar</S.TextButton>
           </S.Button>
-
         </S.ContainerBottom>
       </ScrollView>
       {/* <Footer /> */}
     </S.Container >
   )
 }
-
 const styles = StyleSheet.create({
   labelError: {
     alignSelf: "flex-start",

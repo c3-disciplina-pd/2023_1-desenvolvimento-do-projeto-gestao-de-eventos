@@ -1,41 +1,35 @@
 import * as S from "./styles";
 import * as React from 'react';
-import { useState, useEffect } from "react";
-import { ScrollView, RefreshControl, Text } from "react-native";
-import { AppNavigatorRoutesProps } from "@routes/app.routes";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
+import { useState } from "react";
+import { imgRoute } from '../../services/api'
+import { ScrollView, RefreshControl } from "react-native";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useGetUser, useGetEvent, useUpdateEvent, UserType } from "../../configs";
 
 export function EventDetails() {
+
     const navigation = useNavigation<AppNavigatorRoutesProps>();
-
     const [refreshing, setRefreshing] = useState(false);
-
     const [eventName, setEventName] = useState();
-
     const { updateEventMutation, updateEventLoading } = useUpdateEvent();
-
     const [userCpf, setUserCpf] = useState([{}]);
-
     const { data: events } = useGetEvent({ name: String(eventName) });
-
     const eventDate = new Date(events?.date ?? "");
 
     const onRefresh = () => {
+        setRefreshing(true);
+
         const loadUser = async () => {
             const useGetUser = await AsyncStorage.getItem("userCPF");
             setUserCpf(useGetUser)
         }
-
-        setRefreshing(true);
-
         const loadId = async () => {
             const eventGetName = await AsyncStorage.getItem("name");
             setEventName(eventGetName);
         }
-
         setTimeout(() => {
             setRefreshing(false);
             loadUser();
@@ -58,9 +52,6 @@ export function EventDetails() {
         navigation.navigate('Home')
     };
 
-
-
-
     useFocusEffect(
         React.useCallback(() => {
             onRefresh();
@@ -69,22 +60,13 @@ export function EventDetails() {
         }, [])
     );
 
-
     return (
         <S.Container>
-
-
             <S.ContainerBottom>
                 <ScrollView refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                }>
-
-
-
-
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                     <S.TitleBottom>{events?.name}</S.TitleBottom>
-                    <S.CardItemImage source={{ uri: events?.imageUrl }} resizeMode="stretch" />
-
+                    <S.CardItemImage source={{ uri: imgRoute + `/public/uploads/icode-${events?.imageUrl}` }} resizeMode="stretch" />
                     <S.TitleBottom>{'          '} Detalhes do Evento {'           '} </S.TitleBottom>
 
                     <S.CardItem>
@@ -94,19 +76,16 @@ export function EventDetails() {
                                     {events?.name}
                                 </S.CardItemSubtitle>
                             </S.CardItemTitle>
-
                             <S.CardItemTitle numberOfLines={2}>Total de vagas:{' '}
                                 <S.CardItemSubtitle >
                                     {events?.vacancies}
                                 </S.CardItemSubtitle>
                             </S.CardItemTitle>
-
                             <S.CardItemTitle numberOfLines={2}>Valor:{' '}
                                 <S.CardItemSubtitle >
                                     {events?.price === 0 ? "Gratuito" : `R$ ${events?.price}`}
                                 </S.CardItemSubtitle>
                             </S.CardItemTitle>
-
                         </S.CardItemTextContainer>
                     </S.CardItem>
 
@@ -117,19 +96,16 @@ export function EventDetails() {
                                     {eventDate.toLocaleDateString("pt-BR")}
                                 </S.CardItemSubtitle>
                             </S.CardItemTitle>
-
                             <S.CardItemTitle numberOfLines={2}>Local:{' '}
                                 <S.CardItemSubtitle >
                                     {events?.location}
                                 </S.CardItemSubtitle>
                             </S.CardItemTitle>
-
                             <S.CardItemTitle numberOfLines={2}>Promovido por:{' '}
                                 <S.CardItemSubtitle >
                                     {events?.creator}
                                 </S.CardItemSubtitle>
                             </S.CardItemTitle>
-
                         </S.CardItemTextContainer>
                     </S.CardItem>
 
@@ -153,6 +129,11 @@ export function EventDetails() {
                                 </S.Button>
                             </S.CardItemButton>
                         )}
+                    <S.CardItemButton>
+                        <S.Button >
+                            <S.TextButton>Inscrever</S.TextButton>
+                        </S.Button>
+                    </S.CardItemButton>
 
                 </ScrollView>
             </S.ContainerBottom>

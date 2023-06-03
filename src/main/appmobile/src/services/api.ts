@@ -3,3 +3,4 @@ import axios from "axios";
 export const api = axios.create({
   baseURL: "http://192.168.1.2:8080",
 });
+export const imgRoute = "http://192.168.1.2:8081";

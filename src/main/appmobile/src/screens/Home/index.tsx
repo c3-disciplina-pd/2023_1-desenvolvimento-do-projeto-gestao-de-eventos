@@ -1,32 +1,27 @@
 import * as React from 'react';
 import * as S from "./styles";
 
-import { useEffect, useState } from "react";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { AppNavigatorRoutesProps } from "@routes/app.routes";
-
-import { useGetEvents } from "../../configs";
-import { Text, Image, StyleSheet, RefreshControl, View } from 'react-native';
-
-import Carousel, { PaginationLight } from 'react-native-x-carousel'
-
 import { Dimensions } from "react-native";
 const { width } = Dimensions.get('window');
-
+import { useEffect, useState } from "react";
+import { useGetEvents } from "../../configs";
+import { imgRoute } from "../../services/api";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import Carousel, { PaginationLight } from 'react-native-x-carousel';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { Text, Image, StyleSheet, RefreshControl, View } from 'react-native';
 
 
 export function Home() {
 
   const navigation = useNavigation<AppNavigatorRoutesProps>();
-
   const { data: events, refetch: eventsRefetch } = useGetEvents({});
-
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => {
     setRefreshing(true);
+
     setTimeout(() => {
       setRefreshing(false);
       eventsRefetch();
@@ -44,6 +39,7 @@ export function Home() {
       };
     }, [])
   );
+
   const loadUser = async (name) => {
     try {
       await AsyncStorage.setItem(`name`, JSON.stringify(name));
@@ -53,40 +49,30 @@ export function Home() {
     navigation.navigate("EventDetails");
   }
 
-
   const renderItem = (events) => (
-
-
     <View
       key={events.name}
       style={styles.cardContainer}
     >
-
-      <View
-        style={styles.cardWrapper}
-      >
+      <View style={styles.cardWrapper}>
         <Image
           resizeMode="stretch"
           style={styles.card}
-          source={{ uri: events.imageUrl }}
+          source={{ uri: imgRoute + `/public/uploads/icode-${events.imageUrl}` }}
         />
         <View
           style={[
             styles.cornerLabel,
             { backgroundColor: '#0080ff' },
-          ]}
-        ><S.CardItemTop onPress={() => loadUser(events.name)
-        }>
+          ]}>
+          <S.CardItemTop onPress={() => loadUser(events.name)}>
             <Text style={styles.cornerLabelText}>
               ver mais
             </Text>
           </S.CardItemTop >
         </View>
       </View>
-
     </View >
-
-
   );
 
 
@@ -103,15 +89,14 @@ export function Home() {
     function handleAcessEvent() {
       loadUser(item.name);
       navigation.navigate("EventDetails");
-
     }
+
     const eventDate = new Date(item?.date ?? "");
 
     return (
       <S.CardItem
         onPress={handleAcessEvent}>
-
-        <S.CardItemImage source={{ uri: `http://192.168.1.2:8081/public/uploads/icode-${item.imageUrl}` }} resizeMode="stretch" />
+        <S.CardItemImage source={{ uri: imgRoute + `/public/uploads/icode-${item.imageUrl}` }} resizeMode="stretch" />
         <S.CardItemTextContainer>
           <S.CardItemTitle numberOfLines={4}>{item.name}</S.CardItemTitle>
           <S.CardItemSubtitle numberOfLines={2}>
@@ -130,7 +115,6 @@ export function Home() {
 
   return (
     <S.Container>
-
       <S.ContainerTop >
         {events?.find((event) => event.isEmphasis === 1) ? (
           <View style={styles.container} >
@@ -140,19 +124,16 @@ export function Home() {
               }
               pagination={PaginationLight}
               renderItem={renderItem}
-              data={events
-                ?.filter((event) => event.isEmphasis === 1)}
+              data={events?.filter((event) => event.isEmphasis === 1)}
               loop
               autoplay
             />
           </View>
-
         ) : (
           <Text >
             Não há eventos em destaque no momento
           </Text>
         )}
-
       </S.ContainerTop>
 
       <S.ContainerBottom  >
@@ -167,11 +148,10 @@ export function Home() {
           showsVerticalScrollIndicator={false}
         />
       </S.ContainerBottom>
-
     </S.Container >
-
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -190,7 +170,6 @@ const styles = StyleSheet.create({
   card: {
     width: width * 0.9,
     height: width * 0.5,
-
   },
   cornerLabel: {
     position: 'absolute',
