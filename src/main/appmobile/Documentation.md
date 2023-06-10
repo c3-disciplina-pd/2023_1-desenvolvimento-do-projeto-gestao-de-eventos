@@ -4,10 +4,11 @@
 
 <h3 align="center">Projeto AppMobile</h3>
 <p align="center">
-  <a href="#-projeto">Estratégias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto-mobile">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-colaborador">Colaboradores</a>
+   <a href="#-explicação-das-pastas-do-mobile">Detalhes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-colaboradores">Colaboradores</a>
 </p>
 
 ### 📱 Telas:
@@ -79,7 +80,7 @@ O Events Management consiste em um projeto de manuseamento de eventos, tais como
 - [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)
 - [Expo Clipboard](https://docs.expo.dev/versions/latest/sdk/clipboard/)
 
-### 🚀 Como Executar:
+### 🚀 Como Executar
 
 1. Baixar o [Node.js](https://nodejs.org/en/) e o [expo](https://expo.dev/) na máquina
 2. Além disso, baixar o [git](https://git-scm.com/) para a sua máquina e conectar com seu github.
@@ -93,20 +94,6 @@ O Events Management consiste em um projeto de manuseamento de eventos, tais como
 
 obs2: não esquecer de execuntar junto o back-end.
 
-
-
-<br>
-
-## 🚀 Como executar
-
-- Clone o repositório
-- Instale o [Node.js + NPM](https://nodejs.org/en/download/)
-- Rode o comando `npm install` no terminal para adicionar todas as dependencias
-- Inicie o servidor com `npm run dev` no terminal
-
-Agora você pode acessar [`localhost:3000`](http://localhost:3000) no seu navegador ou o link que o VITE sugerir.
-
-<br>
 
 ---
 <h3 align="center">Explicação das pastas do Mobile</h3>
