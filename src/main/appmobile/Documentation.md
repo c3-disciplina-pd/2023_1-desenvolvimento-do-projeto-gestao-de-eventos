@@ -12,38 +12,49 @@
 
 ### 📱 Telas:
 
+
+
 #### Tela de Welcome
 
-<img src="https://user-images.githubusercontent.com/63603061/203981617-78453c64-e3eb-48fb-832e-fd473a051d39.png" width=20% padding-right:800px>
-
+<img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/ad4eb0f4-0561-40a6-9683-f8b880f3502a" width=20% padding-right:800px>
 
 #### Tela de Sign In
 
-<img src="https://user-images.githubusercontent.com/63603061/203981617-78453c64-e3eb-48fb-832e-fd473a051d39.png" width=20% padding-right:800px>
-
+<img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/d7d75257-d98a-4952-a808-85c5625632af" width=20% >
 
 #### Tela de Sign Up
 
-<img src="https://user-images.githubusercontent.com/63603061/203982032-993cedae-38c7-4370-a99d-d33b5f57a3d4.png" width=20%>
+<img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/f47b43ff-699f-46b3-b2ec-a096ea40838b" width=20%>
 
-#### Tela Inicial
+#### Tela Home
 
-<img src="https://user-images.githubusercontent.com/63603061/203982174-a79a8d16-04d3-4bee-99c1-bdf38c96540b.png" width=20%>
+<img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/37b9c52e-df1c-4996-9560-17ff4f59f4ed" width=20%>
 
 #### Tela de Detalhes do Evento
 
-<img src="https://user-images.githubusercontent.com/63603061/203981617-78453c64-e3eb-48fb-832e-fd473a051d39.png" width=20%>
+<img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/0c133d50-cab0-4253-9de5-fbfbba3be91e" width=20%>
+<img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/c8c26d8e-c779-4446-83d2-fe3023961970" width=20%>
+
+#### Tela de Perfil
+
+<img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/58a71418-e9dc-4b65-aa7b-be95b73fddb7" width=20%>
 
 #### Tela de Edição do Perfil
 
-<img src="https://user-images.githubusercontent.com/63603061/203982296-1bede706-4e9e-4315-8e76-2080a62cf58c.png" width=20%>
-
-### 📱 Tela especial do gestor
+<img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/f7e5866e-b61a-4ea7-9ebb-31c1d586aac8" width=20%>
 
 #### Tela de Criação do Evento
 
-<img src="https://user-images.githubusercontent.com/63603061/204378457-ad5ce43e-97b7-4da0-8561-2072acec41c5.png"
+<img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/0198a1c5-2d76-4fad-8b97-052d84837c43"
  width=20%>
+ <img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/254f4a32-f79c-4696-8bb0-3717fdd78381"
+ width=20%>
+ 
+ #### Tela Sistem
+
+  <img src="https://github.com/c3-disciplina-pd/2023_1-desenvolvimento-do-projeto-gestao-de-eventos/assets/71337932/4f2995fa-58e3-4733-b8a9-ee84365271e5"
+ width=20%>
+
 
 ## 📱 Projeto - Mobile
 
