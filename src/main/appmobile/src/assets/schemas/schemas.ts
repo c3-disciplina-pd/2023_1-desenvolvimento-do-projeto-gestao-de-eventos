@@ -50,5 +50,5 @@ export const EventSchema = yup.object().shape({
   price: yup
     .number()
     .typeError("Insira apenas ponto e números")
-    .required("Preencha o horário corretamente!"),
+    .required("Preencha o campo!"),
 });

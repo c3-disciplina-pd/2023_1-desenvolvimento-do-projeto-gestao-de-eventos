@@ -14,7 +14,8 @@ import { Event, useCreateEvent, useGetUser } from "../../configs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ScrollView, Text, StyleSheet, RefreshControl, Alert, ToastAndroid } from 'react-native';
-
+import { yupResolver } from "@hookform/resolvers/yup";
+import { EventSchema } from "../../assets";
 export function CreateEvent() {
 
   const navigation = useNavigation<AppNavigatorRoutesProps>();
@@ -82,7 +83,7 @@ export function CreateEvent() {
     handleSubmit,
   } = useForm<Event>({
     mode: "onSubmit",
-
+    resolver: yupResolver(EventSchema),
   });
 
   const { data: user } = useGetUser({ cpf: userCpf ?? "" });

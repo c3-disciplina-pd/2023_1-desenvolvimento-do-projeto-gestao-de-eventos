@@ -142,7 +142,7 @@ export function Register() {
                     value={value}
                     secureTextEntry={hidePass}
                   />
-                  <S.TouchableOpacity >
+                  <S.TouchableOpacity onPress={() => setHidePass(!hidePass)}>
                     <S.PasswordOpacity onPress={() => setHidePass(!hidePass)}>
                       <Ionicons name="eye" color="#121212" size={25} />
                     </S.PasswordOpacity>
