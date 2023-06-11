@@ -237,6 +237,10 @@ Agora você pode acessar [`localhost:3000`](http://localhost:3000) no seu navega
 
 <h3>👥 Desenvolvedores:</h3>
 
+#### Nome: Danilo Jean da Silva
+- Registro do Aluno (RA): 00000029709
+- GitHub: [gigazin](https://github.com/gigazin)
+
 #### Nome: Davi Mateus Gomes de Almeida
 - Registro do Aluno (RA): 00000009960
 - GitHub: [davimateus1](https://github.com/davimateus1)
