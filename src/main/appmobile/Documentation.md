@@ -161,6 +161,11 @@ obs2: não esquecer de execuntar junto o back-end.
 - Registro do Aluno (RA): 00000004287
 - GitHub: [HenriqueLira](https://github.com/gareky1)
 
+#### Nome: Bruno Vicente Ferreira
+
+- Registro do Aluno (RA): 00000002413
+- GitHub: [ferreirabrunno](https://github.com/ferreirabrunno)
+
 #### Nome: Djalma Henrique Silva Lima
 
 - Registro do Aluno (RA): 00000003109
