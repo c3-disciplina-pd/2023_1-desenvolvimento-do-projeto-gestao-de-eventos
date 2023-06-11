@@ -89,6 +89,7 @@ Agora você pode acessar [`localhost:3000`](http://localhost:3000) no seu navega
 <h4>📂 pages</h4>
 <p>Dentro dessa pasta nós temos todas as telas que existem atualmente na nossa aplicação cada arquivo está relacionado ao seu componente lá da pasta de components para uma melhor organização, os componentes são:</p>
 <ul>
+  <li>CartPage (Tela de carrinho, onde o usuário irá realizar o pagamento da inscrição em eventos pagos)</li>
   <li>ConfigsPage (Tela de configurações do usuário, para alterar suas informações pessoais)</li>
   <li>CreateEventPage (Tela que o Admin pode criar eventos para serem exibidos na plataforma)</li>
   <li>EventDetailsPage (Tela que mostra os detalhes de um evento especifico da plataforma)</li>
