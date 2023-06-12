@@ -1,22 +1,25 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const conn = require("./database/database");
+const User = require("./model/User");
+const Event = require("./model/Event");
+
 const userRoutes = require("./route/user.routes");
 const eventRoutes = require("./route/event.routes");
 const loginRoutes = require("./route/login.routes");
-const conn = require("./database/database");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+
 require("dotenv-safe").config();
+
 const app = express();
-const User = require("./model/User");
-const Event = require("./model/Event");
 
 conn
   .authenticate()
   .then(() => {
-    console.log("conexao feita");
+    console.log("Conexão feita com sucesso.");
   })
-  .catch((msgErro) => {
-    console.log("msgErro");
+  .catch((error) => {
+    console.error("Erro ao conectar ao banco de dados:", error);
   });
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,7 +28,7 @@ app.use(cors());
 
 app.listen(process.env.PORT || 8080, function () {
   console.log(
-    "Express server listening on port %d in %s mode",
+    "Servidor Express ouvindo na porta %d no modo %s",
     this.address().port,
     app.settings.env
   );
@@ -36,14 +39,7 @@ app.use("/event", eventRoutes);
 app.use("/login", loginRoutes);
 
 app.use((error, req, res, next) => {
-  const status = error.status ? error.status : 500;
-  res.status(status).json({
-    status: `${status}`,
-    message: `${error.message}`,
-  });
-});
-app.use((error, req, res, next) => {
-  const status = error.status ? error.status : 400;
+  const status = error.status || 500;
   res.status(status).json({
     status: `${status}`,
     message: `${error.message}`,
@@ -51,32 +47,41 @@ app.use((error, req, res, next) => {
 });
 
 app.put("/events/update/:id/:cpf", (req, res) => {
-  var id = req.params.id;
-  var cpf = req.params.cpf;
-  var editor = req.body.editor;
-  var type = req.body.type;
-  var isEmphasis = req.body.isEmphasis;
+  const id = req.params.id;
+  const cpf = req.params.cpf;
+  const editor = req.body.editor;
+  const type = req.body.type;
+  const isEmphasis = req.body.isEmphasis;
+
   User.findOne({
     where: {
       cpf: cpf,
       lastName: editor,
     },
-  }).then((cpf) => {
-    if ((cpf && type == "Manager") || type == "Admin") {
-      Event.update(
-        {
-          isEmphasis: isEmphasis,
-        },
-        {
-          where: {
-            id: id,
+  })
+    .then((user) => {
+      if (user && (type === "Manager" || type === "Admin")) {
+        Event.update(
+          {
+            isEmphasis: isEmphasis,
           },
-        }
-      ).then(() => {
-        res.status(200).send();
-      });
-    } else {
-      res.status(401).json({ message: "Invalid CPF or auth!" });
-    }
-  });
+          {
+            where: {
+              id: id,
+            },
+          }
+        )
+          .then(() => {
+            res.status(200).send();
+          })
+          .catch((error) => {
+            res.status(500).json({ message: "Erro ao atualizar o evento." });
+          });
+      } else {
+        res.status(401).json({ message: "CPF inválido ou autenticação inválida!" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: "Erro ao buscar o usuário." });
+    });
 });
